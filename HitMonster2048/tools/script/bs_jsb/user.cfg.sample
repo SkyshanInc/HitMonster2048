@@ -1,0 +1,4 @@
+PYTHON_BIN=python2.7
+NDK_ROOT=/Users/ivyshao/Downloads/android-ndk-r9b
+CXX_GENERATOR_ROOT=/Users/ivyshao/Downloads/bindings-generator-develop/
+PROJ_ROOT=/Users/ivyshao/work/poko/client

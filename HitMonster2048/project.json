@@ -1,0 +1,43 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d"],
+
+    "jsList" : [
+        "src/functions.js",
+        "src/resource.js",
+        "src/class.js",
+        "src/code/uiBase.js",
+        "src/app.js",
+        "src/code/resourceMgr.js",
+        "src/code/uiActions.js",
+        "src/code/appCtrl.js",
+        "src/code/Constants.js",
+        "src/code/Map.js",
+        "src/code/Logic.js",
+        "src/code/MusicMgr.js",
+        "src/code/BS_JSB.js",
+        "src/code/netWork.js",
+        "src/code/NetWorkData.js",
+        "src/code/shop.js",
+        "src/code/msgMgr.js",
+        "src/code/cocosFactory.js",
+        "src/code/sceneMgr.js",
+        "src/code/uiMgr.js",
+        "src/code/mainPlayer.js",
+        "src/code/effectMgr.js",
+        "src/code/cornerMarkMgr.js",
+        "src/code/GameAnalytics.js",
+        "src/scene/mainScene.js",
+        "src/widget/Card.js",
+        "src/widget/SimpleRecognizer.js",
+        "src/game/gamePlay.js"
+    ]
+}
