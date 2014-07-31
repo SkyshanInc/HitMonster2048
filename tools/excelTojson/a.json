@@ -1,0 +1,322 @@
+[
+    {
+        "des": "进入无尽模式的消耗品", 
+        "icon": "item_lingpai", 
+        "name": "令牌", 
+        "tip": "进入无尽模式的消耗品", 
+        "type": 1, 
+        "typeId": 41002
+    }, 
+    {
+        "des": "增加武将经验200点", 
+        "icon": "item_jingyan_1", 
+        "name": "小笼包", 
+        "tip": "增加武将经验200点", 
+        "type": 3, 
+        "typeId": 41003
+    }, 
+    {
+        "des": "增加武将经验1000点", 
+        "icon": "item_jingyan_2", 
+        "name": "大切糕", 
+        "tip": "增加武将经验1000点", 
+        "type": 3, 
+        "typeId": 41005
+    }, 
+    {
+        "des": "增加武将经验5000点", 
+        "icon": "item_jingyan_3", 
+        "name": "土豪蛋", 
+        "tip": "增加武将经验5000点", 
+        "type": 3, 
+        "typeId": 41006
+    }, 
+    {
+        "des": "武将突破20级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_1", 
+        "name": "围棋白子", 
+        "tip": "武将突破20级所需的材料，挑战模式产出。", 
+        "type": 7, 
+        "typeId": 41007
+    }, 
+    {
+        "des": "武将突破20级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_2", 
+        "name": "围棋黑子", 
+        "tip": "武将突破20级所需的材料，挑战模式产出。", 
+        "type": 7, 
+        "typeId": 41008
+    }, 
+    {
+        "des": "武将突破20级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_3", 
+        "name": "围棋棋盘", 
+        "tip": "武将突破20级所需的材料，挑战模式产出。", 
+        "type": 7, 
+        "typeId": 41009
+    }, 
+    {
+        "des": "武将突破20级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_4", 
+        "name": "围棋棋谱", 
+        "tip": "武将突破20级所需的材料，挑战模式产出。", 
+        "type": 7, 
+        "typeId": 41010
+    }, 
+    {
+        "des": "武将突破40级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_5", 
+        "name": "象棋-車", 
+        "tip": "武将突破40级所需的材料，挑战模式产出。", 
+        "type": 8, 
+        "typeId": 41011
+    }, 
+    {
+        "des": "武将突破40级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_6", 
+        "name": "象棋-炮", 
+        "tip": "武将突破40级所需的材料，挑战模式产出。", 
+        "type": 8, 
+        "typeId": 41012
+    }, 
+    {
+        "des": "武将突破40级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_7", 
+        "name": "象棋-馬", 
+        "tip": "武将突破40级所需的材料，挑战模式产出。", 
+        "type": 8, 
+        "typeId": 41013
+    }, 
+    {
+        "des": "武将突破40级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_8", 
+        "name": "象棋-帅", 
+        "tip": "武将突破40级所需的材料，挑战模式产出。", 
+        "type": 8, 
+        "typeId": 41014
+    }, 
+    {
+        "des": "武将突破60级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_9", 
+        "name": "麻将幺鸡", 
+        "tip": "武将突破60级所需的材料，挑战模式产出。", 
+        "type": 9, 
+        "typeId": 41016
+    }, 
+    {
+        "des": "武将突破60级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_10", 
+        "name": "麻将一饼", 
+        "tip": "武将突破60级所需的材料，挑战模式产出。", 
+        "type": 9, 
+        "typeId": 41015
+    }, 
+    {
+        "des": "武将突破60级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_11", 
+        "name": "麻将一萬", 
+        "tip": "武将突破60级所需的材料，挑战模式产出。", 
+        "type": 9, 
+        "typeId": 41017
+    }, 
+    {
+        "des": "武将突破60级所需的材料，挑战模式产出。", 
+        "icon": "item_tupo_12", 
+        "name": "麻将發财", 
+        "tip": "武将突破60级所需的材料，挑战模式产出。", 
+        "type": 9, 
+        "typeId": 41018
+    }, 
+    {
+        "des": "最终获得积分提高10%", 
+        "icon": "item_jifendaoju", 
+        "name": "积分道具", 
+        "tip": "最终获得积分提高10%", 
+        "type": 10, 
+        "typeId": 41019
+    }, 
+    {
+        "des": "最终获得金币提高100%", 
+        "icon": "item_jinbidaoju", 
+        "name": "金币道具", 
+        "tip": "最终获得金币提高100%", 
+        "type": 11, 
+        "typeId": 41020
+    }, 
+    {
+        "des": "生成两个随机消除两种色块的令旗", 
+        "icon": "item_shuangselingqi_0", 
+        "name": "双色令旗", 
+        "tip": "生成两个随机消除两种色块的令旗", 
+        "type": 12, 
+        "typeId": 41021
+    }, 
+    {
+        "des": "游戏总时间增加5秒", 
+        "icon": "item_shijian5", 
+        "name": "时间+5", 
+        "tip": "游戏总时间增加5秒", 
+        "type": 13, 
+        "typeId": 41022
+    }, 
+    {
+        "des": "所有连线生成的飓风技能球均改为漩涡技能球", 
+        "icon": "item_SuperBombs", 
+        "name": "SuperBombs", 
+        "tip": "所有连线生成的飓风技能球均改为漩涡技能球", 
+        "type": 14, 
+        "typeId": 41023
+    }, 
+    {
+        "des": "全局减少一种色块", 
+        "icon": "item_yansejianshao", 
+        "name": "颜色5→4", 
+        "tip": "全局减少一种色块", 
+        "type": 15, 
+        "typeId": 41024
+    }, 
+    {
+        "des": "激活后10秒内色块造成伤害提高3倍", 
+        "icon": "item_sanbeishanghai", 
+        "name": "三倍伤害", 
+        "tip": "激活后10秒内色块造成伤害提高3倍", 
+        "type": 16, 
+        "typeId": 41025
+    }, 
+    {
+        "des": "激活后生成固定图案", 
+        "icon": "item_shuazi", 
+        "name": "刷子", 
+        "tip": "激活后生成固定图案", 
+        "type": 17, 
+        "typeId": 41026
+    }, 
+    {
+        "des": "内含所有普通辅助道具", 
+        "icon": "item_dabaodaoju", 
+        "name": "打包道具", 
+        "tip": "内含所有普通辅助道具", 
+        "type": 18, 
+        "typeId": 41027
+    }, 
+    {
+        "des": "召唤好友武将帮助战斗", 
+        "icon": "item_haoyoubangzhu", 
+        "name": "好友帮助", 
+        "tip": "召唤好友武将帮助战斗", 
+        "type": 19, 
+        "typeId": 41028
+    }, 
+    {
+        "des": "随机开出辅助道具，SuperBombs、三倍伤害尽在其中！", 
+        "icon": "item_daojubaoxiang", 
+        "name": "无尽模式宝箱", 
+        "tip": "随机开出辅助道具，SuperBombs、三倍伤害尽在其中！", 
+        "type": 20, 
+        "typeId": 41029
+    }, 
+    {
+        "des": "随机开出武将突破所需的材料", 
+        "icon": "item_tupobaoxiang", 
+        "name": "黄巾之乱宝箱", 
+        "tip": "随机开出武将突破所需的材料", 
+        "type": 20, 
+        "typeId": 41031
+    }, 
+    {
+        "des": "随机开出武将突破所需的材料", 
+        "icon": "item_tupobaoxiang", 
+        "name": "讨伐董卓宝箱", 
+        "tip": "随机开出武将突破所需的材料", 
+        "type": 20, 
+        "typeId": 41032
+    }, 
+    {
+        "des": "随机开出普通道具。", 
+        "icon": "item_daojubaoxiang", 
+        "name": "普通道具箱", 
+        "tip": "随机开出普通道具。", 
+        "type": 20, 
+        "typeId": 41030
+    }, 
+    {
+        "des": "随机开出稀有道具。", 
+        "icon": "item_laohuji", 
+        "name": "免费老虎机", 
+        "tip": "随机开出稀有道具。", 
+        "type": 20, 
+        "typeId": 41033
+    }, 
+    {
+        "des": "随机开出稀有道具，更有机会获得武将抽奖券。", 
+        "icon": "item_laohuji", 
+        "name": "付费老虎机", 
+        "tip": "随机开出稀有道具，更有机会获得武将抽奖券。", 
+        "type": 20, 
+        "typeId": 41034
+    }, 
+    {
+        "des": "可免费抽取低档武将包1次", 
+        "icon": "item_choujiangquan", 
+        "name": "普通武将抽奖券", 
+        "tip": "可免费抽取低档武将包1次", 
+        "type": 22, 
+        "typeId": 41035
+    }, 
+    {
+        "des": "可免费抽取高档武将包1次", 
+        "icon": "item_choujiangquan", 
+        "name": "稀有武将抽奖券", 
+        "tip": "可免费抽取高档武将包1次", 
+        "type": 23, 
+        "typeId": 41036
+    }, 
+    {
+        "des": "开局生成6个单色令旗技能球。", 
+        "icon": "item_danselingqi_0", 
+        "name": "单色令旗×6", 
+        "tip": "开局生成6个单色令旗技能球。", 
+        "type": 24, 
+        "typeId": 41037
+    }, 
+    {
+        "des": "以固定图案开局，长连不是事。", 
+        "icon": "item_shuazi", 
+        "name": "大刷特刷", 
+        "tip": "以固定图案开局，长连不是事。", 
+        "type": 25, 
+        "typeId": 41038
+    }, 
+    {
+        "des": "开局生成3个双色令旗技能球。", 
+        "icon": "item_shuangselingqi_0", 
+        "name": "双色令旗×3", 
+        "tip": "开局生成3个双色令旗技能球。", 
+        "type": 26, 
+        "typeId": 41039
+    }, 
+    {
+        "des": "消除时间糖果，最多能增加12秒游戏时间。", 
+        "icon": "item_shijian5", 
+        "name": "时间加成", 
+        "tip": "消除时间糖果，最多能增加12秒游戏时间。", 
+        "type": 27, 
+        "typeId": 41040
+    }, 
+    {
+        "des": "生成5个连环炸弹，获得更高积分！", 
+        "icon": "item_shijian5", 
+        "name": "额外时间", 
+        "tip": "生成5个连环炸弹，获得更高积分！", 
+        "type": 28, 
+        "typeId": 41041
+    }, 
+    {
+        "des": "随机开出武将突破所需的材料", 
+        "icon": "item_tupobaoxiang", 
+        "name": "祸乱长安宝箱", 
+        "tip": "随机开出武将突破所需的材料", 
+        "type": 20, 
+        "typeId": 41042
+    }
+]
