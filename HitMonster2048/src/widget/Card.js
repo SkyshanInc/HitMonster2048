@@ -87,14 +87,14 @@ CardSprite.prototype.setNumber = function(num,isChangTempNum)
 	{
 		this.labelCardNumber.setSystemFontSize(60);
 	}
-	if (num >= 256)
+	if (num >= 1024)
 	{
 		this.labelCardNumber.setSystemFontSize(40);
 	}
     
 	//判断数字的大小来调整颜色
 	var number = this.number <= 128 ? this.number : 128;
-    
+    cc.log("number:"+number);
     this.setSpriteFrame("card"+number+".png");
 	
 }
