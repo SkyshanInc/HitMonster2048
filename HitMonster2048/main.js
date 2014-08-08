@@ -18,13 +18,18 @@ cc.game.onStart = function(){
 	cc.view.resizeWithBrowserSize(true);
     
     
-    
-    
-	var g_resources = [];
-	for(var k in res){
-		cc.log("res[k]:"+res[k])
-		g_resources.push(res[k]);
-	}
+    var g_resources = [];
+    try{
+        var txt = cc.FileUtils.getInstance().getStringFromFile("resource.json");
+        g_resources = JSON.parse(txt);
+    }catch(e){
+        cc.log("**** 解析resource.json 出错 *******");
+    }
+	
+//	for(var k in res){
+//		cc.log("res[k]:"+res[k])
+//		g_resources.push(res[k]);
+//	}
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
 //        cc.director.runScene(new HelloWorldScene());

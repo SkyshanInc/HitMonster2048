@@ -4,8 +4,7 @@ import subprocess
 import sys
 import argparse
 import zipfile 
-
-not_rotate = ['zhandou']
+import resourceJson
 
 proj_dir = os.path.abspath(
 os.path.join(os.path.dirname(__file__), '../'))
@@ -16,9 +15,9 @@ hd_Resources = os.path.join(proj_dir, 'Resources/hd')
 sd_font = os.path.join(proj_dir, 'Resources/sd_other')
 hd_font = os.path.join(proj_dir, 'Resources/hd_other')
 
-sd_output_dir = os.path.join(proj_dir, 'pokoSanguo/Resources/res/sd')
-hd_output_dir = os.path.join(proj_dir, 'pokoSanguo/Resources/res/hd')
-studio_output_dir = os.path.join(proj_dir, 'pokoSanguo/web_res')
+sd_output_dir = os.path.join(proj_dir, 'HitMonster2048/res/sd')
+hd_output_dir = os.path.join(proj_dir, 'HitMonster2048/res/hd')
+studio_output_dir = os.path.join(proj_dir, 'studio_res')
 
 Encryptionkey = 'dd83d78cf8526835421473ba2d441d53'
 
@@ -26,12 +25,7 @@ def is_images(name):
     return name.lower().endswith('png')
 
 def is_json(name):
-    return name.lower().endswith('json')
-
-def zip_file(fileName,output,writeFile):
-    f = zipfile.ZipFile(os.path.join(output,fileName), 'w' ,zipfile.ZIP_DEFLATED) 
-    f.write(writeFile,os.path.basename(writeFile))
-    f.close() 
+    return name.lower().endswith('json') 
 
 def mkdir_if_needed():
     parser = argparse.ArgumentParser(description='Process args')
@@ -78,8 +72,6 @@ def mkdir_if_needed():
                 subprocess.call(["rm", "-r", group_dir])
         else:
             subprocess.call(["rm", "-r", group_dir])
-
-
 
 def run_tp(files, options):
     global proj_dir
@@ -138,9 +130,9 @@ def process():
     if one_file==None:
         for group in os.listdir(resFont):
             group_dir = os.path.join(resFont, group)
-            if is_json(group_dir):
-                zipName = group.split('.')[0]+".zip"
-                zip_file(zipName,output,group_dir)
+            # if is_json(group_dir):
+            #     zipName = group.split('.')[0]+".zip"
+            #     zip_file(zipName,output,group_dir)
                
             subprocess.call(["cp", "-rf", group_dir, output])
             subprocess.call(["cp", "-rf", group_dir, studio_out])
@@ -173,9 +165,6 @@ def process():
 
         if args.s != None:
             options.update({'scale':args.s}),
-        
-        if group in not_rotate:
-            options.update({'disable-rotation':''}),
 
         print "===============args.mm %s" % args.mm
         if args.mm == "true":
@@ -199,9 +188,6 @@ def process():
             options.update({'scale':args.s}),
 
         options.update({'opt':'RGBA4444'})
-        
-        if group in not_rotate:
-            options.update({'disable-rotation':''}),
 
         if not args.opt==None:
             options.update({'opt':args.opt})
@@ -214,6 +200,8 @@ def process():
 if __name__ == '__main__':
     mkdir_if_needed();
     process();
+    print "=======  resourceJson ------------"
+    resourceJson.main()
 
 
 

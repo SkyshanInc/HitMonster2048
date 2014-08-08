@@ -7,6 +7,9 @@ function GamePlay() {
     this.cardRunActionFalg = false;
     this.score = 0;
     this.allCardsNode = null;
+    this.allCardActStopMaps = {};
+    this.checkCardActStopFlag = false;
+    this.mFightMonster = new fightMonster(this);
     uiBase.call(this);
 
 }
@@ -25,8 +28,8 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
         this.cardArr[i] = [];
     }
 
-    cc.spriteFrameCache.addSpriteFrames(res.main_plist);
-    cc.spriteFrameCache.addSpriteFrames(res.General_guge_plist);
+    cc.spriteFrameCache.addSpriteFrames("card.plist");
+    cc.spriteFrameCache.addSpriteFrames("general_guge_1.plist");
     
     
     this.allCardsNode = cc.Layer.create();
@@ -78,7 +81,7 @@ GamePlay.prototype.init = function()
     
     
     var sceneName = "xueshan";
-    ccs.armatureDataManager.addArmatureFileInfo(res.Xueshan_Json);
+    ccs.armatureDataManager.addArmatureFileInfo("xueshan.ExportJson");
     
     var scene = ccs.Armature.create(sceneName);
     scene.setAnchorPoint(0.1,0);
@@ -98,9 +101,9 @@ GamePlay.prototype.init = function()
 //    this.addChild(menu);
     
     
-    var generalNode = GetGeneralNode(true);
-    generalNode.setPosition(cc.p(200, visibleSize.height - 250));
-    this.addChild(generalNode);
+    this.generalNode = GetGeneralNode(true);
+    this.generalNode.setPosition(cc.p(200, visibleSize.height - 250));
+    this.addChild(this.generalNode);
     
     //创建分数
 //    var cardNumberTitle = cc.Label.createWithSystemFont("SCORE:","Consolas",80);
@@ -166,6 +169,7 @@ GamePlay.prototype.onTouchMoved = function(pSender)
 
 GamePlay.prototype.onTouchEnded = function(pSender)
 {
+    var sceneLockFlag = true;
     var pos = pSender.getTouchEndPos();
     cc.log("endPoint->x:"+pos.x+",y:"+pos.y);
     var rtn = this.recognizer.endPoint(pos);
@@ -195,13 +199,17 @@ GamePlay.prototype.onTouchEnded = function(pSender)
             
         case SimpleGesturesNotSupport:
         case SimpleGesturesError:
+            sceneLockFlag = false;
             log("not support or error touch,use geometricRecognizer!!");
             break;
             
         default:
+            sceneLockFlag = false;
             break;
     }
     this.cardRunActionFalg = true;
+    this.allCardActStopMaps = {};
+    LockScreen(sceneLockFlag,"[GamePlay]");
 }
 
 //根据屏幕大小创建卡片
@@ -589,9 +597,34 @@ GamePlay.prototype.update = function(dt){
         
         if(this.cardsActions.length > 0){
             var cardAct = this.cardsActions.shift();
-            this.cardRunAction(cardAct);
+            this.cardRunAction(cardAct,this.cardsActions.length);
             cc.log("等待操作");
         }
+    }
+
+    //检测所有卡牌动画是否结束
+    if(this.checkCardActStopFlag){
+
+        var isStop = true;
+        for(var key in this.allCardActStopMaps){
+            var cardActValue = this.allCardActStopMaps[key];
+            if(cardActValue){
+                isStop = false;
+                break;
+            }
+        }
+
+        if(isStop){
+            cc.log("可以继续操作")
+            this.cardRunActionFalg = false;
+            this.doCheck();
+            this.setScore(this.score);
+
+            this.checkCardActStopFlag = false;
+            //本次操作结束解锁
+            LockScreen(false,"[GamePlay]");
+        }
+
     }
     
 
@@ -605,9 +638,10 @@ GamePlay.prototype.pushCardsAction = function(cardOne,cardTwo){
     this.cardsActions.push(cardAct);
 }
 
-GamePlay.prototype.cardRunAction = function(cardAct){
+GamePlay.prototype.cardRunAction = function(cardAct,actIndex){
     // this.cardRunActionFalg = false;
     
+    this.allCardActStopMaps[actIndex] = true;
     var card1 = cardAct.card1;
     var card2 = cardAct.card2;
     
@@ -618,20 +652,16 @@ GamePlay.prototype.cardRunAction = function(cardAct){
     moveCard.setPosition(card1.getPosition());
     this.allCardsNode.addChild(moveCard);
     
-    
-    card1.setNumber(card1.getTempNumber());
-    
-    
+    card1.setNumber(0,false);//不改变temp值
 //    var offSet = 0.05;
 //    if(this.mDirection == SimpleGesturesLeft || this.mDirection == SimpleGesturesRight){//左右
 //        offSet = Math.abs(card1pos.x - card2pos.x);
 //        
 //    }else{
 //         offSet = Math.abs(card1pos.y - card2pos.y);
-//    }
-    
+//    }   
 //    var actTime = offSet/(140/0.05);
-     var actTime = 0.05;
+     var actTime = 0.1;
     
     
     var moveAction = cc.MoveTo.create(actTime,card2pos);
@@ -642,18 +672,31 @@ GamePlay.prototype.cardRunAction = function(cardAct){
         moveAction,
         cc.RemoveSelf.create(),
         cc.CallFunc.create(function(){
-        var num = card2.getTempNumber();
-        card2.setNumber(num);
-        // card2.runNewNumberAction();
-        // self.cardRunActionFalg = true;
-         //执行所有位置移动
-        if(self.cardsActions.length <= 0 && self.cardRunActionFalg){
-            cc.log("可以继续操作")
-            self.doCheck();
-            self.setScore(self.score);
-            self.cardRunActionFalg = false;
+        var tempNum1 = card1.getTempNumber();
+        var Num1 = card1.getNumber();
+        var tempNum2 = card2.getTempNumber();
+        var Num2 = card2.getNumber();
+        
+        card1.setNumber(tempNum1);
+        card2.setNumber(tempNum2);
+
+        if(Num1 != 0 && Num1 * 2 == tempNum1 ){
+            self.mFightMonster.hitMonster(card1);
+            card1.runLargenAction();
         }
-                                                
+        if(Num2 != 0 && Num2 * 2 == tempNum2 ){
+            self.mFightMonster.hitMonster(card2);
+            card2.runLargenAction();
+        }
+        
+        //重置动画执行为false
+        self.allCardActStopMaps[actIndex] = false;
+
+        //执行所有位置移动
+        if(self.cardsActions.length <= 0 && self.cardRunActionFalg){
+            self.checkCardActStopFlag = true;
+        }
+
         })
     ));
 }

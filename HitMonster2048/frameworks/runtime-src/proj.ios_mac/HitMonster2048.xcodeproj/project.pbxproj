@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084B11A1198B7058001B400D /* resource.json in Resources */ = {isa = PBXBuildFile; fileRef = 084B11A0198B7058001B400D /* resource.json */; };
 		08EEA4E519865C48000A51D5 /* src in Resources */ = {isa = PBXBuildFile; fileRef = 08EEA4E419865C48000A51D5 /* src */; };
 		1A676829180E9C060076BC67 /* libchipmunk Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB4C180E9ACB004C840B /* libchipmunk Mac.a */; };
 		1A67682A180E9C060076BC67 /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB48180E9ACB004C840B /* libcocos2dx Mac.a */; };
@@ -270,6 +271,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		084B11A0198B7058001B400D /* resource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = resource.json; path = ../../../resource.json; sourceTree = "<group>"; };
 		08EEA4E419865C48000A51D5 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
 		1A1A081B18C9DF05005C6854 /* project.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = project.json; path = ../../../project.json; sourceTree = "<group>"; };
 		1A6BF21418C9DB5900FB0E1C /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../../../main.js; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				084B11A0198B7058001B400D /* resource.json */,
 				08EEA4E419865C48000A51D5 /* src */,
 				1A1A081B18C9DF05005C6854 /* project.json */,
 				1A6BF21418C9DB5900FB0E1C /* main.js */,
@@ -803,6 +806,7 @@
 				C0F9A1C918C6D1FC00C75ABD /* jsb_property_impls.js in Resources */,
 				5091731E17ECDF7A00D62437 /* Icon-80.png in Resources */,
 				5091731F17ECDF7A00D62437 /* Icon-100.png in Resources */,
+				084B11A1198B7058001B400D /* resource.json in Resources */,
 				509D4AC117EBB2AB00697056 /* Icon-72.png in Resources */,
 				509D4AC017EBB2AB00697056 /* Icon-57.png in Resources */,
 				5091731A17ECDF7A00D62437 /* Icon-29.png in Resources */,

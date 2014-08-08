@@ -425,9 +425,9 @@ function GetGeneralNode(autoPlay){
     var icon = "";
     //临时用的
 //	var tempList = ResourceMgr.generalBoneList;
-    icon = res.Wujiang_diaochan_Json;
+    icon = "wujiang_diaochan.ExportJson";
     
-    ccs.armatureDataManager.addArmatureFileInfo(res.Wujiang_diaochan_Json);
+    ccs.armatureDataManager.addArmatureFileInfo(icon);
     
     var armature = ccs.Armature.create("wujiang_diaochan");
     if(autoPlay){

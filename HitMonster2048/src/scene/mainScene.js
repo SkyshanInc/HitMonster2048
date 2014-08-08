@@ -9,10 +9,6 @@ var mainScene = cc.Scene.extend({
     create:function(id,root){
         this.mID = id;
                                 
-                                
-//        root = new HelloWorldLayer();
-                                
-        //        var layer = ccs.uiReader.widgetFromJsonFile(res.DemoLogin_Json)
         this.mRoot = root||ccui.Widget.create();
         this.mRoot.setTouchEnabled(true);
         // this.mRoot.addTouchEventListener(this.touchEvent, this);

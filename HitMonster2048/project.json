@@ -12,10 +12,8 @@
 
     "jsList" : [
         "src/functions.js",
-        "src/resource.js",
         "src/class.js",
         "src/code/uiBase.js",
-        "src/app.js",
         "src/code/resourceMgr.js",
         "src/code/uiActions.js",
         "src/code/appCtrl.js",
@@ -34,10 +32,10 @@
         "src/code/mainPlayer.js",
         "src/code/effectMgr.js",
         "src/code/cornerMarkMgr.js",
-        "src/code/GameAnalytics.js",
         "src/scene/mainScene.js",
         "src/widget/Card.js",
         "src/widget/SimpleRecognizer.js",
+        "src/game/fightMonster.js",
         "src/game/gamePlay.js"
     ]
 }

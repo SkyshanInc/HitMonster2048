@@ -26,6 +26,16 @@ CardSprite.prototype.runNewNumberAction = function()
     var action = cc.ScaleBy.create(0.1,0.8);
     this.runAction(cc.Sequence.create(action, action.reverse()));
 }
+CardSprite.prototype.runNewNumberAction = function()
+{
+    var action = cc.ScaleBy.create(0.1,0.8);
+    this.runAction(cc.Sequence.create(action, action.reverse()));
+}
+CardSprite.prototype.runLargenAction = function()
+{
+    var action = cc.ScaleBy.create(0.1,0.8);
+    this.runAction(cc.Sequence.create(action.reverse(),action));
+}
 //获取数据
 CardSprite.prototype.getTempNumber = function()
 {
@@ -46,10 +56,13 @@ CardSprite.prototype.getNumber = function()
 }
 
 //设置数据
-CardSprite.prototype.setNumber = function(num)
+CardSprite.prototype.setNumber = function(num,isChangTempNum)
 {
+	isChangTempNum = isChangTempNum != undefined ? isChangTempNum : true;
 	this.number = num;
-    this.setTempNumber(num);
+    if(isChangTempNum){
+    	this.setTempNumber(num);
+	}
     cc.log("this.number:"+this.number);
 	//更新显示的数字
 	if (num > 0)
@@ -74,7 +87,7 @@ CardSprite.prototype.setNumber = function(num)
 	{
 		this.labelCardNumber.setSystemFontSize(60);
 	}
-	if (num >= 1024)
+	if (num >= 256)
 	{
 		this.labelCardNumber.setSystemFontSize(40);
 	}
@@ -113,6 +126,7 @@ CardSprite.prototype.clone = function(){
     
     cc.log("clone this.number:"+this.number);
     var cloneCard = CardSprite.createCardSprite(this.number);
+    cloneCard.setPosition(this.x,this.y);
     return cloneCard;
     
 }
