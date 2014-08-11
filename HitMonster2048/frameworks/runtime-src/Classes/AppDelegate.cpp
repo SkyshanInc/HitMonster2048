@@ -42,7 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if(!glview) {
-		glview = GLView::createWithRect("HitMonster2048", Rect(0,0,900,640));
+		glview = GLView::createWithRect("HitMonster2048", Rect(0,0,960,640));
 		director->setOpenGLView(glview);
 	}
 
@@ -79,10 +79,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     sc->addRegisterCallback(JavascriptJavaBridge::_js_register);
     #endif
     sc->start();
+    //图片文件解密秘钥
+    ZipUtils::setPvrEncryptionKey(0xdd83d78c,0xf8526835,0x421473ba,0x2d441d53);
     
     vector<string> searchPaths ;
     searchPaths.push_back("res/");
 	searchPaths.push_back("res/sd/");
+    searchPaths.push_back("res/sd/Armature");
 	searchPaths.push_back("res/font/");
 	searchPaths.push_back("res/music/");
     FileUtils::getInstance()->setSearchPaths(searchPaths);

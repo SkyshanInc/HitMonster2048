@@ -320,14 +320,14 @@ function SetLabelStringWithAnimation(label,number,hasComma,preStr,callback){
     var getStringFunc;
 
     if(label instanceof ccui.Text){
-        setStringFunc = label.setText;
-        getStringFunc = label.getStringValue;
+        setStringFunc = label.setString;
+        getStringFunc = label.getString;
     }else if(label instanceof ccui.TextAtlas){
-        setStringFunc = label.setStringValue;
-        getStringFunc = label.getStringValue;
+        setStringFunc = label.setString;
+        getStringFunc = label.getString;
     }else if(label instanceof ccui.TextBMFont){
-        setStringFunc = label.setText;
-        getStringFunc = label.getStringValue;
+        setStringFunc = label.setString;
+        getStringFunc = label.getString;
     }else if(label instanceof cc.LabelTTF){
         setStringFunc = label.setString;
         getStringFunc = label.getString;

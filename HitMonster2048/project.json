@@ -35,7 +35,8 @@
         "src/scene/mainScene.js",
         "src/widget/Card.js",
         "src/widget/SimpleRecognizer.js",
-        "src/game/fightMonster.js",
-        "src/game/gamePlay.js"
+        "src/game/gamePlay.js",
+        "src/game/cardCtr.js",
+        "src/game/fightMonster.js"
     ]
 }

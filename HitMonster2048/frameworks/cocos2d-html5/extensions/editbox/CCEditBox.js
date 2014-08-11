@@ -250,7 +250,10 @@ cc.EditBox = cc.ControlButton.extend({
         tmpEdTxt.style.height = "100%";
         tmpEdTxt.style.active = 0;
         tmpEdTxt.style.outline = "medium";
-
+        var onCanvasClick = function() {
+            tmpEdTxt.blur();
+        };
+        
         // TODO the event listener will be remove when EditBox removes from parent.
         cc._addEventListener(tmpEdTxt, "input", function () {
             if (selfPointer._delegate && selfPointer._delegate.editBoxTextChanged)
@@ -271,6 +274,7 @@ cc.EditBox = cc.ControlButton.extend({
             }
             if (selfPointer._delegate && selfPointer._delegate.editBoxEditingDidBegin)
                 selfPointer._delegate.editBoxEditingDidBegin(selfPointer);
+            cc._addEventListener(cc._canvas, "click", onCanvasClick);
         });
         cc._addEventListener(tmpEdTxt, "blur", function () {
             if (this.value == "") {
@@ -282,6 +286,7 @@ cc.EditBox = cc.ControlButton.extend({
                 selfPointer._delegate.editBoxEditingDidEnd(selfPointer);
             if (selfPointer._delegate && selfPointer._delegate.editBoxReturn)
                 selfPointer._delegate.editBoxReturn(selfPointer);
+            cc._canvas.removeEventListener('click', onCanvasClick);
         });
 
         cc.DOM.convert(tmpDOMSprite);
@@ -657,7 +662,7 @@ _p = null;
 cc.EditBox.getRect = function (node) {
     var contentSize = node.getContentSize();
     var rect = cc.rect(0, 0, contentSize.width, contentSize.height);
-    return cc.RectApplyAffineTransform(rect, node.nodeToWorldTransform());
+    return cc.rectApplyAffineTransform(rect, node.nodeToWorldTransform());
 };
 
 /**

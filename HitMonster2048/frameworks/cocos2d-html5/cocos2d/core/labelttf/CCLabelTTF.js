@@ -227,7 +227,7 @@ cc.LabelTTF = cc.Sprite.extend(/** @lends cc.LabelTTF# */{
 
     updateDisplayedOpacity: null,
     updateDisplayedOpacityForCanvas: function (parentOpacity) {
-        cc.NodeRGBA.prototype.updateDisplayedOpacity.call(this, parentOpacity);
+        cc.Node.prototype.updateDisplayedOpacity.call(this, parentOpacity);
         this._setColorsString();
     },
 
@@ -260,7 +260,7 @@ cc.LabelTTF = cc.Sprite.extend(/** @lends cc.LabelTTF# */{
      * @return {cc.Size}
      */
     getDimensions: function () {
-        return cc.size(this._dimensions.width, this._dimensions.height);
+        return cc.size(this._dimensions);
     },
 
     /**
@@ -651,11 +651,20 @@ cc.LabelTTF = cc.Sprite.extend(/** @lends cc.LabelTTF# */{
 
     /**
      * set Dimensions of cc.LabelTTF
-     * @param {cc.Size} dim
+     * @param {cc.Size|Number} dim dimensions or width of dimensions
+     * @param {Number} [height] height of dimensions
      */
-    setDimensions: function (dim) {
-        if (dim.width != this._dimensions.width || dim.height != this._dimensions.height) {
-            this._dimensions = dim;
+    setDimensions: function (dim, height) {
+        var width;
+        if(height === undefined){
+            width = dim.width;
+            height = dim.height;
+        }else
+            width = dim;
+
+        if (width != this._dimensions.width || height != this._dimensions.height) {
+            this._dimensions.width = width;
+            this._dimensions.height = height;
             this._updateString();
             // Force udpate
             this._needUpdateTexture = true;
@@ -1031,7 +1040,7 @@ if (cc._renderType === cc._RENDER_TYPE_CANVAS) {
     var _p = cc.LabelTTF.prototype;
 
     _p.setColor = function (color3) {
-        cc.NodeRGBA.prototype.setColor.call(this, color3);
+        cc.Node.prototype.setColor.call(this, color3);
 
         this._setColorsString();
     };
@@ -1050,7 +1059,7 @@ if (cc._renderType === cc._RENDER_TYPE_CANVAS) {
     };
 
     _p.updateDisplayedColor = function (parentColor) {
-        cc.NodeRGBA.prototype.updateDisplayedColor.call(this, parentColor);
+        cc.Node.prototype.updateDisplayedColor.call(this, parentColor);
         this._setColorsString();
     };
 

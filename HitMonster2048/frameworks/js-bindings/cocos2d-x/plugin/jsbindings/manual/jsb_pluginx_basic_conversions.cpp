@@ -60,6 +60,28 @@ public:
     }
 };
 
+// JSFunctionWrapper
+JSFunctionWrapper::JSFunctionWrapper(JSContext* cx, JSObject *jsthis, jsval fval)
+: _cx(cx)
+, _jsthis(jsthis)
+, _fval(fval)
+{
+    JS_AddNamedValueRoot(cx, &this->_fval, "JSFunctionWrapper");
+    JS_AddNamedObjectRoot(cx, &this->_jsthis, "JSFunctionWrapper");
+}
+
+JSFunctionWrapper::~JSFunctionWrapper()
+{
+    JS_RemoveValueRoot(this->_cx, &this->_fval);
+    JS_RemoveObjectRoot(this->_cx, &this->_jsthis);
+}
+
+bool JSFunctionWrapper::invoke(unsigned int argc, jsval *argv, jsval &rval)
+{
+    //JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+    
+    return JS_CallFunctionValue(this->_cx, this->_jsthis, this->_fval, argc, argv, &rval);
+}
 
 bool jsval_to_int32( JSContext *cx, jsval vp, int32_t *outval )
 {
@@ -320,6 +342,19 @@ jsval TProductInfo_to_jsval(JSContext *cx, TProductInfo& ret)
     return OBJECT_TO_JSVAL(tmp);
 }
 
+    jsval TProductList_to_jsval(JSContext *cx,TProductList list){
+        JSObject *tmp = JS_NewArrayObject(cx, 0, NULL);
+        int i = 0;
+        for(TProductList::iterator it = list.begin();it!=list.end();++it){
+            JS::RootedValue arrElement(cx);
+            
+            arrElement = TProductInfo_to_jsval(cx, *it);
+            JS_SetElement(cx, tmp, i, &arrElement);
+            ++i;
+        }
+        return OBJECT_TO_JSVAL(tmp);
+    }
+    
 jsval LogEventParamMap_to_jsval(JSContext *cx, LogEventParamMap*& ret)
 {// TODO:
     return JSVAL_NULL;

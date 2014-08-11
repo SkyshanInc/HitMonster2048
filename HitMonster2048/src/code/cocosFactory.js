@@ -5,7 +5,7 @@ var CocosFactory = {
     {
         this.mConfig = {
             mainScene:			[null, function () { return new mainScene() }],
-            gamePlay:    ["None.json", function () { return new GamePlay() }],
+            gamePlay:    ["gameUI.json", function () { return new GamePlay() }],
             
         }
     },

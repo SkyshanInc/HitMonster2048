@@ -150,10 +150,10 @@ cc.async = {
         var results = isArr ? [] : {};
         var counter = { length : li, count : li, option : option, results : results};
         cc.each(tasks, function(task, index){
-                if(counter.err) return false;
-                var counterFunc = !option.cb ? self._emptyFunc : self._counterFunc.bind({counter : counter, index : index});//bind counter and index
-                option.iterator.call(option.iteratorTarget, task, index, counterFunc);
-                });
+            if(counter.err) return false;
+            var counterFunc = !option.cb ? self._emptyFunc : self._counterFunc.bind({counter : counter, index : index});//bind counter and index
+            option.iterator.call(option.iteratorTarget, task, index, counterFunc);
+        });
     }
 };
 //+++++++++++++++++++++++++something about async end+++++++++++++++++++++++++++++++++
@@ -341,7 +341,7 @@ cc.loader = {
         cb = args[2];
         var ccPath = cc.path;
         for(var i = 0, li = jsList.length; i < li; ++i){
-            require(ccPath.join(baseDir, jsList[i]));
+            ccrequire(ccPath.join(baseDir, jsList[i]));
         }
         if(cb) cb();
     },
@@ -363,7 +363,7 @@ cc.loader = {
      * @param {function} cb arguments are : err, txt
      */
     loadTxt : function(url, cb){
-        cb(null, cc.FileUtils.getInstance().getStringFromFile(url));
+        cb(null, jsb.fileUtils.getStringFromFile(url));
     },
     
     loadJson : function(url, cb){
@@ -398,16 +398,16 @@ cc.loader = {
         if(opt.isCrossOrigin) img.crossOrigin = "Anonymous";
         
         img.addEventListener("load", function () {
-                             this.removeEventListener('load', arguments.callee, false);
-                             this.removeEventListener('error', arguments.callee, false);
-                             if(!cb) return;
-                             cb(null, img);
-                             });
+            this.removeEventListener('load', arguments.callee, false);
+            this.removeEventListener('error', arguments.callee, false);
+            if(!cb) return;
+            cb(null, img);
+        });
         img.addEventListener("error", function () {
-                             this.removeEventListener('error', arguments.callee, false);
-                             if(!cb) return;
-                             cb("error");
-                             });
+            this.removeEventListener('error', arguments.callee, false);
+            if(!cb) return;
+            cb("error");
+        });
         img.src = url;
         return img;
     },
@@ -417,10 +417,10 @@ cc.loader = {
      * @param {Function} cb
      */
     loadBinary : function(url, cb){
-        cb(null, cc.FileUtils.getInstance().getDataFromFile(url));
+        cb(null, jsb.fileUtils.getDataFromFile(url));
     },
     loadBinarySync : function(url){
-        return cc.FileUtils.getInstance().getDataFromFile(url);
+        return jsb.fileUtils.getDataFromFile(url);
     },
     
     /**
@@ -432,7 +432,36 @@ cc.loader = {
      * @private
      */
     _loadResIterator : function(item, index, cb){
-        cb();
+        var self = this, url = null;
+        var type = item.type;
+        if (type) {
+            type = "." + type.toLowerCase();
+            url = item.src ? item.src : item.name + type;
+        } else {
+            url = item;
+            type = cc.path.extname(url);
+        }
+
+        var obj = self.cache[url];
+        if (obj)
+            return cb(null, obj);
+        var loader = self._register[type.toLowerCase()];
+        if (!loader) {
+            cc.error("loader for [" + type + "] not exists!");
+            return cb();
+        }
+        var basePath = loader.getBasePath ? loader.getBasePath() : self.resPath;
+        var realUrl = self.getUrl(basePath, url);
+        var data = loader.load(realUrl, url);
+        if (data) {
+            self.cache[url] = data;
+            cb(null, data);
+        } else {
+            cc.log(err);
+            self.cache[url] = null;
+            delete self.cache[url];
+            cb();
+        }
     },
     
     /**
@@ -518,7 +547,7 @@ cc.loader = {
      * @param {Function} cb     callback
      */
     loadAliases : function(url, cb){
-        cc.fileUtils.loadFilenameLookup(url);
+        jsb.fileUtils.loadFilenameLookup(url);
         if(cb) cb();
     },
 
@@ -569,13 +598,13 @@ cc.defineGetterSetter(cc.loader, "resPath", function(){
     return this._resPath;
 }, function(resPath){
     this._resPath = resPath || "";
-    cc.FileUtils.getInstance().addSearchPath(this._resPath);
+    jsb.fileUtils.addSearchPath(this._resPath);
 });
 cc.defineGetterSetter(cc.loader, "audioPath", function(){
     return this._audioPath;
 }, function(audioPath){
     this._audioPath = audioPath || "";
-    cc.FileUtils.getInstance().addSearchPath(this._audioPath);
+    jsb.fileUtils.addSearchPath(this._audioPath);
 });
 
 //+++++++++++++++++++++++++something about loader end+++++++++++++++++++++++++++++
@@ -583,8 +612,22 @@ cc.defineGetterSetter(cc.loader, "audioPath", function(){
 //+++++++++++++++++++++++Define singleton objects begin+++++++++++++++++++++++++++
 
 // Define singleton objects
+/**
+ * @type {cc.Director}
+ * @name cc.director
+ */
 cc.director = cc.Director.getInstance();
+/**
+ * @type {cc.Size}
+ * @name cc.winSize
+ * cc.winSize is the alias object for the size of the current game window.
+ */
 cc.winSize = cc.director.getWinSize();
+/**
+ * @type {cc.EGLView}
+ * @name cc.view
+ * cc.view is the shared view object.
+ */
 cc.view = cc.director.getOpenGLView();
 cc.view.getDevicePixelRatio = function () {
     var sys = cc.sys;
@@ -617,12 +660,32 @@ cc.view.setContentTranslateLeftTop = function(){return;};
 cc.view.getContentTranslateLeftTop = function(){return null;};
 cc.view.setFrameZoomFactor = function(){return;};
 
+/**
+ * @type {Object}
+ * @name cc.eventManager
+ */
 cc.eventManager = cc.director.getEventDispatcher();
+/**
+ * @type {cc.AudioEngine}
+ * @name cc.audioEngine
+ * A simple Audio Engine engine API.
+ */
 cc.audioEngine = cc.AudioEngine.getInstance();
 cc.audioEngine.end = function(){
-    cc.AudioEngine.end();
+    this.stopMusic();
+    this.stopAllEffects();
 };
+/**
+ * @type {Object}
+ * @name cc.configuration
+ * cc.configuration contains some openGL variables
+ */
 cc.configuration = cc.Configuration.getInstance();
+/**
+ * @type {Object}
+ * @name cc.textureCache
+ * cc.textureCache is the global cache for cc.Texture2D
+ */
 cc.textureCache = cc.director.getTextureCache();
 cc.textureCache._addImage = cc.textureCache.addImage;
 cc.textureCache.addImage = function(url, cb, target) {
@@ -633,17 +696,40 @@ cc.textureCache.addImage = function(url, cb, target) {
     else
         return this._addImage(url);
 };
+/**
+ * @type {Object}
+ * @name cc.shaderCache
+ * cc.shaderCache is a singleton object that stores manages GL shaders
+ */
 cc.shaderCache = cc.ShaderCache.getInstance();
+/**
+ * @type {Object}
+ * @name cc.animationCache
+ */
 cc.animationCache = cc.AnimationCache.getInstance();
+/**
+ * @type {Object}
+ * @name cc.spriteFrameCache
+ */
 cc.spriteFrameCache = cc.SpriteFrameCache.getInstance();
-//cc.saxParser
+/**
+ * @type {cc.PlistParser}
+ * @name cc.plistParser
+ * A Plist Parser
+ */
 cc.plistParser = cc.PlistParser.getInstance();
 //cc.tiffReader;
 //cc.imeDispatcher;
 
-// File utils (only in JSB)
+// File utils (Temporary, won't be accessible)
 cc.fileUtils = cc.FileUtils.getInstance();
 
+/**
+ * @type {Object}
+ * @name cc.screen
+ * The fullscreen API provides an easy way for web content to be presented using the user's entire screen.
+ * It's invalid on safari,QQbrowser and android browser
+ */
 cc.screen = {
     init: function() {},
     fullScreen: function() {
@@ -660,29 +746,87 @@ cc.screen = {
     }
 };
 
-cc.reflection = {
-    callStaticMethod : function(){
-        cc.log("not supported on current platform");
-    }
-}
-
 // GUI
+/**
+ * @type {Object}
+ * UI Helper
+ */
 ccui.helper = ccui.Helper;
 
 // In extension
+/**
+ * @type {Object} Base object for ccs.uiReader
+ * @name ccs.uiReader
+ */
 ccs.uiReader = ccs.GUIReader.getInstance();
+/**
+ * @type {Object} Format and manage armature configuration and armature animation
+ * @name ccs.armatureDataManager
+ */
 ccs.armatureDataManager = ccs.ArmatureDataManager.getInstance();
+/**
+ * @type {Object} Base singleton object for ccs.ActionManager
+ * @name ccs.actionManager
+ */
 ccs.actionManager = ccs.ActionManager.getInstance();
+/**
+ * @type {Object} Base singleton object for ccs.sceneReader
+ * @name ccs.sceneReader
+ */
 ccs.sceneReader = ccs.SceneReader.getInstance();
-//ccs.spriteFrameCacheHelper = ccs.SpriteFrameCacheHelper.getInstance();
-//ccs.dataReaderHelper = ccs.DataReaderHelper.getInstance();
-
 ccs.sceneReader.clear = ccs.uiReader.clear = ccs.actionManager.clear = ccs.armatureDataManager.clear = function() {};
 ccs.sceneReader.version = function() {
     return ccs.SceneReader.sceneReaderVersion();
 };
 
+//ccs.spriteFrameCacheHelper = ccs.SpriteFrameCacheHelper.getInstance();
+//ccs.dataReaderHelper = ccs.DataReaderHelper.getInstance();
+
 //+++++++++++++++++++++++Define singleton objects end+++++++++++++++++++++++++++
+
+
+//+++++++++++++++++++++++++Redefine JSB only APIs+++++++++++++++++++++++++++
+
+/**
+ * @namespace jsb
+ * @name jsb
+ */
+var jsb = jsb || {};
+/**
+ * @type {Object}
+ * @name jsb.fileUtils
+ * jsb.fileUtils is the native file utils singleton object,
+ * please refer to Cocos2d-x API to know how to use it.
+ * Only available in JSB
+ */
+jsb.fileUtils = cc.fileUtils;
+delete cc.FileUtils;
+delete cc.fileUtils;
+/**
+ * @type {Object}
+ * @name jsb.AssetsManager
+ * jsb.AssetsManager is the native AssetsManager for your game resources or scripts.
+ * please refer to this document to know how to use it: http://www.cocos2d-x.org/docs/manual/framework/html5/v3/assets-manager/en
+ * Only available in JSB
+ */
+jsb.AssetsManager = cc.AssetsManager;
+delete cc.AssetsManager;
+
+/**
+ * @type {Object}
+ * @name jsb.reflection
+ * jsb.reflection is a bridge to let you invoke Java static functions.
+ * please refer to this document to know how to use it: http://www.cocos2d-x.org/docs/manual/framework/html5/v3/reflection/en
+ * Only available on Android platform
+ */
+jsb.reflection = {
+    callStaticMethod : function(){
+        cc.log("not supported on current platform");
+    }
+};
+
+//+++++++++++++++++++++++++Redefine JSB only APIs+++++++++++++++++++++++++++++
+
 
 //+++++++++++++++++++++++++something about window events begin+++++++++++++++++++++++++++
 cc.winEvents = {//TODO register hidden and show callback for window
@@ -837,7 +981,38 @@ cc._initSys = function(config, CONFIG_KEY){
      * @type Boolean
      */
     locSys.isNative = true;
-    locSys.isMobile = __getPlatform() == "mobile";
+
+    /** Get the os of system */
+    locSys.os = __getOS();
+
+    // Forces the garbage collector
+    locSys.garbageCollect = function() {
+        __jsc__.garbageCollect();
+    };
+
+    // Dumps rooted objects
+    locSys.dumpRoot = function() {
+        __jsc__.dumpRoot();
+    };
+
+    // restarts the JS VM
+    locSys.restartVM = function() {
+        __restartVM();
+    };
+
+    locSys.dump = function(){
+        var self = this;
+        var str = "";
+        str += "isMobile : " + self.isMobile + "\r\n";
+        str += "language : " + self.language + "\r\n";
+        str += "browserType : " + self.browserType + "\r\n";
+        str += "capabilities : " + JSON.stringify(self.capabilities) + "\r\n";
+        str += "os : " + self.os + "\r\n";
+        cc.log(str);
+    }
+
+    locSys.isMobile = (locSys.os == locSys.OS_ANDROID || locSys.os == locSys.OS_IOS) ? true : false;
+
     locSys.language = (function(){
         var language = cc.Application.getInstance().getCurrentLanguage();
         switch(language){
@@ -871,35 +1046,6 @@ cc._initSys = function(config, CONFIG_KEY){
         capabilities["keyboard"] = true;
         capabilities["mouse"] = true;
     }
-
-    /** Get the os of system */
-    locSys.os = __getOS();
-
-    // Forces the garbage collector
-    locSys.garbageCollect = function() {
-        __jsc__.garbageCollect();
-    };
-
-    // Dumps rooted objects
-    locSys.dumpRoot = function() {
-        __jsc__.dumpRoot();
-    };
-
-    // restarts the JS VM
-    locSys.restartVM = function() {
-        __restartVM();
-    };
-
-    locSys.dump = function(){
-        var self = this;
-        var str = "";
-        str += "isMobile : " + self.isMobile + "\r\n";
-        str += "language : " + self.language + "\r\n";
-        str += "browserType : " + self.browserType + "\r\n";
-        str += "capabilities : " + JSON.stringify(self.capabilities) + "\r\n";
-        str += "os : " + self.os + "\r\n";
-        cc.log(str);
-    }
 };
 
 //+++++++++++++++++++++++++something about sys end+++++++++++++++++++++++++++++
@@ -932,6 +1078,8 @@ cc._initDebugSetting = function (mode) {
 //+++++++++++++++++++++++++something about CCGame begin+++++++++++++++++++++++++++
 
 /**
+ * @type {Object}
+ * @name cc.game
  * An object to boot the game.
  */
 cc.game = {
@@ -1044,10 +1192,13 @@ cc.game = {
             cfg[CONFIG_KEY.debugMode] = cfg[CONFIG_KEY.debugMode] || 0;
             cfg[CONFIG_KEY.frameRate] = cfg[CONFIG_KEY.frameRate] || 60;
             cfg[CONFIG_KEY.renderMode] = cfg[CONFIG_KEY.renderMode] || 0;
+            cfg[CONFIG_KEY.showFPS] = cfg[CONFIG_KEY.showFPS] === false ? false : true;
             return cfg;
         };
         try{
-            var txt = cc.FileUtils.getInstance().getStringFromFile("project.json");
+			//pokosanguo_zhangqi
+            var baseDir = sys.localStorage.getItem("BaseDir")||"";
+            var txt = jsb.fileUtils.getStringFromFile(baseDir+"project.json");
             var data = JSON.parse(txt);
             this.config = _init(data || {});
         }catch(e){
@@ -1055,6 +1206,7 @@ cc.game = {
             this.config = _init({});
         }
 //        cc._initDebugSetting(this.config[CONFIG_KEY.debugMode]);
+        cc.director.setDisplayStats(this.config[CONFIG_KEY.showFPS]);
         cc._initSys(this.config, CONFIG_KEY);
     },
     
@@ -1086,9 +1238,11 @@ cc.game = {
      */
     prepare : function(cb){
         var self = this, config = self.config, CONFIG_KEY = self.CONFIG_KEY, loader = cc.loader;
-        require("jsb.js");
+        ccrequire("script/jsb.js");
         self._prepareCalled = true;
-        loader.loadJsWithImg("", config[CONFIG_KEY.jsList] || [], function(err){
+		//pokosanguo_zhangqi
+        var baseDir = sys.localStorage.getItem("BaseDir")||"";
+        loader.loadJsWithImg(baseDir, config[CONFIG_KEY.jsList] || [], function(err){
             if(err) throw err;
             self._prepared = true;
             if(cb) cb();
@@ -1102,12 +1256,12 @@ cc.game._initConfig();
 //+++++++++++++++++++++++++other initializations+++++++++++++++++++++++++++++
 
 // JS to Native bridges
-if(cc.sys.os == cc.sys.OS_ANDROID){
-    cc.reflection = new JavascriptJavaBridge();
+if(window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID){
+    jsb.reflection = new JavascriptJavaBridge();
     cc.sys.capabilities["keyboard"] = true;
 }
-else if(cc.sys.os == cc.sys.OS_IOS){
-    //TODO
+else if(window.JavaScriptObjCBridge && (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_OSX)){
+    jsb.reflection = new JavaScriptObjCBridge();
 }
 
 //+++++++++++++++++++++++++other initializations end+++++++++++++++++++++++++++++

@@ -184,7 +184,7 @@ cc.LabelAtlas = cc.AtlasNode.extend(/** @lends cc.LabelAtlas# */{
 
     _addChildForCanvas: function(child, zOrder, tag){
         child._lateChild = true;
-        cc.NodeRGBA.prototype.addChild.call(this, child, zOrder, tag);
+        cc.Node.prototype.addChild.call(this, child, zOrder, tag);
     },
 
     /**
@@ -194,7 +194,7 @@ cc.LabelAtlas = cc.AtlasNode.extend(/** @lends cc.LabelAtlas# */{
     updateAtlasValues: null,
 
     _updateAtlasValuesForCanvas: function () {
-        var locString = this._string;
+        var locString = this._string || "";
         var n = locString.length;
         var texture = this.texture;
         var locItemWidth = this._itemWidth , locItemHeight = this._itemHeight;     //needn't multiply cc.contentScaleFactor(), because sprite's draw will do this
@@ -215,7 +215,7 @@ cc.LabelAtlas = cc.AtlasNode.extend(/** @lends cc.LabelAtlas# */{
                 } else
                     fontChar.initWithTexture(texture, rect);
 
-                cc.NodeRGBA.prototype.addChild.call(this, fontChar, 0, i);
+                cc.Node.prototype.addChild.call(this, fontChar, 0, i);
             } else {
                 if (c == 32) {
                     fontChar.init();

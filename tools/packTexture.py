@@ -36,6 +36,9 @@ def mkdir_if_needed():
     parser.add_argument('-scale',"--s",help='contentScale')
     parser.add_argument('-m', '--mm', help='use img encryption, Encryption key (128bit),as 32 hex digits')
     args = parser.parse_args()
+
+    subprocess.call(["rm", "-r", sd_output_dir])
+    subprocess.call(["rm", "-r", studio_output_dir])
     
     one_file = args.file;
     
@@ -43,6 +46,7 @@ def mkdir_if_needed():
     studio_out = os.path.join(studio_output_dir, 'sd')
     if args.target == "hd":
         res = hd_output_dir
+        subprocess.call(["rm", "-r", hd_output_dir])
         studio_out = os.path.join(studio_output_dir, 'hd')
     if not os.path.exists(res):
         os.makedirs(res)
@@ -51,12 +55,12 @@ def mkdir_if_needed():
         if is_json(group_dir):
             continue
         
-        if not one_file==None:
-            l = group.split('.')
-            if one_file==l[0]:
-                subprocess.call(["rm", "-r", group_dir])
-        else:
-            subprocess.call(["rm", "-r", group_dir])
+        # if not one_file==None:
+        #     l = group.split('.')
+        #     if one_file==l[0]:
+        #         subprocess.call(["rm", "-r", group_dir])
+        # else:
+        #     subprocess.call(["rm", "-r", group_dir])
 
 
         
@@ -64,14 +68,14 @@ def mkdir_if_needed():
         os.makedirs(studio_out)
     for group in os.listdir(studio_out):
         group_dir =  os.path.join(studio_out, group)
-        if is_json(group_dir):
-            continue
-        if not one_file==None:
-            l = group.split('.')
-            if one_file==l[0]:
-                subprocess.call(["rm", "-r", group_dir])
-        else:
-            subprocess.call(["rm", "-r", group_dir])
+        # if is_json(group_dir):
+        #     continue
+        # if not one_file==None:
+        #     l = group.split('.')
+        #     if one_file==l[0]:
+        #         subprocess.call(["rm", "-r", group_dir])
+        # else:
+        #     subprocess.call(["rm", "-r", group_dir])
 
 def run_tp(files, options):
     global proj_dir
@@ -165,8 +169,7 @@ def process():
 
         if args.s != None:
             options.update({'scale':args.s}),
-
-        print "===============args.mm %s" % args.mm
+        #jimi
         if args.mm == "true":
             options.update({'content-protection':Encryptionkey})
 
@@ -201,7 +204,7 @@ if __name__ == '__main__':
     mkdir_if_needed();
     process();
     print "=======  resourceJson ------------"
-    resourceJson.main()
+    resourceJson.main();
 
 
 

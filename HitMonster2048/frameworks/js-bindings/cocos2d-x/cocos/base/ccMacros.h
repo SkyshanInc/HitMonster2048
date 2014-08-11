@@ -35,12 +35,15 @@ THE SOFTWARE.
 #include "base/CCConsole.h"
 #include "CCStdC.h"
 
+//pokosanguo_zhangqi
+extern void CC_DLL ReportError(const char *msg);
 #ifndef CCASSERT
 #if COCOS2D_DEBUG > 0
     #if CC_ENABLE_SCRIPT_BINDING
     extern bool CC_DLL cc_assert_script_compatible(const char *msg);
     #define CCASSERT(cond, msg) do {                              \
           if (!(cond)) {                                          \
+			ReportError(msg);\
             if (!cc_assert_script_compatible(msg) && strlen(msg)) \
               cocos2d::log("Assert failed: %s", msg);             \
             CC_ASSERT(cond);                                      \

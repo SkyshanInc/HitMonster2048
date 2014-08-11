@@ -1,4 +1,4 @@
-plugin = plugin || {};
+var plugin = plugin || {PluginParam: {}, ProtocolAds: {}, ProtocolIAP: {}, ProtocolShare: {}, ProtocolSocial: {}, ProtocolUser: {}};
 
 plugin.PluginParam.ParamType = {};
 plugin.PluginParam.ParamType.TypeInt = 1;
@@ -31,6 +31,11 @@ plugin.ProtocolIAP.PayResultCode.PayFail = 1;
 plugin.ProtocolIAP.PayResultCode.PayCancel = 2;
 plugin.ProtocolIAP.PayResultCode.PayTimeOut = 3;
 
+plugin.ProtocolIAP.RequestProductCode = {};
+plugin.ProtocolIAP.RequestProductCode.RequestSuccess = 0;
+plugin.ProtocolIAP.RequestProductCode.RequestFail = 1;
+plugin.ProtocolIAP.RequestProductCode.Requestimeout = 2;
+
 plugin.ProtocolShare.ShareResultCode = {};
 plugin.ProtocolShare.ShareResultCode.ShareSuccess = 0;
 plugin.ProtocolShare.ShareResultCode.ShareFail = 1;
@@ -48,3 +53,13 @@ plugin.ProtocolUser.UserActionResultCode.LoginSucceed = 0;
 plugin.ProtocolUser.UserActionResultCode.LoginFailed = 1;
 plugin.ProtocolUser.UserActionResultCode.LogoutSucceed = 2;
 
+plugin.agentManager = plugin.AgentManager.getInstance();
+plugin.agentManager.dialog = function(shareInfo, callback) {
+	var sharePlugin = this.getSharePlugin();
+	if (sharePlugin) {
+		callback && sharePlugin.setListener({
+            onShareResult : callback
+        });
+		sharePlugin.callFuncWithParam("dialog", new plugin.PluginParam(plugin.PluginParam.ParamType.TypeStringMap, shareInfo));
+	}
+}

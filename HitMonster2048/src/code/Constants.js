@@ -16,3 +16,6 @@ var DATA_PATH = "res/data/";
 var RES_PATH  = "res";
 
 var LANGUAGE = "cn";
+
+
+var LOADRESPLIST = ccui.Widget.PLIST_TEXTURE;

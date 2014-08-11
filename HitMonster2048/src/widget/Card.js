@@ -93,9 +93,9 @@ CardSprite.prototype.setNumber = function(num,isChangTempNum)
 	}
     
 	//判断数字的大小来调整颜色
-	var number = this.number <= 128 ? this.number : 128;
+	var number = this.number;
     cc.log("number:"+number);
-    this.setSpriteFrame("card"+number+".png");
+    this.setSpriteFrame("card_"+number+".png");
 	
 }
 
@@ -106,7 +106,7 @@ CardSprite.prototype.initCard = function( number)
 	this.number = number;
     this.tempNumber = number;
 
-    this.setSpriteFrame("card"+number+".png");
+    this.setSpriteFrame("card_"+number+".png");
  
 	//判断如果大于0就显示，否则就不显示
 	var labelTxt = "";

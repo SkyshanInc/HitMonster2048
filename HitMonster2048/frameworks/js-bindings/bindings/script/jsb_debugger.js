@@ -184,15 +184,15 @@ this.processInput = function (inputstr) {
 this._prepareDebugger = function (global) {
 
     globalDebuggee = global;
-    require = global.require;
+    ccrequire = global.ccrequire;
     cc = global.cc;
 
-    require('debugger/DevToolsUtils.js', "debug");
-    require('debugger/core/promise.js', "debug");
-    require('debugger/transport.js', "debug");
-    require('debugger/actors/root.js', "debug");
-    require('debugger/actors/script.js', "debug");
-    require('debugger/main.js', "debug");
+    ccrequire('script/debugger/DevToolsUtils.js', "debug");
+    ccrequire('script/debugger/core/promise.js', "debug");
+    ccrequire('script/debugger/transport.js', "debug");
+    ccrequire('script/debugger/actors/root.js', "debug");
+    ccrequire('script/debugger/actors/script.js', "debug");
+    ccrequire('script/debugger/main.js', "debug");
 
     promise = exports;
     //DebuggerServer.addTestGlobal = function(aGlobal) {

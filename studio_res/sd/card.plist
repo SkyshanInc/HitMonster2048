@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>card0.png</key>
+            <key>card_0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{786,428},{140,140}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card128.png</key>
+            <key>card_1024.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{644,428},{140,140}}</string>
@@ -30,7 +30,20 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card16.png</key>
+            <key>card_128.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_16.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{786,286},{140,140}}</string>
@@ -43,7 +56,20 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card2.png</key>
+            <key>card_16384.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{644,286},{140,140}}</string>
@@ -56,7 +82,33 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card32.png</key>
+            <key>card_2048.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_256.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_32.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{786,144},{140,140}}</string>
@@ -69,7 +121,20 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card4.png</key>
+            <key>card_32768.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_4.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{644,144},{140,140}}</string>
@@ -82,7 +147,33 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card64.png</key>
+            <key>card_4096.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_512.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_64.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{786,2},{140,140}}</string>
@@ -95,10 +186,36 @@
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
-            <key>card8.png</key>
+            <key>card_65536.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_8.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{644,2},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>card_8192.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{644,428},{140,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -131,7 +248,7 @@
             <key>size</key>
             <string>{928,644}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26ad1a0b4bbefeea0ebd98ad1132ac8b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:8b0ff4bf1dceba7c67bd2629d243c2bd:1/1$</string>
             <key>textureFileName</key>
             <string>card.png</string>
         </dict>

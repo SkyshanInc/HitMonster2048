@@ -76,7 +76,8 @@ ccs.DisplayFactory.updateDisplay = function (bone,dt, dirty) {
             this.updateArmatureDisplay(bone, display, dt);
             break;
         default:
-            display.setAdditionalTransform(bone.nodeToArmatureTransform());
+            var transform = bone.getNodeToArmatureTransform();
+            display.setAdditionalTransform(transform);
             break;
     }
 
@@ -95,10 +96,10 @@ ccs.DisplayFactory.updateDisplay = function (bone,dt, dirty) {
                 helpTransform.tx = displayTransform.tx;
                 helpTransform.ty = displayTransform.ty;
                 var anchorPoint =  node.getAnchorPointInPoints();
-                anchorPoint = cc.PointApplyAffineTransform(anchorPoint, helpTransform);
+                anchorPoint = cc.pointApplyAffineTransform(anchorPoint, helpTransform);
                 helpTransform.tx = anchorPoint.x;
                 helpTransform.ty = anchorPoint.y;
-                var t = cc.AffineTransformConcat(helpTransform, bone.getArmature().nodeToParentTransform());
+                var t = cc.affineTransformConcat(helpTransform, bone.getArmature().nodeToParentTransform());
                 detector.updateTransform(t);
             }
         }
@@ -190,10 +191,15 @@ ccs.DisplayFactory.addParticleDisplay = function (bone, decoDisplay, displayData
 ccs.DisplayFactory.createParticleDisplay = function (bone, decoDisplay) {
     var displayData = decoDisplay.getDisplayData();
     var system = cc.ParticleSystem.create(displayData.displayName);
+
+    system.removeFromParent();
+    system.cleanup();
+
     var armature = bone.getArmature();
     if (armature)    {
         system.setParent(bone.getArmature());
     }
+
     decoDisplay.setDisplay(system);
 };
 ccs.DisplayFactory.updateParticleDisplay = function (bone, particleSystem, dt) {

@@ -25,25 +25,26 @@
 //
 
 // DO NOT ALTER THE ORDER
-require('jsb_cocos2d_constants.js');
-require('jsb_cocos2d.js');
-require('jsb_cocos2d_extension.js');
-require('jsb_cocos2d_studio.js');
-require('jsb_cocos2d_ui.js');
-require('jsb_property_impls.js');
-require('jsb_property_apis.js');
-require('jsb_create_apis.js');
-require('jsb_ext_create_apis.js');
-require('jsb_chipmunk_constants.js');
-require('jsb_chipmunk.js');
-require('jsb_opengl_constants.js');
-require('jsb_opengl.js');
-require('jsb_cocosbuilder.js');
-require('jsb_deprecated.js');
-require('jsb_loaders.js');
+ccrequire('script/jsb_cocos2d_constants.js');
+ccrequire('script/jsb_cocos2d.js');
+ccrequire('script/jsb_cocos2d_extension.js');
+ccrequire('script/jsb_cocos2d_studio.js');
+ccrequire('script/jsb_cocos2d_ui.js');
+ccrequire('script/jsb_property_impls.js');
+ccrequire('script/jsb_property_apis.js');
+ccrequire('script/jsb_create_apis.js');
+ccrequire('script/jsb_ext_create_apis.js');
+ccrequire('script/jsb_chipmunk_constants.js');
+ccrequire('script/jsb_chipmunk.js');
+ccrequire('script/jsb_opengl_constants.js');
+ccrequire('script/jsb_opengl.js');
+ccrequire('script/jsb_cocosbuilder.js');
+ccrequire('script/jsb_deprecated.js');
+ccrequire('script/jsb_loaders.js');
+ccrequire('script/jsb_pool.js');
 
-if (cc.FileUtils.getInstance().isFileExist('jsb_pluginx.js')) {
+if (jsb.fileUtils.isFileExist('jsb_pluginx.js')) {
     if (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_ANDROID) {
-        require('jsb_pluginx.js');
+        ccrequire('jsb_pluginx.js');
     }
 }

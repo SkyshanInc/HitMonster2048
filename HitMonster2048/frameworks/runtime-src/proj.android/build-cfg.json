@@ -23,8 +23,12 @@
             "to": ""
         },
         {
-            "from": "../../js-bindings/bindings/script",
+            "from": "../../../resource.json",
             "to": ""
+        },
+        {
+            "from": "../../js-bindings/bindings/script",
+            "to": "script"
         }
     ]
 }

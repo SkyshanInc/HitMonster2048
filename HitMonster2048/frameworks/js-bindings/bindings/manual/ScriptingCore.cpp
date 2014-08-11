@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 #include "ScriptingCore.h"
 
 // Removed in Firefox v27, use 'js/OldDebugAPI.h' instead
@@ -86,7 +85,7 @@ static int clientSocket = -1;
 static uint32_t s_nestedLoopLevel = 0;
 
 // server entry point for the bg thread
-static void serverEntryPoint(void);
+static void serverEntryPoint(unsigned int port);
 
 js_proxy_t *_native_js_global_ht = NULL;
 js_proxy_t *_js_native_global_ht = NULL;
@@ -177,6 +176,29 @@ static std::string getTouchFuncName(EventTouch::EventCode eventCode)
             break;
         case EventTouch::EventCode::CANCELLED:
             funcName = "onTouchCancelled";
+            break;
+        default:
+            CCASSERT(false, "Invalid event code!");
+    }
+    
+    return funcName;
+}
+
+static std::string getMouseFuncName(EventMouse::MouseEventType eventType)
+{
+    std::string funcName;
+    switch(eventType) {
+        case EventMouse::MouseEventType::MOUSE_DOWN:
+            funcName = "onMouseDown";
+            break;
+        case EventMouse::MouseEventType::MOUSE_UP:
+            funcName = "onMouseUp";
+            break;
+        case EventMouse::MouseEventType::MOUSE_MOVE:
+            funcName = "onMouseMove";
+            break;
+        case EventMouse::MouseEventType::MOUSE_SCROLL:
+            funcName = "onMouseScroll";
             break;
         default:
             CCASSERT(false, "Invalid event code!");
@@ -367,7 +389,7 @@ void registerDefaultClasses(JSContext* cx, JSObject* global) {
     JS_DefineFunction(cx, jsc, "executeScript", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT | JSPROP_ENUMERATE );
 
     // register some global functions
-    JS_DefineFunction(cx, global, "require", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, global, "ccrequire", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "log", ScriptingCore::log, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "executeScript", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "forceGC", ScriptingCore::forceGC, 0, JSPROP_READONLY | JSPROP_PERMANENT);
@@ -458,7 +480,7 @@ void ScriptingCore::start()
     // for now just this
     createGlobalContext();
     
-    runScript("jsb_boot.js");
+    runScript("script/jsb_boot.js");
 }
 
 void ScriptingCore::addRegisterCallback(sc_register_sth callback) {
@@ -525,12 +547,6 @@ void ScriptingCore::createGlobalContext() {
     JS::ContextOptionsRef(_cx).setBaseline(true);
 
 //    JS_SetVersion(this->_cx, JSVERSION_LATEST);
-    
-    // Only disable METHODJIT on iOS.
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//    JS_SetOptions(this->_cx, JS_GetOptions(this->_cx) & ~JSOPTION_METHODJIT);
-//    JS_SetOptions(this->_cx, JS_GetOptions(this->_cx) & ~JSOPTION_METHODJIT_ALWAYS);
-#endif
     
     JS_SetErrorReporter(this->_cx, ScriptingCore::reportError);
 #if defined(JS_GC_ZEAL) && defined(DEBUG)
@@ -696,13 +712,21 @@ void ScriptingCore::cleanup()
     _js_global_type_map.clear();
     filename_script.clear();
 }
-
+//pokosanguo_zhangqi
+void ReportError(const char* msg);
 void ScriptingCore::reportError(JSContext *cx, const char *message, JSErrorReport *report)
 {
     js_log("%s:%u:%s\n",
             report->filename ? report->filename : "<no filename=\"filename\">",
             (unsigned int) report->lineno,
             message);
+	//pokosanguo_zhangqi	   
+	char msg[256];
+	sprintf(msg, "%s:%u:%s\n",report->filename ? report->filename : "<no filename=\"filename\">",
+           (unsigned int) report->lineno,
+           message);
+	
+	ReportError(msg);
 };
 
 
@@ -1098,6 +1122,49 @@ bool ScriptingCore::handleTouchEvent(void* nativeObj, cocos2d::EventTouch::Event
     return ret;
 }
 
+bool ScriptingCore::handleMouseEvent(void* nativeObj, cocos2d::EventMouse::MouseEventType eventType, cocos2d::Event* event, jsval* jsvalRet/* = nullptr*/)
+{
+    JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+    
+    std::string funcName = getMouseFuncName(eventType);
+    bool ret = false;
+    
+    do
+    {
+        js_proxy_t * p = jsb_get_native_proxy(nativeObj);
+        if (!p) break;
+        
+        jsval dataVal[1];
+        dataVal[0] = getJSObject(_cx, event);
+        
+        if (jsvalRet != nullptr)
+        {
+            ret = executeFunctionWithOwner(OBJECT_TO_JSVAL(p->obj), funcName.c_str(), 1, dataVal, jsvalRet);
+        }
+        else
+        {
+            jsval retval;
+            executeFunctionWithOwner(OBJECT_TO_JSVAL(p->obj), funcName.c_str(), 1, dataVal, &retval);
+            if(JSVAL_IS_NULL(retval))
+            {
+                ret = false;
+            }
+            else if(JSVAL_IS_BOOLEAN(retval))
+            {
+                ret = JSVAL_TO_BOOLEAN(retval);
+            }
+            else
+            {
+                ret = false;
+            }
+        }
+    } while(false);
+    
+    removeJSObject(_cx, event);
+    
+    return ret;
+}
+
 bool ScriptingCore::executeFunctionWithObjectData(void* nativeObj, const char *name, JSObject *obj) {
 
     js_proxy_t * p = jsb_get_native_proxy(nativeObj);
@@ -1426,7 +1493,7 @@ static void clearBuffers() {
     }
 }
 
-static void serverEntryPoint(void)
+static void serverEntryPoint(unsigned int port)
 {
     // start a server, accept the connection and keep reading data from it
     struct addrinfo hints, *result = nullptr, *rp = nullptr;
@@ -1437,7 +1504,7 @@ static void serverEntryPoint(void)
     hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
     
     std::stringstream portstr;
-    portstr << JSB_DEBUGGER_PORT;
+    portstr << port;
     
     int err = 0;
     
@@ -1503,7 +1570,7 @@ static void serverEntryPoint(void)
             
             char buf[1024] = {0};
             int readBytes = 0;
-            while ((readBytes = ::recv(clientSocket, buf, sizeof(buf), 0)) > 0)
+            while ((readBytes = (int)::recv(clientSocket, buf, sizeof(buf), 0)) > 0)
             {
                 buf[readBytes] = '\0';
                 // TRACE_DEBUGGER_SERVER("debug server : received command >%s", buf);
@@ -1531,7 +1598,7 @@ bool JSBDebug_BufferWrite(JSContext* cx, unsigned argc, jsval* vp)
     return true;
 }
 
-void ScriptingCore::enableDebugger()
+void ScriptingCore::enableDebugger(unsigned int port)
 {
     if (_debugGlobal == NULL)
     {
@@ -1553,7 +1620,7 @@ void ScriptingCore::enableDebugger()
         JS_DefineFunction(_cx, _debugGlobal, "_getEventLoopNestLevel", JSBDebug_getEventLoopNestLevel, 0, JSPROP_READONLY | JSPROP_PERMANENT);
         
         
-        runScript("jsb_debugger.js", _debugGlobal);
+        runScript("script/jsb_debugger.js", _debugGlobal);
         
         // prepare the debugger
         jsval argv = OBJECT_TO_JSVAL(_global);
@@ -1564,7 +1631,7 @@ void ScriptingCore::enableDebugger()
         }
         
         // start bg thread
-        auto t = std::thread(&serverEntryPoint);
+        auto t = std::thread(&serverEntryPoint,port);
         t.detach();
 
         Scheduler* scheduler = Director::getInstance()->getScheduler();

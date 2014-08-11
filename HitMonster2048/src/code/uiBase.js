@@ -43,7 +43,6 @@ var uiBase = cc.Layer.extend({
 })
 
 uiBase.prototype.create = function (id, root, jsonFile) {
-    root = root || ccui.Widget.create();
     this.mID = id;
     this.resourceList = [];
     this.mIsShow = false;

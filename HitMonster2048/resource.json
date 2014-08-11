@@ -1,9 +1,18 @@
 [
+    "BUILDING.plist", 
     "card.plist", 
     "choujiang.plist", 
+    "fenshu.png", 
+    "gameUI.json", 
+    "General.plist", 
     "general_guge_1.plist", 
+    "Monster.plist", 
     "None.json", 
+    "public.plist", 
     "wujiang_diaochan.ExportJson", 
+    "tauren.ExportJson", 
+    "tauren0.plist", 
+    "tauren0.png", 
     "xueshan.ExportJson", 
     "xueshan0.plist", 
     "xueshan0.png"
