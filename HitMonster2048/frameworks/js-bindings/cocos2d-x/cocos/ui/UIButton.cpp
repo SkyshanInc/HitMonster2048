@@ -263,6 +263,9 @@ void Button::loadTextureNormal(const std::string& normal,TextureResType texType)
     updateFlippedX();
     updateFlippedY();
     
+    _buttonNormalRenderer->setColor(this->getColor());
+    _buttonNormalRenderer->setOpacity(this->getOpacity());
+    
     updateContentSizeWithTextureSize(_normalTextureSize);
     _normalTextureLoaded = true;
     _normalTextureAdaptDirty = true;
@@ -311,6 +314,9 @@ void Button::loadTexturePressed(const std::string& selected,TextureResType texTy
     updateFlippedX();
     updateFlippedY();
     
+    _buttonDisableRenderer->setColor(this->getColor());
+    _buttonDisableRenderer->setOpacity(this->getOpacity());
+    
     _pressedTextureLoaded = true;
     _pressedTextureAdaptDirty = true;
 }
@@ -357,6 +363,8 @@ void Button::loadTextureDisabled(const std::string& disabled,TextureResType texT
     _disabledTextureSize = _buttonDisableRenderer->getContentSize();
     updateFlippedX();
     updateFlippedY();
+    _buttonDisableRenderer->setColor(this->getColor());
+    _buttonDisableRenderer->setOpacity(this->getOpacity());
     
     _disabledTextureLoaded = true;
     _disabledTextureAdaptDirty = true;

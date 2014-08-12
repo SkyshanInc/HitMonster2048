@@ -42,7 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if(!glview) {
-		glview = GLView::createWithRect("HitMonster2048", Rect(0,0,960,640));
+		glview = GLView::createWithRect("HitMonster2048", Rect(0,0,640,960));
 		director->setOpenGLView(glview);
 	}
 
@@ -115,4 +115,8 @@ void AppDelegate::applicationWillEnterForeground()
     director->getEventDispatcher()->dispatchCustomEvent("game_on_show");
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
+}
+void ReportError(const char* erro){
+
+	    
 }

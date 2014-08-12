@@ -48,7 +48,7 @@ static void localStorageCreateTable()
 {
 	const char *sql_createtable = "CREATE TABLE IF NOT EXISTS data(key TEXT PRIMARY KEY,value TEXT);";
 	sqlite3_stmt *stmt;
-	int ok=sqlite3_prepare_v2(_db, sql_createtable, -1, &stmt, nullptr);
+	int ok=sqlite3_prepare_v2(_db, sql_createtable, -1, &stmt, NULL);
 	ok |= sqlite3_step(stmt);
 	ok |= sqlite3_finalize(stmt);
 	
@@ -71,15 +71,15 @@ void localStorageInit( const std::string& fullpath/* = "" */)
 
 		// SELECT
 		const char *sql_select = "SELECT value FROM data WHERE key=?;";
-		ret |= sqlite3_prepare_v2(_db, sql_select, -1, &_stmt_select, nullptr);
+		ret |= sqlite3_prepare_v2(_db, sql_select, -1, &_stmt_select, NULL);
 
 		// REPLACE
 		const char *sql_update = "REPLACE INTO data (key, value) VALUES (?,?);";
-		ret |= sqlite3_prepare_v2(_db, sql_update, -1, &_stmt_update, nullptr);
+		ret |= sqlite3_prepare_v2(_db, sql_update, -1, &_stmt_update, NULL);
 
 		// DELETE
 		const char *sql_remove = "DELETE FROM data WHERE key=?;";
-		ret |= sqlite3_prepare_v2(_db, sql_remove, -1, &_stmt_remove, nullptr);
+		ret |= sqlite3_prepare_v2(_db, sql_remove, -1, &_stmt_remove, NULL);
 
 		if( ret != SQLITE_OK ) {
 			printf("Error initializing DB\n");

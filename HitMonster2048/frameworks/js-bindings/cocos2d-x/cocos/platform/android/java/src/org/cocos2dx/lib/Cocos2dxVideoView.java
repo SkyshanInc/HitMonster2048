@@ -18,6 +18,7 @@
 package org.cocos2dx.lib;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -26,6 +27,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.net.Uri;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -73,7 +75,7 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
     // recording the seek position while preparing
     private int         mSeekWhenPrepared;  
 
-    protected Cocos2dxActivity mCocos2dxActivity = null;
+    protected Context mContext = null;
     
     protected int mViewLeft = 0;
     protected int mViewTop = 0;
@@ -85,17 +87,27 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
     protected int mVisibleWidth = 0;
     protected int mVisibleHeight = 0;
     
-    protected boolean mFullScreenEnabled = false;
-    protected int mFullScreenWidth = 0;
-    protected int mFullScreenHeight = 0;
-    
     private int mViewTag = 0;
     
-    public Cocos2dxVideoView(Cocos2dxActivity activity,int tag) {
-        super(activity);
+    public Cocos2dxVideoView(Context context,int tag) {
+        super(context);
         
         mViewTag = tag;
-        mCocos2dxActivity = activity;
+        mContext = context;
+        initVideoView();
+    }
+
+    public Cocos2dxVideoView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+        
+        mContext = context;
+        initVideoView();
+    }
+    
+    public Cocos2dxVideoView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        
+        mContext = context;
         initVideoView();
     }
 
@@ -103,11 +115,11 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     	if (mVideoWidth == 0 || mVideoHeight == 0) {
     		setMeasuredDimension(mViewWidth, mViewHeight);
-    		Log.i(TAG, ""+mViewWidth+ ":" +mViewHeight);
+    		Log.e(TAG, ""+mViewWidth+ ":" +mViewHeight);
 		}
         else {
         	setMeasuredDimension(mVisibleWidth, mVisibleHeight);
-        	Log.i(TAG, ""+mVisibleWidth+ ":" +mVisibleHeight);
+        	Log.e(TAG, ""+mVisibleWidth+ ":" +mVisibleHeight);
 		}
     	
     }
@@ -119,18 +131,6 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
 		mViewHeight = maxHeight;
 		
 		if (mVideoWidth != 0 && mVideoHeight != 0) {
-			fixSize(mViewLeft, mViewTop, mViewWidth, mVideoHeight);
-		}
-	}
-    
-    public void setFullScreenEnabled(boolean enabled, int width, int height) {
-		if (mFullScreenEnabled != enabled) {
-			mFullScreenEnabled = enabled;
-			if (width != 0 && height != 0) {
-				mFullScreenWidth = width;
-				mFullScreenHeight = height;
-			}
-			
 			fixSize();
 		}
 	}
@@ -265,7 +265,7 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
         // TODO: these constants need to be published somewhere in the framework.
         Intent i = new Intent("com.android.music.musicservicecommand");
         i.putExtra("command", "pause");
-        mCocos2dxActivity.sendBroadcast(i);
+        mContext.sendBroadcast(i);
 
         // we shouldn't clear the target state, because somebody might have
         // called start() previously
@@ -288,10 +288,10 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
         	mDuration = -1;
             mCurrentBufferPercentage = 0;
             if (isAssetRouse) {
-            	AssetFileDescriptor afd = mCocos2dxActivity.getAssets().openFd(fileName);
+            	AssetFileDescriptor afd = mContext.getAssets().openFd(fileName);
             	mMediaPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
 			} else {
-				mMediaPlayer.setDataSource(mCocos2dxActivity, mUri);
+				mMediaPlayer.setDataSource(mContext, mUri);
 			}
             
             mMediaPlayer.prepareAsync();
@@ -321,35 +321,27 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
 	}
 
     public void fixSize() {
-    	if (mFullScreenEnabled) {
-			fixSize(0, 0, mFullScreenWidth, mFullScreenHeight);
-		} else {
-			fixSize(mViewLeft, mViewTop, mViewWidth, mVideoHeight);
-		}
-	}
-    
-    public void fixSize(int left,int top,int width,int height) {
-    	if (width != 0 && height != 0) {
+    	if (mViewWidth != 0 && mViewHeight != 0) {
     		if (mKeepRatio) {
-    			if ( mVideoWidth * height  > width * mVideoHeight ) {
-    				mVisibleWidth = width;
-    				mVisibleHeight = width * mVideoHeight / mVideoWidth;
-                } else if ( mVideoWidth * height  < width * mVideoHeight ) {
-                	mVisibleWidth = height * mVideoWidth / mVideoHeight;
-                	mVisibleHeight = height;
+    			if ( mVideoWidth * mViewHeight  > mViewWidth * mVideoHeight ) {
+    				mVisibleWidth = mViewWidth;
+    				mVisibleHeight = mViewWidth * mVideoHeight / mVideoWidth;
+                } else if ( mVideoWidth * mViewHeight  < mViewWidth * mVideoHeight ) {
+                	mVisibleWidth = mViewHeight * mVideoWidth / mVideoHeight;
+                	mVisibleHeight = mViewHeight;
                 }
-    			mVisibleLeft = left + (width - mVisibleWidth) / 2;
-    			mVisibleTop = top + (height - mVisibleHeight) / 2;
+    			mVisibleLeft = mViewLeft + (mViewWidth - mVisibleWidth) / 2;
+    			mVisibleTop = mViewTop + (mViewHeight - mVisibleHeight) / 2;
 			} else {
-				mVisibleLeft = left;
-	    		mVisibleTop = top;
-				mVisibleWidth = width;
-				mVisibleHeight = height;
+				mVisibleLeft = mViewLeft;
+	    		mVisibleTop = mViewTop;
+				mVisibleWidth = mViewWidth;
+				mVisibleHeight = mViewHeight;
 			}
 		}
     	else {
-    		mVisibleLeft = left;
-    		mVisibleTop = top;
+    		mVisibleLeft = mViewLeft;
+    		mVisibleTop = mViewTop;
 			mVisibleWidth = mVideoWidth;
 			mVisibleHeight = mVideoHeight;
 		}
@@ -445,7 +437,7 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
              * longer have a window, don't bother showing the user an error.
              */
             if (getWindowToken() != null) {
-                Resources r = mCocos2dxActivity.getResources();
+                Resources r = mContext.getResources();
                 int messageId;
                 
                 if (framework_err == MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK) {
@@ -459,7 +451,7 @@ public class Cocos2dxVideoView extends SurfaceView implements MediaPlayerControl
                 int titleId = r.getIdentifier("VideoView_error_title", "string", "android");
                 int buttonStringId = r.getIdentifier("VideoView_error_button", "string", "android");
                 
-                new AlertDialog.Builder(mCocos2dxActivity)
+                new AlertDialog.Builder(mContext)
                         .setTitle(r.getString(titleId))
                         .setMessage(messageId)
                         .setPositiveButton(r.getString(buttonStringId),

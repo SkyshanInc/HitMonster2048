@@ -173,7 +173,7 @@ public:
     /**
      * @js NA
      */
-    static const std::string& getXMLFilePath();
+    const static std::string& getXMLFilePath();
     /**
      * @js NA
      */

@@ -230,16 +230,6 @@ bool
 },
 
 /**
- * @method isEnabled
- * @return {bool}
- */
-isEnabled : function (
-)
-{
-    return false;
-},
-
-/**
  * @method clone
  * @return {cc.EventListener}
  */
@@ -247,6 +237,16 @@ clone : function (
 )
 {
     return cc.EventListener;
+},
+
+/**
+ * @method isEnabled
+ * @return {bool}
+ */
+isEnabled : function (
+)
+{
+    return false;
 },
 
 /**
@@ -300,17 +300,6 @@ getCurrentTarget : function (
  * @method stopPropagation
  */
 stopPropagation : function (
-)
-{
-},
-
-/**
- * @method Event
- * @constructor
- * @param {cc.Event::Type} arg0
- */
-Event : function (
-type 
 )
 {
 },
@@ -1061,16 +1050,6 @@ getChildren : function(
 },
 
 /**
- * @method setOnExitCallback
- * @param {function} arg0
- */
-setOnExitCallback : function (
-func 
-)
-{
-},
-
-/**
  * @method pause
  */
 pause : function (
@@ -1183,16 +1162,6 @@ float
 },
 
 /**
- * @method setonEnterTransitionDidFinishCallback
- * @param {function} arg0
- */
-setonEnterTransitionDidFinishCallback : function (
-func 
-)
-{
-},
-
-/**
  * @method removeAllComponents
  */
 removeAllComponents : function (
@@ -1218,16 +1187,6 @@ getTag : function (
 )
 {
     return 0;
-},
-
-/**
- * @method getonEnterTransitionDidFinishCallback
- * @return {function}
- */
-getonEnterTransitionDidFinishCallback : function (
-)
-{
-    return std::function<void ()>;
 },
 
 /**
@@ -1325,16 +1284,6 @@ glprogramstate
 },
 
 /**
- * @method setOnEnterCallback
- * @param {function} arg0
- */
-setOnEnterCallback : function (
-func 
-)
-{
-},
-
-/**
  * @method getOpacity
  * @return {unsigned char}
  */
@@ -1350,16 +1299,6 @@ getOpacity : function (
  */
 setNormalizedPosition : function (
 vec2 
-)
-{
-},
-
-/**
- * @method setonExitTransitionDidStartCallback
- * @param {function} arg0
- */
-setonExitTransitionDidStartCallback : function (
-func 
 )
 {
 },
@@ -1456,16 +1395,6 @@ touch
 )
 {
     return cc.Vec2;
-},
-
-/**
- * @method getOnEnterCallback
- * @return {function}
- */
-getOnEnterCallback : function (
-)
-{
-    return std::function<void ()>;
 },
 
 /**
@@ -2028,16 +1957,6 @@ float
 },
 
 /**
- * @method getOnExitCallback
- * @return {function}
- */
-getOnExitCallback : function (
-)
-{
-    return std::function<void ()>;
-},
-
-/**
  * @method getChildByTag
  * @param {int} arg0
  * @return {cc.Node}
@@ -2233,16 +2152,6 @@ str,
 func 
 )
 {
-},
-
-/**
- * @method getonExitTransitionDidStartCallback
- * @return {function}
- */
-getonExitTransitionDidStartCallback : function (
-)
-{
-    return std::function<void ()>;
 },
 
 /**
@@ -2639,15 +2548,6 @@ int
 )
 {
     return cc.LabelAtlas;
-},
-
-/**
- * @method LabelAtlas
- * @constructor
- */
-LabelAtlas : function (
-)
-{
 },
 
 };
@@ -3445,6 +3345,18 @@ str
 },
 
 /**
+ * @method getFileSize
+ * @param {String} arg0
+ * @return {long}
+ */
+getFileSize : function (
+str 
+)
+{
+    return 0;
+},
+
+/**
  * @method removeDirectory
  * @param {String} arg0
  * @return {bool}
@@ -3467,15 +3379,17 @@ array
 },
 
 /**
- * @method getFileSize
+ * @method writeStringToFile
  * @param {String} arg0
- * @return {long}
+ * @param {String} arg1
+ * @return {bool}
  */
-getFileSize : function (
+writeStringToFile : function (
+str, 
 str 
 )
 {
-    return 0;
+    return false;
 },
 
 /**
@@ -3491,11 +3405,9 @@ array
 /**
  * @method addSearchResolutionsOrder
  * @param {String} arg0
- * @param {bool} arg1
  */
 addSearchResolutionsOrder : function (
-str, 
-bool 
+str 
 )
 {
 },
@@ -3503,11 +3415,9 @@ bool
 /**
  * @method addSearchPath
  * @param {String} arg0
- * @param {bool} arg1
  */
 addSearchPath : function (
-str, 
-bool 
+str 
 )
 {
 },
@@ -3639,25 +3549,6 @@ bool
 {
 },
 
-/**
- * @method init
- * @return {bool}
- */
-init : function (
-)
-{
-    return false;
-},
-
-/**
- * @method EventListenerTouchOneByOne
- * @constructor
- */
-EventListenerTouchOneByOne : function (
-)
-{
-},
-
 };
 
 /**
@@ -3665,50 +3556,12 @@ EventListenerTouchOneByOne : function (
  */
 cc.EventListenerTouchAllAtOnce = {
 
-/**
- * @method init
- * @return {bool}
- */
-init : function (
-)
-{
-    return false;
-},
-
-/**
- * @method EventListenerTouchAllAtOnce
- * @constructor
- */
-EventListenerTouchAllAtOnce : function (
-)
-{
-},
-
 };
 
 /**
  * @class EventListenerKeyboard
  */
 cc.EventListenerKeyboard = {
-
-/**
- * @method init
- * @return {bool}
- */
-init : function (
-)
-{
-    return false;
-},
-
-/**
- * @method EventListenerKeyboard
- * @constructor
- */
-EventListenerKeyboard : function (
-)
-{
-},
 
 };
 
@@ -3819,25 +3672,6 @@ mouseeventtype
  */
 cc.EventListenerMouse = {
 
-/**
- * @method init
- * @return {bool}
- */
-init : function (
-)
-{
-    return false;
-},
-
-/**
- * @method EventListenerMouse
- * @constructor
- */
-EventListenerMouse : function (
-)
-{
-},
-
 };
 
 /**
@@ -3864,18 +3698,6 @@ acceleration
 cc.EventListenerAcceleration = {
 
 /**
- * @method init
- * @param {function} arg0
- * @return {bool}
- */
-init : function (
-func 
-)
-{
-    return false;
-},
-
-/**
  * @method create
  * @param {function} arg0
  * @return {cc.EventListenerAcceleration}
@@ -3885,15 +3707,6 @@ func
 )
 {
     return cc.EventListenerAcceleration;
-},
-
-/**
- * @method EventListenerAcceleration
- * @constructor
- */
-EventListenerAcceleration : function (
-)
-{
 },
 
 };
@@ -3982,16 +3795,6 @@ widget
 cc.EventListenerFocus = {
 
 /**
- * @method init
- * @return {bool}
- */
-init : function (
-)
-{
-    return false;
-},
-
-/**
  * @method create
  * @return {cc.EventListenerFocus}
  */
@@ -3999,15 +3802,6 @@ create : function (
 )
 {
     return cc.EventListenerFocus;
-},
-
-/**
- * @method EventListenerFocus
- * @constructor
- */
-EventListenerFocus : function (
-)
-{
 },
 
 };
@@ -4954,18 +4748,6 @@ getAmplitudeRate : function (
 },
 
 /**
- * @method initWithDuration
- * @param {float} arg0
- * @return {bool}
- */
-initWithDuration : function (
-float 
-)
-{
-    return false;
-},
-
-/**
  * @method setAmplitudeRate
  * @param {float} arg0
  */
@@ -5526,21 +5308,26 @@ int
     return cc.JumpTo;
 },
 
-/**
- * @method JumpTo
- * @constructor
- */
-JumpTo : function (
-)
-{
-},
-
 };
 
 /**
  * @class BezierBy
  */
 cc.BezierBy = {
+
+/**
+ * @method initWithDuration
+ * @param {float} arg0
+ * @param {cc._ccBezierConfig} arg1
+ * @return {bool}
+ */
+initWithDuration : function (
+float, 
+_ccbezierconfig 
+)
+{
+    return false;
+},
 
 /**
  * @method BezierBy
@@ -5557,6 +5344,20 @@ BezierBy : function (
  * @class BezierTo
  */
 cc.BezierTo = {
+
+/**
+ * @method initWithDuration
+ * @param {float} arg0
+ * @param {cc._ccBezierConfig} arg1
+ * @return {bool}
+ */
+initWithDuration : function (
+float, 
+_ccbezierconfig 
+)
+{
+    return false;
+},
 
 /**
  * @method BezierTo
@@ -5642,15 +5443,6 @@ float
 )
 {
     return cc.ScaleBy;
-},
-
-/**
- * @method ScaleBy
- * @constructor
- */
-ScaleBy : function (
-)
-{
 },
 
 };
@@ -5770,15 +5562,6 @@ float
     return cc.FadeIn;
 },
 
-/**
- * @method FadeIn
- * @constructor
- */
-FadeIn : function (
-)
-{
-},
-
 };
 
 /**
@@ -5806,15 +5589,6 @@ float
 )
 {
     return cc.FadeOut;
-},
-
-/**
- * @method FadeOut
- * @constructor
- */
-FadeOut : function (
-)
-{
 },
 
 };
@@ -5938,15 +5712,6 @@ float
 )
 {
     return cc.DelayTime;
-},
-
-/**
- * @method DelayTime
- * @constructor
- */
-DelayTime : function (
-)
-{
 },
 
 };
@@ -7499,15 +7264,6 @@ create : function (
     return cc.Show;
 },
 
-/**
- * @method Show
- * @constructor
- */
-Show : function (
-)
-{
-},
-
 };
 
 /**
@@ -7525,15 +7281,6 @@ create : function (
     return cc.Hide;
 },
 
-/**
- * @method Hide
- * @constructor
- */
-Hide : function (
-)
-{
-},
-
 };
 
 /**
@@ -7549,15 +7296,6 @@ create : function (
 )
 {
     return cc.ToggleVisibility;
-},
-
-/**
- * @method ToggleVisibility
- * @constructor
- */
-ToggleVisibility : function (
-)
-{
 },
 
 };
@@ -7723,7 +7461,7 @@ Place : function (
 /**
  * @class CallFunc
  */
-cc._CallFunc = {
+cc.CallFunc = {
 
 /**
  * @method execute
@@ -7745,22 +7483,6 @@ CallFunc : function (
 };
 
 /**
- * @class CallFuncN
- */
-cc.CallFunc = {
-
-/**
- * @method CallFuncN
- * @constructor
- */
-CallFuncN : function (
-)
-{
-},
-
-};
-
-/**
  * @class GridAction
  */
 cc.GridAction = {
@@ -7773,20 +7495,6 @@ getGrid : function (
 )
 {
     return cc.GridBase;
-},
-
-/**
- * @method initWithDuration
- * @param {float} arg0
- * @param {size_object} arg1
- * @return {bool}
- */
-initWithDuration : function (
-float, 
-size 
-)
-{
-    return false;
 },
 
 };
@@ -7838,15 +7546,6 @@ create : function (
 )
 {
     return cc.StopGrid;
-},
-
-/**
- * @method StopGrid
- * @constructor
- */
-StopGrid : function (
-)
-{
 },
 
 };
@@ -8052,15 +7751,6 @@ float
 )
 {
     return cc.FlipY3D;
-},
-
-/**
- * @method FlipY3D
- * @constructor
- */
-FlipY3D : function (
-)
-{
 },
 
 };
@@ -9013,15 +8703,6 @@ size
     return cc.FadeOutTRTiles;
 },
 
-/**
- * @method FadeOutTRTiles
- * @constructor
- */
-FadeOutTRTiles : function (
-)
-{
-},
-
 };
 
 /**
@@ -9041,15 +8722,6 @@ size
 )
 {
     return cc.FadeOutBLTiles;
-},
-
-/**
- * @method FadeOutBLTiles
- * @constructor
- */
-FadeOutBLTiles : function (
-)
-{
 },
 
 };
@@ -9085,15 +8757,6 @@ size
     return cc.FadeOutUpTiles;
 },
 
-/**
- * @method FadeOutUpTiles
- * @constructor
- */
-FadeOutUpTiles : function (
-)
-{
-},
-
 };
 
 /**
@@ -9113,15 +8776,6 @@ size
 )
 {
     return cc.FadeOutDownTiles;
-},
-
-/**
- * @method FadeOutDownTiles
- * @constructor
- */
-FadeOutDownTiles : function (
-)
-{
 },
 
 };
@@ -9547,6 +9201,22 @@ vec2
 },
 
 /**
+ * @method initWithDuration
+ * @param {float} arg0
+ * @param {point_object} arg1
+ * @param {float} arg2
+ * @return {bool}
+ */
+initWithDuration : function (
+float, 
+pointarray, 
+float 
+)
+{
+    return false;
+},
+
+/**
  * @method CardinalSplineTo
  * @constructor
  */
@@ -9578,12 +9248,40 @@ CardinalSplineBy : function (
  */
 cc.CatmullRomTo = {
 
+/**
+ * @method initWithDuration
+ * @param {float} arg0
+ * @param {point_object} arg1
+ * @return {bool}
+ */
+initWithDuration : function (
+float, 
+pointarray 
+)
+{
+    return false;
+},
+
 };
 
 /**
  * @class CatmullRomBy
  */
 cc.CatmullRomBy = {
+
+/**
+ * @method initWithDuration
+ * @param {float} arg0
+ * @param {point_object} arg1
+ * @return {bool}
+ */
+initWithDuration : function (
+float, 
+pointarray 
+)
+{
+    return false;
+},
 
 };
 
@@ -11196,15 +10894,6 @@ textvalignment
     return cc.Label;
 },
 
-/**
- * @method Label
- * @constructor
- */
-Label : function (
-)
-{
-},
-
 };
 
 /**
@@ -11426,15 +11115,6 @@ create : function (
 )
 {
     return cc.__LayerRGBA;
-},
-
-/**
- * @method __LayerRGBA
- * @constructor
- */
-__LayerRGBA : function (
-)
-{
 },
 
 };
@@ -12021,15 +11701,6 @@ scene
     return cc.TransitionRotoZoom;
 },
 
-/**
- * @method TransitionRotoZoom
- * @constructor
- */
-TransitionRotoZoom : function (
-)
-{
-},
-
 };
 
 /**
@@ -12049,15 +11720,6 @@ scene
 )
 {
     return cc.TransitionJumpZoom;
-},
-
-/**
- * @method TransitionJumpZoom
- * @constructor
- */
-TransitionJumpZoom : function (
-)
-{
 },
 
 };
@@ -12103,15 +11765,6 @@ scene
     return cc.TransitionMoveInL;
 },
 
-/**
- * @method TransitionMoveInL
- * @constructor
- */
-TransitionMoveInL : function (
-)
-{
-},
-
 };
 
 /**
@@ -12131,15 +11784,6 @@ scene
 )
 {
     return cc.TransitionMoveInR;
-},
-
-/**
- * @method TransitionMoveInR
- * @constructor
- */
-TransitionMoveInR : function (
-)
-{
 },
 
 };
@@ -12163,15 +11807,6 @@ scene
     return cc.TransitionMoveInT;
 },
 
-/**
- * @method TransitionMoveInT
- * @constructor
- */
-TransitionMoveInT : function (
-)
-{
-},
-
 };
 
 /**
@@ -12191,15 +11826,6 @@ scene
 )
 {
     return cc.TransitionMoveInB;
-},
-
-/**
- * @method TransitionMoveInB
- * @constructor
- */
-TransitionMoveInB : function (
-)
-{
 },
 
 };
@@ -12245,15 +11871,6 @@ scene
     return cc.TransitionSlideInL;
 },
 
-/**
- * @method TransitionSlideInL
- * @constructor
- */
-TransitionSlideInL : function (
-)
-{
-},
-
 };
 
 /**
@@ -12283,15 +11900,6 @@ scene
 )
 {
     return cc.TransitionSlideInR;
-},
-
-/**
- * @method TransitionSlideInR
- * @constructor
- */
-TransitionSlideInR : function (
-)
-{
 },
 
 };
@@ -12325,15 +11933,6 @@ scene
     return cc.TransitionSlideInB;
 },
 
-/**
- * @method TransitionSlideInB
- * @constructor
- */
-TransitionSlideInB : function (
-)
-{
-},
-
 };
 
 /**
@@ -12363,15 +11962,6 @@ scene
 )
 {
     return cc.TransitionSlideInT;
-},
-
-/**
- * @method TransitionSlideInT
- * @constructor
- */
-TransitionSlideInT : function (
-)
-{
 },
 
 };
@@ -12407,15 +11997,6 @@ scene
     return cc.TransitionShrinkGrow;
 },
 
-/**
- * @method TransitionShrinkGrow
- * @constructor
- */
-TransitionShrinkGrow : function (
-)
-{
-},
-
 };
 
 /**
@@ -12437,15 +12018,6 @@ orientation
 )
 {
     return cc.TransitionFlipX;
-},
-
-/**
- * @method TransitionFlipX
- * @constructor
- */
-TransitionFlipX : function (
-)
-{
 },
 
 };
@@ -12471,15 +12043,6 @@ orientation
     return cc.TransitionFlipY;
 },
 
-/**
- * @method TransitionFlipY
- * @constructor
- */
-TransitionFlipY : function (
-)
-{
-},
-
 };
 
 /**
@@ -12501,15 +12064,6 @@ orientation
 )
 {
     return cc.TransitionFlipAngular;
-},
-
-/**
- * @method TransitionFlipAngular
- * @constructor
- */
-TransitionFlipAngular : function (
-)
-{
 },
 
 };
@@ -12535,15 +12089,6 @@ orientation
     return cc.TransitionZoomFlipX;
 },
 
-/**
- * @method TransitionZoomFlipX
- * @constructor
- */
-TransitionZoomFlipX : function (
-)
-{
-},
-
 };
 
 /**
@@ -12567,15 +12112,6 @@ orientation
     return cc.TransitionZoomFlipY;
 },
 
-/**
- * @method TransitionZoomFlipY
- * @constructor
- */
-TransitionZoomFlipY : function (
-)
-{
-},
-
 };
 
 /**
@@ -12597,15 +12133,6 @@ orientation
 )
 {
     return cc.TransitionZoomFlipAngular;
-},
-
-/**
- * @method TransitionZoomFlipAngular
- * @constructor
- */
-TransitionZoomFlipAngular : function (
-)
-{
 },
 
 };
@@ -12677,15 +12204,6 @@ scene
     return cc.TransitionCrossFade;
 },
 
-/**
- * @method TransitionCrossFade
- * @constructor
- */
-TransitionCrossFade : function (
-)
-{
-},
-
 };
 
 /**
@@ -12717,15 +12235,6 @@ scene
 )
 {
     return cc.TransitionTurnOffTiles;
-},
-
-/**
- * @method TransitionTurnOffTiles
- * @constructor
- */
-TransitionTurnOffTiles : function (
-)
-{
 },
 
 };
@@ -12771,15 +12280,6 @@ scene
     return cc.TransitionSplitCols;
 },
 
-/**
- * @method TransitionSplitCols
- * @constructor
- */
-TransitionSplitCols : function (
-)
-{
-},
-
 };
 
 /**
@@ -12799,15 +12299,6 @@ scene
 )
 {
     return cc.TransitionSplitRows;
-},
-
-/**
- * @method TransitionSplitRows
- * @constructor
- */
-TransitionSplitRows : function (
-)
-{
 },
 
 };
@@ -12855,15 +12346,6 @@ scene
     return cc.TransitionFadeTR;
 },
 
-/**
- * @method TransitionFadeTR
- * @constructor
- */
-TransitionFadeTR : function (
-)
-{
-},
-
 };
 
 /**
@@ -12883,15 +12365,6 @@ scene
 )
 {
     return cc.TransitionFadeBL;
-},
-
-/**
- * @method TransitionFadeBL
- * @constructor
- */
-TransitionFadeBL : function (
-)
-{
 },
 
 };
@@ -12915,15 +12388,6 @@ scene
     return cc.TransitionFadeUp;
 },
 
-/**
- * @method TransitionFadeUp
- * @constructor
- */
-TransitionFadeUp : function (
-)
-{
-},
-
 };
 
 /**
@@ -12943,15 +12407,6 @@ scene
 )
 {
     return cc.TransitionFadeDown;
-},
-
-/**
- * @method TransitionFadeDown
- * @constructor
- */
-TransitionFadeDown : function (
-)
-{
 },
 
 };
@@ -13065,15 +12520,6 @@ scene
     return cc.TransitionProgressRadialCCW;
 },
 
-/**
- * @method TransitionProgressRadialCCW
- * @constructor
- */
-TransitionProgressRadialCCW : function (
-)
-{
-},
-
 };
 
 /**
@@ -13093,15 +12539,6 @@ scene
 )
 {
     return cc.TransitionProgressRadialCW;
-},
-
-/**
- * @method TransitionProgressRadialCW
- * @constructor
- */
-TransitionProgressRadialCW : function (
-)
-{
 },
 
 };
@@ -13125,15 +12562,6 @@ scene
     return cc.TransitionProgressHorizontal;
 },
 
-/**
- * @method TransitionProgressHorizontal
- * @constructor
- */
-TransitionProgressHorizontal : function (
-)
-{
-},
-
 };
 
 /**
@@ -13153,15 +12581,6 @@ scene
 )
 {
     return cc.TransitionProgressVertical;
-},
-
-/**
- * @method TransitionProgressVertical
- * @constructor
- */
-TransitionProgressVertical : function (
-)
-{
 },
 
 };
@@ -13185,15 +12604,6 @@ scene
     return cc.TransitionProgressInOut;
 },
 
-/**
- * @method TransitionProgressInOut
- * @constructor
- */
-TransitionProgressInOut : function (
-)
-{
-},
-
 };
 
 /**
@@ -13213,15 +12623,6 @@ scene
 )
 {
     return cc.TransitionProgressOutIn;
-},
-
-/**
- * @method TransitionProgressOutIn
- * @constructor
- */
-TransitionProgressOutIn : function (
-)
-{
 },
 
 };
@@ -13999,15 +13400,6 @@ node
 )
 {
     return cc.ClippingNode;
-},
-
-/**
- * @method ClippingNode
- * @constructor
- */
-ClippingNode : function (
-)
-{
 },
 
 };
@@ -15071,15 +14463,6 @@ create : function (
 )
 {
     return cc.NodeGrid;
-},
-
-/**
- * @method NodeGrid
- * @constructor
- */
-NodeGrid : function (
-)
-{
 },
 
 };
@@ -16385,16 +15768,6 @@ spriteframe
 setTextureWithRect : function (
 texture2d, 
 rect 
-)
-{
-},
-
-/**
- * @method listenRendererRecreated
- * @param {cc.EventCustom} arg0
- */
-listenRendererRecreated : function (
-eventcustom 
 )
 {
 },
@@ -18298,15 +17671,6 @@ create : function (
     return cc.ParallaxNode;
 },
 
-/**
- * @method ParallaxNode
- * @constructor
- */
-ParallaxNode : function (
-)
-{
-},
-
 };
 
 /**
@@ -19139,20 +18503,6 @@ TMXLayer : function (
 cc.TMXTiledMap = {
 
 /**
- * @method getPropertiesForGID
-* @param {int|int} int
-* @param {cc.Value} value
-* @return {bool|cc.Value}
-*/
-getPropertiesForGID : function(
-int,
-value 
-)
-{
-    return false;
-},
-
-/**
  * @method setObjectGroups
  * @param {Array} arg0
  */
@@ -19263,13 +18613,17 @@ getProperties : function (
 },
 
 /**
- * @method setMapOrientation
- * @param {int} arg0
- */
-setMapOrientation : function (
-int 
+ * @method getPropertiesForGID
+* @param {int|int} int
+* @param {cc.Value} value
+* @return {bool|cc.Value}
+*/
+getPropertiesForGID : function(
+int,
+value 
 )
 {
+    return false;
 },
 
 /**
@@ -19312,6 +18666,16 @@ getMapOrientation : function (
 )
 {
     return 0;
+},
+
+/**
+ * @method setMapOrientation
+ * @param {int} arg0
+ */
+setMapOrientation : function (
+int 
+)
+{
 },
 
 /**

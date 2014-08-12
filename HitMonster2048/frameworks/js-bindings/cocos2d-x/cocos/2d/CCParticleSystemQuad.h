@@ -81,11 +81,11 @@ public:
      */
     void setTextureWithRect(Texture2D *texture, const Rect& rect);
 
-    /** listen the event that renderer was recreated on Android/WP8
+    /** listen the event that coming to foreground on Android
      * @js NA
      * @lua NA
      */
-    void listenRendererRecreated(EventCustom* event);
+    void listenBackToForeground(EventCustom* event);
 
     /**
      * @js NA

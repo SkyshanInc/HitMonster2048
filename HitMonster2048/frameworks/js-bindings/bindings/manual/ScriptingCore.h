@@ -229,7 +229,7 @@ public:
 	 * enable the debug environment
 	 */
 	void debugProcessInput(const std::string& str);
-	void enableDebugger(unsigned int port = 5086);
+	void enableDebugger();
 	JSObject* getDebugGlobal() { return _debugGlobal; }
     JSObject* getGlobalObject() { return _global; }
 

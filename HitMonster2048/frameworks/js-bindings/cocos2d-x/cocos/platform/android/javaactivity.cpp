@@ -57,23 +57,16 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved)
 void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thiz, jint w, jint h)
 {
     auto director = cocos2d::Director::getInstance();
-    CCLOG("%s,%d",__FILE__,__LINE__);
     auto glview = director->getOpenGLView();
-    CCLOG("%s,%d",__FILE__,__LINE__);
     if (!glview)
     {
-        CCLOG("%s,%d",__FILE__,__LINE__);
         glview = cocos2d::GLView::create("Android app");
-        CCLOG("%s,%d",__FILE__,__LINE__);
         glview->setFrameSize(w, h);
-        CCLOG("%s,%d",__FILE__,__LINE__);
         director->setOpenGLView(glview);
-        CCLOG("%s,%d",__FILE__,__LINE__);
 
         cocos_android_app_init(env, thiz);
-        CCLOG("%s,%d",__FILE__,__LINE__);
+
         cocos2d::Application::getInstance()->run();
-        CCLOG("%s,%d",__FILE__,__LINE__);
     }
     else
     {
@@ -82,8 +75,8 @@ void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thi
         cocos2d::DrawPrimitives::init();
         cocos2d::VolatileTextureMgr::reloadAllTextures();
 
-        cocos2d::EventCustom recreatedEvent(EVENT_RENDERER_RECREATED);
-        director->getEventDispatcher()->dispatchEvent(&recreatedEvent);
+        cocos2d::EventCustom foregroundEvent(EVENT_COME_TO_FOREGROUND);
+        director->getEventDispatcher()->dispatchEvent(&foregroundEvent);
         director->setGLDefaultValues();
     }
 

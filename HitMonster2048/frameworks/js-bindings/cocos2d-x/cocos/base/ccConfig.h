@@ -202,6 +202,9 @@ Only valid for cocos2d-mac. Not supported on cocos2d-ios.
  0 -- disabled
  1 -- draw bounding box
  2 -- draw texture box
+ 0 -- disabled
+ 1 -- draw bounding box
+ 2 -- draw texture box
 */
 #ifndef CC_SPRITE_DEBUG_DRAW
 #define CC_SPRITE_DEBUG_DRAW 0

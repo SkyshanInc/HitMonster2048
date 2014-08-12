@@ -50,10 +50,10 @@ ControlSaturationBrightnessPicker::~ControlSaturationBrightnessPicker()
 {
     removeAllChildrenWithCleanup(true);
 
-    _background = nullptr;
-    _overlay    = nullptr;
-    _shadow     = nullptr;
-    _slider     = nullptr;
+    _background = NULL;
+    _overlay    = NULL;
+    _shadow     = NULL;
+    _slider     = NULL;
 }
     
 bool ControlSaturationBrightnessPicker::initWithTargetAndPos(Node* target, Vec2 pos)
@@ -88,7 +88,7 @@ ControlSaturationBrightnessPicker* ControlSaturationBrightnessPicker::create(Nod
 void ControlSaturationBrightnessPicker::setEnabled(bool enabled)
 {
     Control::setEnabled(enabled);
-    if (_slider != nullptr)
+    if (_slider != NULL)
     {
         _slider->setOpacity(enabled ? 255 : 128);
     }

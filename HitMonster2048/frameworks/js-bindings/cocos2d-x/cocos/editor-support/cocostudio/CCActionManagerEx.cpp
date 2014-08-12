@@ -42,12 +42,7 @@ ActionManagerEx* ActionManagerEx::getInstance()
 
 void ActionManagerEx::destroyInstance()
 {
-    if(sharedActionManager != nullptr)
-    {
-        sharedActionManager->releaseActions();
-        CC_SAFE_DELETE(sharedActionManager);
-    }
-
+	CC_SAFE_DELETE(sharedActionManager);
 }
 
 ActionManagerEx::ActionManagerEx()
@@ -74,8 +69,6 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
 		action->initWithDictionary(actionDic,root);
 		actionList.pushBack(action);
 	}
-     //pokosanguo_zhangqi
-     releaseActionObjectByFileName(fileName.c_str());
 	_actionDic.insert(std::pair<std::string, cocos2d::Vector<ActionObject*>>(fileName, actionList));
 }
     
@@ -90,7 +83,7 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
         CCLOG("filename == %s",fileName.c_str());
         cocos2d::Vector<ActionObject*> actionList;
         
-        stExpCocoNode *stChildArray = pCocoNode->GetChildArray(cocoLoader);
+        stExpCocoNode *stChildArray = pCocoNode->GetChildArray();
         stExpCocoNode *actionNode = nullptr;
         for (int i=0; i < pCocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
@@ -106,13 +99,11 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
                 ActionObject* action = new ActionObject();
                 action->autorelease();
                 
-                action->initWithBinary(cocoLoader, actionNode->GetChildArray(cocoLoader), root);
+                action->initWithBinary(cocoLoader, actionNode->GetChildArray(), root);
                 
                 actionList.pushBack(action);
             }
         }
-        //pokosanguo_zhangqi
-         releaseActionObjectByFileName(fileName.c_str());
         _actionDic.insert(std::pair<std::string, cocos2d::Vector<ActionObject*>>(fileName, actionList));
         
     }
@@ -163,41 +154,10 @@ void ActionManagerEx::releaseActions()
     for (iter = _actionDic.begin(); iter != _actionDic.end(); iter++)
     {
         cocos2d::Vector<ActionObject*> objList = iter->second;
-        int listCount = objList.size();
-        for (int i = 0; i < listCount; i++) {
-            ActionObject* action = objList.at(i);
-            if (action != nullptr) {
-                action->stop();
-            }
-        }
         objList.clear();
     }
     
     _actionDic.clear();
 }
-     //pokosanguo_zhangqi
-    void ActionManagerEx::releaseActionObjectByFileName(const char * name)
-    
-    {
-        
-        if(_actionDic.size() <=0)
-            
-        {
-            
-            return;
-            
-        }
-        
-        std::unordered_map<std::string,cocos2d::Vector<ActionObject*>>::iterator iter =_actionDic.find(name);
-        
-        if(iter != _actionDic.end())
-            
-        {
-            cocos2d::Vector<ActionObject*> objList = iter->second;
-            objList.clear();
-            _actionDic.erase(iter);
-        }
-        
-    }
 
 }

@@ -241,9 +241,6 @@ void MinXmlHttpRequest::handle_requestResponse(cocos2d::network::HttpClient *sen
 void MinXmlHttpRequest::_sendRequest(JSContext *cx)
 {
     _httpRequest->setResponseCallback(this, httpresponse_selector(MinXmlHttpRequest::handle_requestResponse));
-    //pokosanguo zhangqi
-    cocos2d::network::HttpClient::getInstance()->setTimeoutForConnect(8);
-    cocos2d::network::HttpClient::getInstance()->setTimeoutForRead(10);
     cocos2d::network::HttpClient::getInstance()->send(_httpRequest);
     _httpRequest->release();
 }

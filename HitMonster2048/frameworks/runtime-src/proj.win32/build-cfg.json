@@ -16,9 +16,13 @@
             "from": "../../../project.json",
             "to": ""
         },
+		{
+            "from": "../../../resource.json",
+            "to": ""
+        },
         {
             "from": "../../js-bindings/bindings/script",
-            "to": ""
+            "to": "script"
         }
     ]
 }

@@ -26,47 +26,26 @@
 #include "platform/CCFileUtils.h"
 #include "2d/CCLabel.h"
 #include "2d/CCSprite.h"
-#include "base/ccUTF8.h"
 
 NS_CC_BEGIN
 
 namespace ui {
     
-static std::string utf8_substr(const std::string& str, unsigned long start, unsigned long leng)
+static int _calcCharCount(const char * pszText)
 {
-    if (leng==0)
+    int n = 0;
+    char ch = 0;
+    while ((ch = *pszText))
     {
-        return "";
-    }
-    unsigned long c, i, ix, q, min=std::string::npos, max=std::string::npos;
-    for (q=0, i=0, ix=str.length(); i < ix; i++, q++)
-    {
-        if (q==start)
-        {
-            min = i;
-        }
-        if (q <= start+leng || leng==std::string::npos)
-        {
-            max = i;
-        }
+        CC_BREAK_IF(! ch);
         
-        c = (unsigned char) str[i];
-        
-        if      (c<=127) i+=0;
-        else if ((c & 0xE0) == 0xC0) i+=1;
-        else if ((c & 0xF0) == 0xE0) i+=2;
-        else if ((c & 0xF8) == 0xF0) i+=3;
-        else return "";//invalid utf8
+        if (0x80 != (0xC0 & ch))
+        {
+            ++n;
+        }
+        ++pszText;
     }
-    if (q <= start+leng || leng == std::string::npos)
-    {
-        max = i;
-    }
-    if (min==std::string::npos || max==std::string::npos)
-    {
-        return "";
-    }
-    return str.substr(min,max);
+    return n;
 }
     
 bool RichElement::init(int tag, const Color3B &color, GLubyte opacity)
@@ -87,7 +66,7 @@ RichElementText* RichElementText::create(int tag, const Color3B &color, GLubyte 
         return element;
     }
     CC_SAFE_DELETE(element);
-    return nullptr;
+    return NULL;
 }
     
 bool RichElementText::init(int tag, const Color3B &color, GLubyte opacity, const std::string& text, const std::string& fontName, float fontSize)
@@ -111,7 +90,7 @@ RichElementImage* RichElementImage::create(int tag, const Color3B &color, GLubyt
         return element;
     }
     CC_SAFE_DELETE(element);
-    return nullptr;
+    return NULL;
 }
     
 bool RichElementImage::init(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath)
@@ -133,7 +112,7 @@ RichElementCustomNode* RichElementCustomNode::create(int tag, const Color3B &col
         return element;
     }
     CC_SAFE_DELETE(element);
-    return nullptr;
+    return NULL;
 }
     
 bool RichElementCustomNode::init(int tag, const Color3B &color, GLubyte opacity, cocos2d::Node *customNode)
@@ -170,7 +149,7 @@ RichText* RichText::create()
         return widget;
     }
     CC_SAFE_DELETE(widget);
-    return nullptr;
+    return NULL;
 }
     
 bool RichText::init()
@@ -225,7 +204,7 @@ void RichText::formatText()
             for (ssize_t i=0; i<_richElements.size(); i++)
             {
                 RichElement* element = _richElements.at(i);
-                Node* elementRenderer = nullptr;
+                Node* elementRenderer = NULL;
                 switch (element->_type)
                 {
                     case RichElement::Type::TEXT:
@@ -316,20 +295,20 @@ void RichText::handleTextRenderer(const std::string& text, const std::string& fo
     {
         float overstepPercent = (-_leftSpaceWidth) / textRendererWidth;
         std::string curText = text;
-        size_t stringLength = StringUtils::getCharacterCountInUTF8String(text);
+        size_t stringLength = _calcCharCount(text.c_str());
         int leftLength = stringLength * (1.0f - overstepPercent);
-        std::string leftWords = utf8_substr(curText,0,leftLength);
-        std::string cutWords = utf8_substr(curText, leftLength, curText.length() - leftLength);
+        std::string leftWords = curText.substr(0, leftLength);
+        std::string cutWords = curText.substr(leftLength, curText.length()-1);
         if (leftLength > 0)
         {
             Label* leftRenderer = nullptr;
             if (fileExist)
             {
-                leftRenderer = Label::createWithTTF(utf8_substr(leftWords, 0, leftLength), fontName, fontSize);
-            }
+                leftRenderer = Label::createWithTTF(leftWords.substr(0, leftLength).c_str(), fontName, fontSize);
+            } 
             else
             {
-                leftRenderer = Label::createWithSystemFont(utf8_substr(leftWords, 0, leftLength), fontName, fontSize);
+                leftRenderer = Label::createWithSystemFont(leftWords.substr(0, leftLength).c_str(), fontName, fontSize);
             }
             if (leftRenderer)
             {

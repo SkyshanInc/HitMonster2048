@@ -63,7 +63,7 @@ namespace cocostudio
         
         Button *button = static_cast<Button*>(widget);
         
-        stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
+        stExpCocoNode *stChildArray = cocoNode->GetChildArray();
         
         this->beginSetBasicProperties(widget);
         
@@ -72,7 +72,7 @@ namespace cocostudio
         float scale9Width = 0.0f, scale9Height = 0.0f;
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
-            std::string value = stChildArray[i].GetValue(cocoLoader);
+            std::string value = stChildArray[i].GetValue();
 //            CCLOG("Button: key = %s, value = %d", key.c_str(), i);
 
             //read all basic properties of widget
@@ -86,8 +86,8 @@ namespace cocostudio
             }
             else if (key == P_NormalData){
                 
-                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray(cocoLoader);
-                std::string resType = backGroundChildren[2].GetValue(cocoLoader);;
+                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray();
+                std::string resType = backGroundChildren[2].GetValue();;
                 
                 Widget::TextureResType imageFileNameType = (Widget::TextureResType)valueToInt(resType);
                 
@@ -98,8 +98,8 @@ namespace cocostudio
             }
             else if (key == P_PressedData){
                 
-                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray(cocoLoader);
-                std::string resType = backGroundChildren[2].GetValue(cocoLoader);;
+                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray();
+                std::string resType = backGroundChildren[2].GetValue();;
                 
                 Widget::TextureResType imageFileNameType = (Widget::TextureResType)valueToInt(resType);
                 
@@ -110,8 +110,8 @@ namespace cocostudio
             }
             else if (key == P_DisabledData){
                 
-                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray(cocoLoader);
-                std::string resType = backGroundChildren[2].GetValue(cocoLoader);;
+                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray();
+                std::string resType = backGroundChildren[2].GetValue();;
                 
                 Widget::TextureResType imageFileNameType = (Widget::TextureResType)valueToInt(resType);
                 
@@ -152,7 +152,7 @@ namespace cocostudio
 
         if (button->isScale9Enabled()) {
             button->setCapInsets(Rect(capsx, capsy, capsWidth, capsHeight));
-            button->setContentSize(Size(scale9Width, scale9Height));
+            button->setSize(Size(scale9Width, scale9Height));
         }
         
         button->setTitleColor(Color3B(cri, cgi, cbi));
@@ -203,7 +203,7 @@ namespace cocostudio
             {
                 float swf = DICTOOL->getFloatValue_json(options, P_Scale9Width);
                 float shf = DICTOOL->getFloatValue_json(options, P_Scale9Height);
-                button->setContentSize(Size(swf, shf));
+                button->setSize(Size(swf, shf));
             }
         }
         bool tt = DICTOOL->checkObjectExist_json(options, P_Text);
@@ -216,18 +216,23 @@ namespace cocostudio
             }
         }
         
-     
-        int cri = DICTOOL->getIntValue_json(options, P_TextColorR,255);
-        int cgi = DICTOOL->getIntValue_json(options, P_TextColorG,255);
-        int cbi = DICTOOL->getIntValue_json(options, P_TextColorB,255);
+        bool cr = DICTOOL->checkObjectExist_json(options, P_TextColorR);
+        bool cg = DICTOOL->checkObjectExist_json(options, P_TextColorG);
+        bool cb = DICTOOL->checkObjectExist_json(options, P_TextColorB);
+        int cri = cr?DICTOOL->getIntValue_json(options, P_TextColorR):255;
+        int cgi = cg?DICTOOL->getIntValue_json(options, P_TextColorG):255;
+        int cbi = cb?DICTOOL->getIntValue_json(options, P_TextColorB):255;
         button->setTitleColor(Color3B(cri,cgi,cbi));
-  
-        
-        button->setTitleFontSize(DICTOOL->getIntValue_json(options, P_FontSize,14));
-        
-
-        button->setTitleFontName(DICTOOL->getStringValue_json(options, P_FontName,"FZY4JW--GB1-0"));
-        
+        bool fs = DICTOOL->checkObjectExist_json(options, P_FontSize);
+        if (fs)
+        {
+            button->setTitleFontSize(DICTOOL->getIntValue_json(options, P_FontSize));
+        }
+        bool fn = DICTOOL->checkObjectExist_json(options, P_FontName);
+        if (fn)
+        {
+            button->setTitleFontName(DICTOOL->getStringValue_json(options, P_FontName));
+        }
         
         
         WidgetReader::setColorPropsFromJsonDictionary(widget, options);

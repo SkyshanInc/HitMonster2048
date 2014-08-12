@@ -33,13 +33,13 @@ class Sprite;
 
 namespace ui {
 
-typedef enum
+CC_DEPRECATED_ATTRIBUTE typedef enum
 {
     CHECKBOX_STATE_EVENT_SELECTED,
     CHECKBOX_STATE_EVENT_UNSELECTED
 }CheckBoxEventType;
 
-typedef void (Ref::*SEL_SelectedStateEvent)(Ref*,CheckBoxEventType);
+CC_DEPRECATED_ATTRIBUTE typedef void (Ref::*SEL_SelectedStateEvent)(Ref*,CheckBoxEventType);
 #define checkboxselectedeventselector(_SELECTOR) (SEL_SelectedStateEvent)(&_SELECTOR)
 
 /**
@@ -86,7 +86,7 @@ public:
      *
      * @param frontCrossDisabled    cross dark state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     static CheckBox* create(const std::string& backGround,
                             const std::string& backGroundSeleted,
@@ -106,7 +106,7 @@ public:
      *
      * @param frontCrossDisabled    cross dark state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextures(const std::string& backGround,
                       const std::string& backGroundSelected,
@@ -120,7 +120,7 @@ public:
      *
      * @param backGround    backGround texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureBackGround(const std::string& backGround,TextureResType type = TextureResType::LOCAL);
 
@@ -129,7 +129,7 @@ public:
      *
      * @param backGroundSelected     backGround selected state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureBackGroundSelected(const std::string& backGroundSelected,TextureResType texType = TextureResType::LOCAL);
 
@@ -138,7 +138,7 @@ public:
      *
      * @param cross    cross texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureFrontCross(const std::string&,TextureResType texType = TextureResType::LOCAL);
 
@@ -147,7 +147,7 @@ public:
      *
      * @param backGroundDisabled    backGroundDisabled texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureBackGroundDisabled(const std::string& backGroundDisabled,TextureResType texType = TextureResType::LOCAL);
 
@@ -156,7 +156,7 @@ public:
      *
      * @param frontCrossDisabled    frontCrossDisabled texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureFrontCrossDisabled(const std::string& frontCrossDisabled,TextureResType texType = TextureResType::LOCAL);
 

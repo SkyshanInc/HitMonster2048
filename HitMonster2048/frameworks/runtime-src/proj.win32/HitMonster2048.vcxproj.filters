@@ -11,6 +11,9 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{e93a77e1-af1e-4400-87d3-504b62ebdbb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ResOrScript">
+      <UniqueIdentifier>{3ed0225c-8aea-4015-a1b6-34e044959952}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -80,11 +80,10 @@ public:
     /** Get retina factor */
     int getRetinaFactor() const { return _retinaFactor; }
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     GLView();
     virtual ~GLView();
-    
-protected:
+
     bool initWithRect(const std::string& viewName, Rect rect, float frameZoomFactor);
     bool initWithFullScreen(const std::string& viewName);
     bool initWithFullscreen(const std::string& viewname, const GLFWvidmode &videoMode, GLFWmonitor *monitor);

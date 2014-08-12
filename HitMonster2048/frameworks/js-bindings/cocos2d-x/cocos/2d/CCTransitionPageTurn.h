@@ -59,6 +59,15 @@ public:
      * scene is being turned from left over the outgoing scene.
      */
     static TransitionPageTurn* create(float t,Scene* scene,bool backwards);
+    /**
+     * @js ctor
+     */
+    TransitionPageTurn();
+    /**
+     * @js NA
+     * @lua NA
+     */
+    virtual ~TransitionPageTurn();
     
     //
     // Overrides
@@ -79,17 +88,6 @@ public:
     //
     virtual void onEnter() override;
     virtual void onExit() override;
-
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionPageTurn();
-    /**
-     * @js NA
-     * @lua NA
-     */
-    virtual ~TransitionPageTurn();
 
 protected:
     virtual void sceneOrder() override;

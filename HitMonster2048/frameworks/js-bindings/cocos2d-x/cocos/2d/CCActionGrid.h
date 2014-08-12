@@ -52,13 +52,12 @@ public:
     virtual GridAction* reverse() const override;
     virtual void startWithTarget(Node *target) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     GridAction() {}
     virtual ~GridAction() {}
     /** initializes the action with size and duration */
     bool initWithDuration(float duration, const Size& gridSize);
 
-protected:
     Size _gridSize;
     
     NodeGrid* _gridNodeTarget;
@@ -274,11 +273,10 @@ public:
 	virtual StopGrid* clone() const override;
 	virtual StopGrid* reverse() const override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     StopGrid() {}
     virtual ~StopGrid() {}
     
-protected:
     NodeGrid* _gridNodeTarget;
     
     void cacheTargetAsGridNode();

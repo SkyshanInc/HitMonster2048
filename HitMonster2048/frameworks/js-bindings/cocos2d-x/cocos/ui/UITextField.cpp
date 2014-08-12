@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "ui/UITextField.h"
-#include "platform/CCFileUtils.h"
 
 NS_CC_BEGIN
 
@@ -367,10 +366,7 @@ _textFieldEventListener(nullptr),
 _textFieldEventSelector(nullptr),
 _eventCallback(nullptr),
 _passwordStyleText(""),
-_textFieldRendererAdaptDirty(true),
-_fontName("Thonburi"),
-_fontSize(10),
-_fontType(FontType::SYSTEM)
+_textFieldRendererAdaptDirty(true)
 {
 }
 
@@ -545,44 +541,26 @@ const std::string& TextField::getPlaceHolder()const
 
 void TextField::setFontSize(int size)
 {
-    if (_fontType == FontType::SYSTEM) {
-        _textFieldRenderer->setSystemFontSize(size);
-    } else {
-        TTFConfig config = _textFieldRenderer->getTTFConfig();
-        config.fontSize = size;
-        _textFieldRenderer->setTTFConfig(config);
-    }
-    _fontSize = size;
+    _textFieldRenderer->setSystemFontSize(size);
     _textFieldRendererAdaptDirty = true;
     updateContentSizeWithTextureSize(_textFieldRenderer->getContentSize());
 }
     
 int TextField::getFontSize()const
 {
-    return _fontSize;
+    return _textFieldRenderer->getSystemFontSize();
 }
 
 void TextField::setFontName(const std::string& name)
 {
-    if(FileUtils::getInstance()->isFileExist(name))
-    {
-        TTFConfig config = _textFieldRenderer->getTTFConfig();
-        config.fontFilePath = name;
-        config.fontSize = _fontSize;
-        _textFieldRenderer->setTTFConfig(config);
-        _fontType = FontType::TTF;
-    } else {
-        _textFieldRenderer->setSystemFontName(name);
-        _fontType = FontType::SYSTEM;
-    }
-    _fontName = name;
+    _textFieldRenderer->setSystemFontName(name);
     _textFieldRendererAdaptDirty = true;
     updateContentSizeWithTextureSize(_textFieldRenderer->getContentSize());
 }
     
 const std::string& TextField::getFontName()const
 {
-    return _fontName;
+    return _textFieldRenderer->getSystemFontName();
 }
 
 void TextField::didNotSelectSelf()
@@ -606,8 +584,6 @@ bool TextField::onTouchBegan(Touch *touch, Event *unusedEvent)
     if (_hitted)
     {
         _textFieldRenderer->attachWithIME();
-    } else {
-        this->didNotSelectSelf();
     }
     return pass;
 }
@@ -647,6 +623,7 @@ bool TextField::isPasswordEnabled()const
 void TextField::setPasswordStyleText(const char *styleText)
 {
     _textFieldRenderer->setPasswordStyleText(styleText);
+    
     _passwordStyleText = styleText;
     
     setText(getStringValue());
@@ -799,9 +776,24 @@ void TextField::adaptRenderers()
 
 void TextField::textfieldRendererScaleChangedWithSize()
 {
-    if (!_ignoreSize)
+    if (_ignoreSize)
+    {
+        _textFieldRenderer->setDimensions(0,0);
+        _textFieldRenderer->setScale(1.0f);
+    }
+    else
     {
         _textFieldRenderer->setDimensions(_contentSize.width, _contentSize.height);
+        Size textureSize = getContentSize();
+        if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
+        {
+            _textFieldRenderer->setScale(1.0f);
+            return;
+        }
+        float scaleX = _contentSize.width / textureSize.width;
+        float scaleY = _contentSize.height / textureSize.height;
+        _textFieldRenderer->setScaleX(scaleX);
+        _textFieldRenderer->setScaleY(scaleY);
     }
     _textFieldRenderer->setPosition(_contentSize.width / 2.0f, _contentSize.height / 2.0f);
 }
@@ -838,8 +830,8 @@ void TextField::copySpecialProperties(Widget *widget)
     {
         setText(textField->_textFieldRenderer->getString());
         setPlaceHolder(textField->getStringValue());
-        setFontSize(textField->_fontSize);
-        setFontName(textField->_fontName);
+        setFontSize(textField->_textFieldRenderer->getSystemFontSize());
+        setFontName(textField->_textFieldRenderer->getSystemFontName());
         setMaxLengthEnabled(textField->isMaxLengthEnabled());
         setMaxLength(textField->getMaxLength());
         setPasswordEnabled(textField->isPasswordEnabled());
@@ -856,7 +848,7 @@ void TextField::copySpecialProperties(Widget *widget)
     
 void TextField::setTextAreaSize(const Size &size)
 {
-    this->setContentSize(size);
+    _textFieldRenderer->setDimensions(size.width,size.height);
 }
 
 void TextField::setTextHorizontalAlignment(TextHAlignment alignment)

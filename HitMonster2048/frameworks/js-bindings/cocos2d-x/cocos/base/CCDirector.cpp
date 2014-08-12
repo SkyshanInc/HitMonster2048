@@ -177,6 +177,7 @@ Director::~Director(void)
     CC_SAFE_RELEASE(_scheduler);
     CC_SAFE_RELEASE(_actionManager);
     
+
     delete _eventAfterUpdate;
     delete _eventAfterDraw;
     delete _eventAfterVisit;
@@ -190,10 +191,11 @@ Director::~Director(void)
 
     CC_SAFE_RELEASE(_eventDispatcher);
     
+    // clean auto release pool
+    PoolManager::destroyInstance();
+
     // delete _lastUpdate
     CC_SAFE_DELETE(_lastUpdate);
-
-    Configuration::destroyInstance();
 
     s_SharedDirector = nullptr;
 }
@@ -974,6 +976,7 @@ void Director::purgeDirector()
     GLProgramCache::destroyInstance();
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();
+    Configuration::destroyInstance();
 
     // cocos2d-x specific data structures
     UserDefault::destroyInstance();

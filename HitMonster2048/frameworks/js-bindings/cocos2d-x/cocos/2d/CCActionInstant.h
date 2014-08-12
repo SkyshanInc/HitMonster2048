@@ -74,7 +74,7 @@ public:
     virtual ActionInstant* reverse() const override;
 	virtual Show* clone() const override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     Show(){}
     virtual ~Show(){}
 
@@ -98,7 +98,7 @@ public:
 	virtual ActionInstant* reverse() const override;
 	virtual Hide* clone() const override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     Hide(){}
     virtual ~Hide(){}
 
@@ -121,7 +121,7 @@ public:
 	virtual ToggleVisibility* reverse() const override;
 	virtual ToggleVisibility* clone() const override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     ToggleVisibility(){}
     virtual ~ToggleVisibility(){}
 
@@ -402,14 +402,13 @@ public:
 	virtual __CCCallFuncND* clone() const override;
     virtual void execute() override;
     
-CC_CONSTRUCTOR_ACCESS:
+protected:
     __CCCallFuncND() {}
     virtual ~__CCCallFuncND() {}
     
     /** initializes the action with the callback and the data to pass as an argument */
     bool initWithTarget(Ref* target, SEL_CallFuncND selector, void* d);
 
-protected:
     SEL_CallFuncND _callFuncND;
     void* _data;
 
@@ -442,7 +441,7 @@ public:
     Ref* getObject() const;
     void setObject(Ref* obj);
     
-CC_CONSTRUCTOR_ACCESS:
+protected:
     __CCCallFuncO();
     virtual ~__CCCallFuncO();
     /** initializes the action with the callback
@@ -451,7 +450,7 @@ CC_CONSTRUCTOR_ACCESS:
      */
     bool initWithTarget(Ref* target, SEL_CallFuncO selector, Ref* object);
     
-protected:
+
     /** object to be passed as argument */
     Ref* _object;
     SEL_CallFuncO _callFuncO;

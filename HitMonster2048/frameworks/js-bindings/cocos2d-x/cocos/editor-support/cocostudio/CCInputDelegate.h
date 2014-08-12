@@ -43,7 +43,7 @@ namespace cocostudio {
  */
 class InputDelegate
 {
-CC_CONSTRUCTOR_ACCESS:
+protected:
     /**
      * @js ctor
      */

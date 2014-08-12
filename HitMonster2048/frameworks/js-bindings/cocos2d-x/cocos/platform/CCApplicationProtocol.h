@@ -27,8 +27,6 @@ THE SOFTWARE.
 #define __CC_APPLICATION_PROTOCOL_H__
 
 #include "base/CCPlatformMacros.h"
-#include "base/CCScriptSupport.h"
-#include "base/CCAutoreleasePool.h"
 
 NS_CC_BEGIN
 
@@ -63,13 +61,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual ~ApplicationProtocol(){
-#if CC_ENABLE_SCRIPT_BINDING
-        ScriptEngineManager::destroyInstance();
-#endif
-        // clean auto release pool
-        PoolManager::destroyInstance();
-    }
+    virtual ~ApplicationProtocol() {}
 
     /**
     @brief    Implement Director and Scene init code here.

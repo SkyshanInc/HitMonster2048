@@ -106,13 +106,6 @@ public:
 	*
 	*/
 	void releaseActions();
-    
-    /**
-     * Release action by Name.
-     *
-     */
-     //pokosanguo_zhangqi
-    void releaseActionObjectByFileName(const char * name);
 
 protected:
 	std::unordered_map<std::string, cocos2d::Vector<ActionObject*>> _actionDic;

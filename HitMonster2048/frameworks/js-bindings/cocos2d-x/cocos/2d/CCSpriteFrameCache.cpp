@@ -246,8 +246,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
         if (!texturePath.empty())
         {
             // build texture path relative to plist file
-            //pokosanguo_zhangqi 去掉这一行
-            //texturePath = FileUtils::getInstance()->fullPathFromRelativeFile(texturePath.c_str(), pszPlist);
+            texturePath = FileUtils::getInstance()->fullPathFromRelativeFile(texturePath.c_str(), plist);
         }
         else
         {

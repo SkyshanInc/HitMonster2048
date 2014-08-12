@@ -361,13 +361,7 @@ void Widget::updateSizeAndPosition(const cocos2d::Size &parentSize)
         }
         case SizeType::PERCENT:
         {
-            //pokosanguo_zhangqi
             Size cSize = Size(parentSize.width * _sizePercent.x , parentSize.height * _sizePercent.y);
-			if(_tag == 11111)
-				cSize.height = _customSize.height;
-			else if(_tag == 22222)
-				cSize.width = _customSize.width;
-				
             if (_ignoreSize)
             {
                 this->setContentSize(getVirtualRendererSize());

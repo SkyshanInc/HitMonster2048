@@ -103,7 +103,7 @@ const char * Application::getCurrentLanguageCode()
     if (GetUserDefaultLocaleName(localeName, LOCALE_NAME_MAX_LENGTH))
     {
         wchar_t* primary = wcstok(localeName, L"-");
-        code = CCUnicodeToUtf8(primary);
+        std::string code = CCUnicodeToUtf8(primary);
     }
     else
     {

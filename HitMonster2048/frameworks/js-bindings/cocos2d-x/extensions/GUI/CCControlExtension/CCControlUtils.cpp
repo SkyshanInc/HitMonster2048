@@ -31,7 +31,7 @@ Sprite* ControlUtils::addSpriteToTargetWithPosAndAnchor(const char* spriteName, 
     Sprite *sprite =Sprite::createWithSpriteFrameName(spriteName);
     
     if (!sprite)
-        return nullptr;
+        return NULL;
 
     sprite->setPosition(pos);
     sprite->setAnchorPoint(anchor);

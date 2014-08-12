@@ -38,9 +38,7 @@
 // compatible with iOS
 #define glClearDepthf glClearDepth
 #define glDepthRangef glDepthRange
-#ifndef glReleaseShaderCompiler
-	#define glReleaseShaderCompiler()
-#endif
+#define glReleaseShaderCompiler()
 
 #endif // __MAC_OS_X_VERSION_MAX_ALLOWED
 

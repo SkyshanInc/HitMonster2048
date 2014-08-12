@@ -401,9 +401,9 @@ void SIOClientImpl::onMessage(WebSocket* ws, const WebSocket::Data& data)
 
 
     s_data = payload;
-    SIOClient *c = nullptr;
+    SIOClient *c = NULL;
     c = getClient(endpoint);
-    if (c == nullptr) log("SIOClientImpl::onMessage client lookup returned nullptr");
+    if (c == NULL) log("SIOClientImpl::onMessage client lookup returned NULL");
 
     switch(control)
     {
@@ -671,7 +671,7 @@ SIOClient* SocketIO::connect(const std::string& uri, SocketIO::SIODelegate& dele
         //check if already connected to endpoint, handle
         c = socket->getClient(path);
 
-        if(c == nullptr)
+        if(c == NULL)
         {
             c = new SIOClient(host, port, path, socket, delegate);
 

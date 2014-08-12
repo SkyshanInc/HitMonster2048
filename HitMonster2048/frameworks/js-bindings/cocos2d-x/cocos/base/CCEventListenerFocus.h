@@ -51,10 +51,10 @@ public:
 public:
     std::function<void(ui::Widget*, ui::Widget*)> onFocusChanged;
     
-CC_CONSTRUCTOR_ACCESS:
+private:
     EventListenerFocus();
     bool init();
-private:
+    
     friend class EventDispatcher;
 };
 

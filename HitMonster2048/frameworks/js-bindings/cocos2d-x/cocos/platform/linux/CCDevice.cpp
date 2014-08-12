@@ -215,7 +215,7 @@ public:
 				return false;
 			}
 
-			if (iswspace(unicode)) {
+			if (isspace(unicode)) {
 				currentPaintPosition += face->glyph->metrics.horiAdvance >> 6;
 				prevGlyphIndex = glyphIndex;
 				prevCharacter = unicode;

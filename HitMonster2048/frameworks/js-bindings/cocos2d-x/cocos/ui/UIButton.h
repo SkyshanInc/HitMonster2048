@@ -80,7 +80,7 @@ public:
      *
      * @param disabled    disabled state texture name.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextures(const std::string& normal,
                       const std::string& selected,
@@ -92,7 +92,7 @@ public:
      *
      * @param normal    normal state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureNormal(const std::string& normal, TextureResType texType = TextureResType::LOCAL);
 
@@ -101,7 +101,7 @@ public:
      *
      * @param selected    selected state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTexturePressed(const std::string& selected, TextureResType texType = TextureResType::LOCAL);
 
@@ -110,7 +110,7 @@ public:
      *
      * @param disabled    dark state texture.
      *
-     * @param texType    @see TextureResType
+     * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadTextureDisabled(const std::string& disabled, TextureResType texType = TextureResType::LOCAL);
 

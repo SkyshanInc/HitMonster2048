@@ -12,7 +12,7 @@ namespace cocostudio
     static const char* P_FileNameData = "fileNameData";
     static const char* P_Text = "text";
     
-    static TextBMFontReader* instanceTextBMFontReader = nullptr;
+    static TextBMFontReader* instanceTextBMFontReader = NULL;
     
     IMPLEMENT_CLASS_WIDGET_READER_INFO(TextBMFontReader)
     
@@ -42,19 +42,19 @@ namespace cocostudio
         TextBMFont* labelBMFont = static_cast<TextBMFont*>(widget);
         
         
-        stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
+        stExpCocoNode *stChildArray = cocoNode->GetChildArray();
         
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
-            std::string value = stChildArray[i].GetValue(cocoLoader);
+            std::string value = stChildArray[i].GetValue();
             //read all basic properties of widget
             CC_BASIC_PROPERTY_BINARY_READER
             //read all color related properties of widget
             CC_COLOR_PROPERTY_BINARY_READER
             
             else if(key == P_FileNameData){
-                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray(cocoLoader);
-                std::string resType = backGroundChildren[2].GetValue(cocoLoader);;
+                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray();
+                std::string resType = backGroundChildren[2].GetValue();;
                 
                 Widget::TextureResType imageFileNameType = (Widget::TextureResType)valueToInt(resType);
                 
@@ -98,7 +98,7 @@ namespace cocostudio
                 break;
         }
         
-        const char* text = DICTOOL->getStringValue_json(options, P_Text,"Text Label");
+        const char* text = DICTOOL->getStringValue_json(options, P_Text);
         labelBMFont->setString(text);
         
         

@@ -169,7 +169,7 @@ bool ControlSlider::initWithSprites(Sprite * backgroundSprite, Sprite* progressS
 void ControlSlider::setEnabled(bool enabled)
 {
     Control::setEnabled(enabled);
-    if (_thumbSprite != nullptr) 
+    if (_thumbSprite != NULL) 
     {
         _thumbSprite->setOpacity((enabled) ? 255 : 128);
     }
@@ -271,8 +271,8 @@ void ControlSlider::onTouchEnded(Touch *pTouch, Event *pEvent)
 
 void ControlSlider::needsLayout()
 {
-    if (nullptr == _thumbSprite || nullptr == _selectedThumbSprite || nullptr == _backgroundSprite
-    		|| nullptr == _progressSprite)
+    if (NULL == _thumbSprite || NULL == _selectedThumbSprite || NULL == _backgroundSprite
+    		|| NULL == _progressSprite)
     {
         return;
     }

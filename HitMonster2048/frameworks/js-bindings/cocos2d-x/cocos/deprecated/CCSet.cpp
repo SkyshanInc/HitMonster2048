@@ -66,7 +66,7 @@ __Set * __Set::create()
 {
     __Set * pRet = new __Set();
     
-    if (pRet != nullptr)
+    if (pRet != NULL)
     {
         pRet->autorelease();
     }

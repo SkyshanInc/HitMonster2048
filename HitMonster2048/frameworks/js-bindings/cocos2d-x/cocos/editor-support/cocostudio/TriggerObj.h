@@ -44,7 +44,6 @@ public:
     virtual bool init();
     virtual bool detect();
     virtual void serialize(const rapidjson::Value &val);
-    virtual void serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode);
     virtual void removeAll();
 };
 
@@ -57,7 +56,6 @@ public:
     virtual bool init();
     virtual void done();
     virtual void serialize(const rapidjson::Value &val);
-    virtual void serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode);
     virtual void removeAll();
 };
 
@@ -74,7 +72,6 @@ public:
     virtual void done();
     virtual void removeAll();
     virtual void serialize(const rapidjson::Value &val);
-    virtual void serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode);
     unsigned int getId();
     void setEnabled(bool enabled);
   

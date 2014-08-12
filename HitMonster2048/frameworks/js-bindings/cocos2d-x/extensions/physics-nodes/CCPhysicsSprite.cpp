@@ -172,7 +172,7 @@ const Vec2& PhysicsSprite::getPosition() const
 
 void PhysicsSprite::getPosition(float* x, float* y) const
 {
-    if (x == nullptr || y == nullptr) {
+    if (x == NULL || y == NULL) {
         return;
     }
     const Vec2& pos = getPosFromPhysics();

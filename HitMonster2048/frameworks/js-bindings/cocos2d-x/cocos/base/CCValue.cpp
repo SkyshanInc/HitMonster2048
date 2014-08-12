@@ -25,7 +25,6 @@
 #include "base/CCValue.h"
 #include <sstream>
 #include <iomanip>
-#include "base/ccUtils.h"
 
 NS_CC_BEGIN
 
@@ -505,7 +504,7 @@ float Value::asFloat() const
 
     if (_type == Type::STRING)
     {
-        return utils::atof(_field.strVal->c_str());
+        return atof(_field.strVal->c_str());
     }
 
     if (_type == Type::INTEGER)
@@ -541,7 +540,7 @@ double Value::asDouble() const
 
     if (_type == Type::STRING)
     {
-        return static_cast<double>(utils::atof(_field.strVal->c_str()));
+        return static_cast<double>(atof(_field.strVal->c_str()));
     }
 
     if (_type == Type::INTEGER)

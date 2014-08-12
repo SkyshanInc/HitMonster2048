@@ -342,12 +342,6 @@ void ArmatureAnimation::update(float dt)
         tween->update(dt);
     }
 
-    if(_frameEventQueue.size() > 0 || _movementEventQueue.size() > 0)
-    {
-        _armature->retain();
-        _armature->autorelease();
-    }
-
     while (_frameEventQueue.size() > 0)
     {
         FrameEvent *event = _frameEventQueue.front();

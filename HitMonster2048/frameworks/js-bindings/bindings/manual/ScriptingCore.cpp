@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 #include "ScriptingCore.h"
 
 // Removed in Firefox v27, use 'js/OldDebugAPI.h' instead
@@ -85,7 +86,7 @@ static int clientSocket = -1;
 static uint32_t s_nestedLoopLevel = 0;
 
 // server entry point for the bg thread
-static void serverEntryPoint(unsigned int port);
+static void serverEntryPoint(void);
 
 js_proxy_t *_native_js_global_ht = NULL;
 js_proxy_t *_js_native_global_ht = NULL;
@@ -389,7 +390,7 @@ void registerDefaultClasses(JSContext* cx, JSObject* global) {
     JS_DefineFunction(cx, jsc, "executeScript", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT | JSPROP_ENUMERATE );
 
     // register some global functions
-    JS_DefineFunction(cx, global, "ccrequire", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, global, "require", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "log", ScriptingCore::log, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "executeScript", ScriptingCore::executeScript, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, global, "forceGC", ScriptingCore::forceGC, 0, JSPROP_READONLY | JSPROP_PERMANENT);
@@ -712,21 +713,13 @@ void ScriptingCore::cleanup()
     _js_global_type_map.clear();
     filename_script.clear();
 }
-//pokosanguo_zhangqi
-void ReportError(const char* msg);
+
 void ScriptingCore::reportError(JSContext *cx, const char *message, JSErrorReport *report)
 {
     js_log("%s:%u:%s\n",
             report->filename ? report->filename : "<no filename=\"filename\">",
             (unsigned int) report->lineno,
             message);
-	//pokosanguo_zhangqi	   
-	char msg[256];
-	sprintf(msg, "%s:%u:%s\n",report->filename ? report->filename : "<no filename=\"filename\">",
-           (unsigned int) report->lineno,
-           message);
-	
-	ReportError(msg);
 };
 
 
@@ -1493,7 +1486,7 @@ static void clearBuffers() {
     }
 }
 
-static void serverEntryPoint(unsigned int port)
+static void serverEntryPoint(void)
 {
     // start a server, accept the connection and keep reading data from it
     struct addrinfo hints, *result = nullptr, *rp = nullptr;
@@ -1504,7 +1497,7 @@ static void serverEntryPoint(unsigned int port)
     hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
     
     std::stringstream portstr;
-    portstr << port;
+    portstr << JSB_DEBUGGER_PORT;
     
     int err = 0;
     
@@ -1598,7 +1591,7 @@ bool JSBDebug_BufferWrite(JSContext* cx, unsigned argc, jsval* vp)
     return true;
 }
 
-void ScriptingCore::enableDebugger(unsigned int port)
+void ScriptingCore::enableDebugger()
 {
     if (_debugGlobal == NULL)
     {
@@ -1631,7 +1624,7 @@ void ScriptingCore::enableDebugger(unsigned int port)
         }
         
         // start bg thread
-        auto t = std::thread(&serverEntryPoint,port);
+        auto t = std::thread(&serverEntryPoint);
         t.detach();
 
         Scheduler* scheduler = Director::getInstance()->getScheduler();

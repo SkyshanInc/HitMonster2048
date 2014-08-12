@@ -38,12 +38,9 @@
 
 NS_CC_BEGIN
 
-/**
- * Evaluate Type
- */
 enum class EvaluateType
 {
-    INT_LINEAR, 
+    INT_LINEAR,
     INT_NEAR,
     INT_QUAT_SLERP,
     INT_USER_FUNCTION,
@@ -57,24 +54,15 @@ class AnimationCurve: public Ref
 {
 public:
     
-    /**create animation curve*/
+    //create animation curve
     static AnimationCurve* create(float* keytime, float* value, int count);
     
-    /**
-     * evalute value of time
-     * @param time Time to be estimated
-     * @param dst Estimated value of that time
-     * @param type EvaluateType
-     */
     void evaluate(float time, float* dst, EvaluateType type) const;
     
-    /**set evaluate function, allow the user use own function*/
     void setEvaluateFun(std::function<void(float time, float* dst)> fun);
     
-    /**get start time*/
     float getStartTime() const;
     
-    /**get end time*/
     float getEndTime() const;
     
 CC_CONSTRUCTOR_ACCESS:
@@ -94,7 +82,7 @@ protected:
     int _count;
     int _componentSizeByte; //component size in byte, position and scale 3 * sizeof(float), rotation 4 * sizeof(float)
     
-    std::function<void(float time, float* dst)> _evaluateFun; //user defined function
+    std::function<void(float time, float* dst)> _evaluateFun;
 };
 
 NS_CC_END

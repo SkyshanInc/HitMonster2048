@@ -93,12 +93,12 @@ bool EditBoxImplWin::initWithSize(const Size& size)
 
 void EditBoxImplWin::setFont(const char* pFontName, int fontSize)
 {
-	if(_label != nullptr) {
+	if(_label != NULL) {
 		_label->setSystemFontName(pFontName);
 		_label->setSystemFontSize(fontSize);
 	}
 	
-	if(_labelPlaceHolder != nullptr) {
+	if(_labelPlaceHolder != NULL) {
 		_labelPlaceHolder->setSystemFontName(pFontName);
 		_labelPlaceHolder->setSystemFontSize(fontSize);
 	}
@@ -112,7 +112,7 @@ void EditBoxImplWin::setFontColor(const Color3B& color)
 
 void EditBoxImplWin::setPlaceholderFont(const char* pFontName, int fontSize)
 {
-	if(_labelPlaceHolder != nullptr) {
+	if(_labelPlaceHolder != NULL) {
 		_labelPlaceHolder->setSystemFontName(pFontName);
 		_labelPlaceHolder->setSystemFontSize(fontSize);
 	}
@@ -156,7 +156,7 @@ bool EditBoxImplWin::isEditing()
 
 void EditBoxImplWin::setText(const char* pText)
 {
-    if (pText != nullptr)
+    if (pText != NULL)
     {
         _text = pText;
 
@@ -199,7 +199,7 @@ const char*  EditBoxImplWin::getText(void)
 
 void EditBoxImplWin::setPlaceHolder(const char* pText)
 {
-    if (pText != nullptr)
+    if (pText != NULL)
     {
         _placeHolder = pText;
         if (_placeHolder.length() > 0 && _text.length() == 0)
@@ -236,13 +236,13 @@ void EditBoxImplWin::visit(void)
 
 void EditBoxImplWin::openKeyboard()
 {
-    if (_delegate != nullptr)
+    if (_delegate != NULL)
     {
         _delegate->editBoxEditingDidBegin(_editBox);
     }
     
     EditBox* pEditBox = this->getEditBox();
-    if (nullptr != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
+    if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         CommonScriptData data(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
         ScriptEvent event(kCommonEvent,(void*)&data);
@@ -265,7 +265,7 @@ void EditBoxImplWin::openKeyboard()
 	if (didChange) 	
 		setText(pText);
 
-	if (_delegate != nullptr) {
+	if (_delegate != NULL) {
 		if (didChange)
 			_delegate->editBoxTextChanged(_editBox, getText());
 		_delegate->editBoxEditingDidEnd(_editBox);

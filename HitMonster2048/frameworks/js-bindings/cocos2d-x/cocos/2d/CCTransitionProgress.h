@@ -44,15 +44,13 @@ class CC_DLL TransitionProgress : public TransitionScene
 public:
     static TransitionProgress* create(float t, Scene* scene);
 
+    TransitionProgress();
+
     //
     // Overrides
     //
     virtual void onEnter() override;
     virtual void onExit() override;
-
-CC_CONSTRUCTOR_ACCESS:
-    TransitionProgress();
-    virtual ~TransitionProgress(){}
 
 protected:
     virtual void sceneOrder() override;
@@ -76,13 +74,6 @@ class CC_DLL TransitionProgressRadialCCW : public TransitionProgress
 public:
     static TransitionProgressRadialCCW* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressRadialCCW(){}
-    virtual ~TransitionProgressRadialCCW(){}
-
 protected:
     //
     // Overrides
@@ -100,13 +91,6 @@ class CC_DLL TransitionProgressRadialCW : public TransitionProgress
 public:
     static TransitionProgressRadialCW* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressRadialCW(){}
-    virtual ~TransitionProgressRadialCW(){}
-
 protected:
     //
     // Overrides
@@ -123,13 +107,6 @@ class CC_DLL TransitionProgressHorizontal : public TransitionProgress
 public:
     static TransitionProgressHorizontal* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressHorizontal(){}
-    virtual ~TransitionProgressHorizontal(){}
-
 protected:
     //
     // Overrides
@@ -142,13 +119,6 @@ class CC_DLL TransitionProgressVertical : public TransitionProgress
 public:
     static TransitionProgressVertical* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressVertical(){}
-    virtual ~TransitionProgressVertical(){}
-
 protected:
     //
     // Overrides
@@ -160,13 +130,6 @@ class CC_DLL TransitionProgressInOut : public TransitionProgress
 {
 public:
     static TransitionProgressInOut* create(float t, Scene* scene);
-
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressInOut(){}
-    virtual ~TransitionProgressInOut(){}
 
 protected:
     //
@@ -181,13 +144,6 @@ class CC_DLL TransitionProgressOutIn : public TransitionProgress
 {
 public:
     static TransitionProgressOutIn* create(float t, Scene* scene);
-
-CC_CONSTRUCTOR_ACCESS:
-    /**
-     * @js ctor
-     */
-    TransitionProgressOutIn(){}
-    virtual ~TransitionProgressOutIn(){}
 
 protected:
     //

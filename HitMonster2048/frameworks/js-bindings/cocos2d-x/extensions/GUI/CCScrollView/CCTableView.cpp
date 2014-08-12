@@ -35,7 +35,7 @@ TableView* TableView::create()
 
 TableView* TableView::create(TableViewDataSource* dataSource, Size size)
 {
-    return TableView::create(dataSource, size, nullptr);
+    return TableView::create(dataSource, size, NULL);
 }
 
 TableView* TableView::create(TableViewDataSource* dataSource, Size size, Node *container)
@@ -50,7 +50,7 @@ TableView* TableView::create(TableViewDataSource* dataSource, Size size, Node *c
     return table;
 }
 
-bool TableView::initWithViewSize(Size size, Node* container/* = nullptr*/)
+bool TableView::initWithViewSize(Size size, Node* container/* = NULL*/)
 {
     if (ScrollView::initWithViewSize(size,container))
     {
@@ -103,7 +103,7 @@ void TableView::reloadData()
     _oldDirection = Direction::NONE;
 
     for(const auto &cell : _cellsUsed) {
-        if(_tableViewDelegate != nullptr) {
+        if(_tableViewDelegate != NULL) {
             _tableViewDelegate->tableCellWillRecycle(this, cell);
         }
 
@@ -242,7 +242,7 @@ TableViewCell *TableView::dequeueCell()
     TableViewCell *cell;
 
     if (_cellsFreed.empty()) {
-        cell = nullptr;
+        cell = NULL;
     } else {
         cell = _cellsFreed.at(0);
         cell->retain();
@@ -396,7 +396,7 @@ long TableView::__indexFromOffset(Vec2 offset)
 
 void TableView::_moveCellOutOfSight(TableViewCell *cell)
 {
-    if(_tableViewDelegate != nullptr) {
+    if(_tableViewDelegate != NULL) {
         _tableViewDelegate->tableCellWillRecycle(this, cell);
     }
 
@@ -464,7 +464,7 @@ void TableView::scrollViewDidScroll(ScrollView* view)
         });
     }
     
-    if(_tableViewDelegate != nullptr) {
+    if(_tableViewDelegate != NULL) {
         _tableViewDelegate->scrollViewDidScroll(this);
     }
 
@@ -577,13 +577,13 @@ void TableView::onTouchEnded(Touch *pTouch, Event *pEvent)
 		Rect bb = this->getBoundingBox();
 		bb.origin = _parent->convertToWorldSpace(bb.origin);
 
-		if (bb.containsPoint(pTouch->getLocation()) && _tableViewDelegate != nullptr)
+		if (bb.containsPoint(pTouch->getLocation()) && _tableViewDelegate != NULL)
         {
             _tableViewDelegate->tableCellUnhighlight(this, _touchedCell);
             _tableViewDelegate->tableCellTouched(this, _touchedCell);
         }
 
-        _touchedCell = nullptr;
+        _touchedCell = NULL;
     }
 
     ScrollView::onTouchEnded(pTouch, pEvent);
@@ -608,26 +608,26 @@ bool TableView::onTouchBegan(Touch *pTouch, Event *pEvent)
         index = this->_indexFromOffset(point);
 		if (index == CC_INVALID_INDEX)
 		{
-			_touchedCell = nullptr;
+			_touchedCell = NULL;
 		}
         else
 		{
 			_touchedCell  = this->cellAtIndex(index);
 		}
 
-        if (_touchedCell && _tableViewDelegate != nullptr)
+        if (_touchedCell && _tableViewDelegate != NULL)
         {
             _tableViewDelegate->tableCellHighlight(this, _touchedCell);
         }
     }
     else if (_touchedCell)
     {
-        if(_tableViewDelegate != nullptr)
+        if(_tableViewDelegate != NULL)
         {
             _tableViewDelegate->tableCellUnhighlight(this, _touchedCell);
         }
 
-        _touchedCell = nullptr;
+        _touchedCell = NULL;
     }
 
     return touchResult;
@@ -639,12 +639,12 @@ void TableView::onTouchMoved(Touch *pTouch, Event *pEvent)
 
     if (_touchedCell && isTouchMoved())
     {
-        if(_tableViewDelegate != nullptr)
+        if(_tableViewDelegate != NULL)
         {
             _tableViewDelegate->tableCellUnhighlight(this, _touchedCell);
         }
 
-        _touchedCell = nullptr;
+        _touchedCell = NULL;
     }
 }
 
@@ -654,12 +654,12 @@ void TableView::onTouchCancelled(Touch *pTouch, Event *pEvent)
 
     if (_touchedCell)
     {
-        if(_tableViewDelegate != nullptr)
+        if(_tableViewDelegate != NULL)
         {
             _tableViewDelegate->tableCellUnhighlight(this, _touchedCell);
         }
 
-        _touchedCell = nullptr;
+        _touchedCell = NULL;
     }
 }
 

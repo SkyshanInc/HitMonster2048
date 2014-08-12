@@ -29,7 +29,6 @@ Copyright (c) 2013-2014 Chukong Technologies
 #include <stdlib.h>
 #include <stdio.h>
 #include "CCArray.h"
-#include "base/ccUtils.h"
 
 NS_CC_BEGIN
 
@@ -70,7 +69,7 @@ bool __String::initWithFormatAndValist(const char* format, va_list ap)
 {
     bool bRet = false;
     char* pBuf = (char*)malloc(kMaxStringLen);
-    if (pBuf != nullptr)
+    if (pBuf != NULL)
     {
         vsnprintf(pBuf, kMaxStringLen, format, ap);
         _string = pBuf;
@@ -119,7 +118,7 @@ float __String::floatValue() const
     {
         return 0.0f;
     }
-    return (float)utils::atof(_string.c_str());
+    return (float)atof(_string.c_str());
 }
 
 double __String::doubleValue() const
@@ -128,7 +127,7 @@ double __String::doubleValue() const
     {
         return 0.0;
     }
-    return utils::atof(_string.c_str());
+    return atof(_string.c_str());
 }
 
 bool __String::boolValue() const
@@ -171,7 +170,7 @@ void __String::appendWithFormat(const char* format, ...)
     va_start(ap, format);
     
     char* pBuf = (char*)malloc(kMaxStringLen);
-    if (pBuf != nullptr)
+    if (pBuf != NULL)
     {
         vsnprintf(pBuf, kMaxStringLen, format, ap);
         _string.append(pBuf);
@@ -208,7 +207,7 @@ bool __String::isEqual(const Ref* pObject)
 {
     bool bRet = false;
     const __String* pStr = dynamic_cast<const __String*>(pObject);
-    if (pStr != nullptr)
+    if (pStr != NULL)
     {
         if (0 == _string.compare(pStr->_string))
         {
@@ -227,11 +226,11 @@ __String* __String::create(const std::string& str)
 
 __String* __String::createWithData(const unsigned char* data, size_t nLen)
 {
-    __String* ret = nullptr;
-    if (data != nullptr)
+    __String* ret = NULL;
+    if (data != NULL)
     {
         char* pStr = (char*)malloc(nLen+1);
-        if (pStr != nullptr)
+        if (pStr != NULL)
         {
             pStr[nLen] = '\0';
             if (nLen > 0)

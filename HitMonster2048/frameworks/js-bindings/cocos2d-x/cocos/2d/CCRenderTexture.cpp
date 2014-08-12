@@ -94,9 +94,6 @@ RenderTexture::~RenderTexture()
 
 void RenderTexture::listenToBackground(EventCustom *event)
 {
-    // We have not found a way to dispatch the enter background message before the texture data are destroyed.
-    // So we disable this pair of message handler at present.
-#if 0
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     CC_SAFE_DELETE(_UITextureImage);
     
@@ -121,12 +118,10 @@ void RenderTexture::listenToBackground(EventCustom *event)
     glDeleteFramebuffers(1, &_FBO);
     _FBO = 0;
 #endif
-#endif
 }
 
 void RenderTexture::listenToForeground(EventCustom *event)
 {
-#if 0
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     // -- regenerate frame buffer object and attach the texture
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFBO);
@@ -143,7 +138,6 @@ void RenderTexture::listenToForeground(EventCustom *event)
     
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texture->getName(), 0);
     glBindFramebuffer(GL_FRAMEBUFFER, _oldFBO);
-#endif
 #endif
 }
 
@@ -569,14 +563,6 @@ void RenderTexture::onBegin()
         Mat4 orthoMatrix;
         Mat4::createOrthographicOffCenter((float)-1.0 / widthRatio, (float)1.0 / widthRatio, (float)-1.0 / heightRatio, (float)1.0 / heightRatio, -1, 1, &orthoMatrix);
         director->multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, orthoMatrix);
-    }
-    else
-    {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-        Mat4 modifiedProjection = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
-        modifiedProjection = CCEGLView::sharedOpenGLView()->getReverseOrientationMatrix() * modifiedProjection;
-        director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, modifiedProjection);
-#endif
     }
     
     //calculate viewport

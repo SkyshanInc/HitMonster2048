@@ -31,7 +31,7 @@ NS_CC_EXT_BEGIN
 Invocation* Invocation::create(Ref* target, Control::Handler action, Control::EventType controlEvent)
 {
     Invocation* pRet = new Invocation(target, action, controlEvent);
-    if (pRet != nullptr)
+    if (pRet != NULL)
     {
         pRet->autorelease();
     }

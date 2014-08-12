@@ -40,7 +40,7 @@ NS_CC_BEGIN
 /**
  * Defines a basic hierachial structure of transformation spaces.
  */
-class Bone3D : public Ref
+class Bone : public Ref
 {
     friend class MeshSkin;
 public:
@@ -52,50 +52,29 @@ public:
      */
     const Mat4& getInverseBindPose();
     
-    /**update own world matrix and children's*/
+    //update own world matrix and children's
     void updateWorldMat();
     
-    /**get wrod matrix*/
+    void setWorldMatDirty(bool dirty = true);
+    
     const Mat4& getWorldMat();
     
-    /**get bone name*/
     const std::string& getName() const { return _name; }
     
-    /**
-     * set animation value
-     * @param trans translate vec3
-     * @param rot   rotation quaternion
-     * @param scale scale vec3
-     * @param tag, unique tag, only blend animation between different tags
-     * @param weight, blend weight
-     */
-    void setAnimationValue(float* trans, float* rot, float* scale, void* tag = nullptr, float weight = 1.0f);
+    void setAnimationValue(float* trans, float* rot, float* scale, float weight = 1.0f);
     
-    /**clear bone blend states*/
     void clearBoneBlendState();
     /**
      * Creates C3DBone.
      */
-    static Bone3D* create(const std::string& id);
+    static Bone* create(const std::string& id);
     
     /**
      * Sets the inverse bind pose matrix.
      *
-     * @param m Mat4 representing the inverse bind pose for this Bone.
+     * @param m C3DMatrix representing the inverse bind pose for this Bone.
      */
     void setInverseBindPose(const Mat4& m);
-    
-    /**
-     * Sets the bone's original pose.
-     *
-     * @param m Mat4 representing the original pose for this Bone.
-     */
-    void setOriPose(const Mat4& m);
-    
-    /**
-     * reset pose to origin
-     */
-    void resetPose();
     
     /**
      * Updates the joint matrix.
@@ -104,19 +83,13 @@ public:
      */
     void updateJointMatrix(Vec4* matrixPalette);
     
-    /**bone tree, we do not inherit from Node, Node has too many properties that we do not need. A clean Node is needed.*/
-    Bone3D* getParentBone();
-    /**get child bone count*/
-    ssize_t getChildBoneCount() const;
-    /**get child bone by index*/
-    Bone3D* getChildBoneByIndex(int index);
-    /**add child bone*/
-    void addChildBone(Bone3D* bone);
-    /**remove child bone by index*/
+    //bone tree, we do not inherit from Node, Node has too many properties that we do not need. A clean Node is needed.
+    Bone* getParentBone();
+    int getChildBoneCount() const;
+    Bone* getChildBoneByIndex(int index);
+    void addChildBone(Bone* bone);
     void removeChildBoneByIndex(int index);
-    /**remove child bone*/
-    void removeChildBone(Bone3D* bone);
-    /**remove all child bone*/
+    void removeChildBone(Bone* bone);
     void removeAllChildBone();
     
     
@@ -129,13 +102,11 @@ protected:
         Quaternion    localRot;
         Vec3          localScale;
         float         weight;
-        void*         tag; //
         BoneBlendState()
         : localTranslate(Vec3::ZERO)
         , localRot(Quaternion::identity())
         , localScale(Vec3::ONE)
         , weight(1.f)
-        , tag(nullptr)
         {
             
         }
@@ -143,33 +114,29 @@ protected:
 	/**
      * Constructor.
      */
-    Bone3D(const std::string& id);
+    Bone(const std::string& id);
     
 	/**
      * Destructor.
      */
-    virtual ~Bone3D();
+    virtual ~Bone();
     
     /**
      * Update local matrix
      */
     void updateLocalMat();
     
-    /**set world matrix dirty flag*/
-    void setWorldMatDirty(bool dirty = true);
-    
-    std::string _name; // bone name
+    std::string _name;
     /**
      * The Mat4 representation of the Joint's bind pose.
      */
     Mat4 _invBindPose;
     
-    Mat4 _oriPose; //original bone pose
+    Bone* _parent;
     
-    Bone3D* _parent; //parent bone
+    Vector<Bone*> _children;
     
-    Vector<Bone3D*> _children;
-    
+    bool           _localDirty;
     bool          _worldDirty;
     Mat4          _world;
     Mat4          _local;
@@ -178,38 +145,35 @@ protected:
     
 };
 
-/**
- * MeshSkin, A class maintain a collection of bones that affect Mesh vertex.
- * And it is responsible for computing matrix palletes that used by skin mesh rendering.
- */
+/////////////////////////////////////////////////////////////////////////////
 class MeshSkin: public Ref
 {
 public:
     
-    /**create a new meshskin if do not want to share meshskin*/
+    //create a new meshskin if do not want to share meshskin
     static MeshSkin* create(const std::string& filename, const std::string& name);
     
-    /**get total bone count, skin bone + node bone*/
-    ssize_t getBoneCount() const;
+    unsigned int getBoneCount() const;
     
-    /**get bone*/
-    Bone3D* getBoneByIndex(unsigned int index) const;
-    Bone3D* getBoneByName(const std::string& id) const;
+    void setBoneCount(int boneCount);
     
-    /**get & set root bone*/
-    Bone3D* getRootBone() const;
-    void setRootBone(Bone3D* bone);
+    //get bone
+    Bone* getBoneByIndex(unsigned int index) const;
+    Bone* getBoneByName(const std::string& id) const;
     
-    /**get bone index*/
-    int getBoneIndex(Bone3D* bone) const;
+    //get & set root bone
+    Bone* getRootBone() const;
+    void setRootBone(Bone* joint);
     
-    /**compute matrix palette used by gpu skin*/
+    int getBoneIndex(Bone* joint) const;
+    
+    //compute matrix palette used by gpu skin
     Vec4* getMatrixPalette();
     
-    /**getSkinBoneCount() * 3*/
-    ssize_t getMatrixPaletteSize() const;
+    //getBoneCount() * 3
+    unsigned int getMatrixPaletteSize() const;
     
-    /**refresh bone world matrix*/
+    //refresh bone world matrix
     void updateBoneMatrix();
     
 CC_CONSTRUCTOR_ACCESS:
@@ -218,58 +182,43 @@ CC_CONSTRUCTOR_ACCESS:
     
     ~MeshSkin();
     
-    /**init from skin data*/
     bool initFromSkinData(const SkinData& skindata);
     
-    /**remove all bones*/
     void removeAllBones();
     
-    /**add skin bone*/
-    void addSkinBone(Bone3D* bone);
-    
-    /**add Node bone*/
-    void addNodeBone(Bone3D* bone);
+    void addBone(Bone* bone);
     
 protected:
     
-    Vector<Bone3D*> _skinBones; // bones with skin
-    Vector<Bone3D*> _nodeBones; //bones without skin, only used to compute transform of children
-
-    Bone3D* _rootBone;
+    Vector<Bone*> _bones;
+    Bone* _rootBone;
     
     // Pointer to the array of palette matrices.
     // This array is passed to the vertex shader as a uniform.
     // Each 4x3 row-wise matrix is represented as 3 Vec4's.
-    // The number of Vec4's is (_skinBones.size() * 3).
+    // The number of Vec4's is (_joints.size() * 3).
     Vec4* _matrixPalette;
 };
 
-/**
- * MeshSkinData Cache
- */
 class MeshSkinDataCache
 {
 public:
-    /**get & destroy*/
     static MeshSkinDataCache* getInstance();
     static void destroyInstance();
     
-    /**get mesh skin data from cache*/
     const SkinData* getMeshSkinData(const std::string& key) const;
     
-    /**add mesh skin data to cache*/
     bool addMeshSkinData(const std::string& key, const SkinData& skinData);
     
-    /**remove all mesh skin data*/
     void removeAllMeshSkinData();
     
 protected:
     MeshSkinDataCache();
     ~MeshSkinDataCache();
     
-    static MeshSkinDataCache* _cacheInstance; // instance
+    static MeshSkinDataCache* _cacheInstance;
     
-    std::unordered_map<std::string, SkinData> _skinDatas; //cached skindatas
+    std::unordered_map<std::string, SkinData> _skinDatas;
 };
 
 NS_CC_END

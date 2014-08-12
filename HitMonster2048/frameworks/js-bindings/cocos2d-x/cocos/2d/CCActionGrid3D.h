@@ -108,7 +108,7 @@ public:
     virtual void update(float time) override;
 	virtual FlipY3D* clone() const override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     FlipY3D() {}
     virtual ~FlipY3D() {}
 private:

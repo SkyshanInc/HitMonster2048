@@ -81,10 +81,6 @@ NS_CC_BEGIN
 //  cocos2d uses a another approach, but the results are almost identical. 
 //
 
-//pokosanguo_zhangqi
-static std::map<std::string, ValueMap> *shareParticleSystemValueMapCache = new std::map<std::string, ValueMap>();
-
-
 ParticleSystem::ParticleSystem()
 : _isBlendAdditive(false)
 , _isAutoRemoveOnFinish(false)
@@ -174,13 +170,7 @@ bool ParticleSystem::initWithFile(const std::string& plistFile)
 {
     bool ret = false;
     _plistFile = FileUtils::getInstance()->fullPathForFilename(plistFile);
-    ValueMap dict;
-    if (shareParticleSystemValueMapCache->find(_plistFile)!=shareParticleSystemValueMapCache->end()) {
-        dict = shareParticleSystemValueMapCache->at(_plistFile);
-    }else{
-        dict = FileUtils::getInstance()->getValueMapFromFile(_plistFile.c_str());
-        shareParticleSystemValueMapCache->insert(std::pair<std::string, ValueMap>(_plistFile,dict));
-    }
+    ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(_plistFile.c_str());
 
     CCASSERT( !dict.empty(), "Particles: file not found");
     

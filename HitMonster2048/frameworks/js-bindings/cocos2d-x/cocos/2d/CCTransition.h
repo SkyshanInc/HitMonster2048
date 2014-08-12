@@ -153,7 +153,7 @@ public:
     //
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionRotoZoom();
     virtual ~TransitionRotoZoom();
 
@@ -175,7 +175,7 @@ public:
     //
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionJumpZoom();
     virtual ~TransitionJumpZoom();
 
@@ -201,11 +201,10 @@ public:
     //
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionMoveInL();
     virtual ~TransitionMoveInL();
 
-protected:
     /** initializes the scenes */
     virtual void initScenes();
 
@@ -221,11 +220,10 @@ class CC_DLL TransitionMoveInR : public TransitionMoveInL
 public:
     static TransitionMoveInR* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionMoveInR();
     virtual ~TransitionMoveInR();
 
-protected:
     virtual void initScenes();
 
 private:
@@ -240,11 +238,10 @@ class CC_DLL TransitionMoveInT : public TransitionMoveInL
 public:
     static TransitionMoveInT* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionMoveInT();
     virtual ~TransitionMoveInT();
 
-protected:
     virtual void initScenes();
 
 private:
@@ -259,11 +256,10 @@ class CC_DLL TransitionMoveInB : public TransitionMoveInL
 public:
     static TransitionMoveInB* create(float t, Scene* scene);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionMoveInB();
     virtual ~TransitionMoveInB();
 
-protected:
     virtual void initScenes();
 
 private:
@@ -288,11 +284,10 @@ public:
     //
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSlideInL();
     virtual ~TransitionSlideInL();
 
-protected:
     /** initializes the scenes */
     virtual void initScenes(void);
 
@@ -313,11 +308,10 @@ public:
     /** returns the action that will be performed by the incoming and outgoing scene */
     virtual ActionInterval* action(void);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSlideInR();
     virtual ~TransitionSlideInR();
 
-protected:
     /** initializes the scenes */
     virtual void initScenes(void);
 
@@ -338,11 +332,10 @@ public:
     /** returns the action that will be performed by the incoming and outgoing scene */
     virtual ActionInterval* action(void);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSlideInB();
     virtual ~TransitionSlideInB();
 
-protected:
     /** initializes the scenes */
     virtual void initScenes();
 
@@ -363,11 +356,10 @@ public:
     /** returns the action that will be performed by the incoming and outgoing scene */
     virtual ActionInterval* action(void);
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSlideInT();
     virtual ~TransitionSlideInT();
 
-protected:
     /** initializes the scenes */
     virtual void initScenes(void);
 
@@ -395,7 +387,7 @@ public:
     virtual void onEnter() override;
     virtual ActionInterval* easeActionWithAction(ActionInterval * action) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionShrinkGrow();
     virtual ~TransitionShrinkGrow();
 
@@ -422,7 +414,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFlipX();
     virtual ~TransitionFlipX();
 
@@ -449,7 +441,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFlipY();
     virtual ~TransitionFlipY();
 
@@ -476,7 +468,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFlipAngular();
     virtual ~TransitionFlipAngular();
 
@@ -503,7 +495,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionZoomFlipX();
     virtual ~TransitionZoomFlipX();
 
@@ -530,7 +522,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionZoomFlipY();
     virtual ~TransitionZoomFlipY();
 
@@ -557,7 +549,7 @@ public:
      */
     virtual void onEnter() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionZoomFlipAngular();
     virtual ~TransitionZoomFlipAngular();
 
@@ -633,7 +625,7 @@ public :
      */
     virtual void onExit() override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionCrossFade();
     virtual ~TransitionCrossFade();
 
@@ -661,11 +653,10 @@ public :
     virtual ActionInterval * easeActionWithAction(ActionInterval * action) override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionTurnOffTiles();
     virtual ~TransitionTurnOffTiles();
 
-protected:
     virtual void sceneOrder() override;
     NodeGrid* _outSceneProxy;
 
@@ -694,12 +685,9 @@ public:
     virtual ActionInterval * easeActionWithAction(ActionInterval * action) override;
     virtual void onExit() override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
-
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSplitCols();
     virtual ~TransitionSplitCols();
-
-protected:
     void switchTargetToInscene();
     NodeGrid* _gridProxy;
 private:
@@ -719,7 +707,7 @@ public:
     //
     virtual ActionInterval* action(void) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionSplitRows();
     virtual ~TransitionSplitRows();
 
@@ -748,12 +736,10 @@ public:
     virtual ActionInterval* easeActionWithAction(ActionInterval * action) override;
     virtual void onExit() override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
-
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFadeTR();
     virtual ~TransitionFadeTR();
 
-protected:
     virtual void sceneOrder();
 
     NodeGrid* _outSceneProxy;
@@ -775,7 +761,7 @@ public:
     //
     virtual ActionInterval* actionWithSize(const Size& size) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFadeBL();
     virtual ~TransitionFadeBL();
 
@@ -796,7 +782,7 @@ public:
     //
     virtual ActionInterval* actionWithSize(const Size& size) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFadeUp();
     virtual ~TransitionFadeUp();
 
@@ -817,7 +803,7 @@ public:
     //
     virtual ActionInterval* actionWithSize(const Size& size) override;
 
-CC_CONSTRUCTOR_ACCESS:
+protected:
     TransitionFadeDown();
     virtual ~TransitionFadeDown();
 

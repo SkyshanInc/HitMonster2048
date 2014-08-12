@@ -19,7 +19,7 @@ namespace cocostudio
     static const char* P_Direction = "direction";
     static const char* P_Percent = "percent";
     
-    static LoadingBarReader* instanceLoadingBar = nullptr;
+    static LoadingBarReader* instanceLoadingBar = NULL;
     
     IMPLEMENT_CLASS_WIDGET_READER_INFO(LoadingBarReader)
     
@@ -51,11 +51,11 @@ namespace cocostudio
         float capsx = 0.0f, capsy = 0.0, capsWidth = 0.0, capsHeight = 0.0f;
         int percent = loadingBar->getPercent();
         
-        stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
+        stExpCocoNode *stChildArray = cocoNode->GetChildArray();
         
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
-            std::string value = stChildArray[i].GetValue(cocoLoader);
+            std::string value = stChildArray[i].GetValue();
             
             //read all basic properties of widget
             CC_BASIC_PROPERTY_BINARY_READER
@@ -67,8 +67,8 @@ namespace cocostudio
             }
             else if (key == P_TextureData){
                 
-                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray(cocoLoader);
-                std::string resType = backGroundChildren[2].GetValue(cocoLoader);;
+                stExpCocoNode *backGroundChildren = stChildArray[i].GetChildArray();
+                std::string resType = backGroundChildren[2].GetValue();;
                 
                 Widget::TextureResType imageFileNameType = (Widget::TextureResType)valueToInt(resType);
                 
@@ -117,25 +117,23 @@ namespace cocostudio
         bool scale9Enable = DICTOOL->getBooleanValue_json(options, P_Scale9Enable);
         loadingBar->setScale9Enabled(scale9Enable);
         
-        
-        float cx = DICTOOL->getFloatValue_json(options, P_CapInsetsX);
-        float cy = DICTOOL->getFloatValue_json(options, P_CapInsetsY);
-        float cw = DICTOOL->getFloatValue_json(options, P_CapInsetsWidth,1);
-        float ch = DICTOOL->getFloatValue_json(options, P_CapInsetsHeight,1);
-        
-        if (scale9Enable) {
+        if (scale9Enable)
+        {
+            float cx = DICTOOL->getFloatValue_json(options, P_CapInsetsX);
+            float cy = DICTOOL->getFloatValue_json(options, P_CapInsetsY);
+            float cw = DICTOOL->getFloatValue_json(options, P_CapInsetsWidth);
+            float ch = DICTOOL->getFloatValue_json(options, P_CapInsetsHeight);
+            
             loadingBar->setCapInsets(Rect(cx, cy, cw, ch));
-
+            
+            float width = DICTOOL->getFloatValue_json(options, P_Width);
+            float height = DICTOOL->getFloatValue_json(options, P_Height);
+            loadingBar->setSize(Size(width, height));
         }
-        
-        float width = DICTOOL->getFloatValue_json(options, P_Width);
-        float height = DICTOOL->getFloatValue_json(options, P_Height);
-        loadingBar->setContentSize(Size(width, height));
-        
         /**/
         
         loadingBar->setDirection(LoadingBar::Direction(DICTOOL->getIntValue_json(options, P_Direction)));
-        loadingBar->setPercent(DICTOOL->getIntValue_json(options, P_Percent,100));
+        loadingBar->setPercent(DICTOOL->getIntValue_json(options, P_Percent));
         
         
         WidgetReader::setColorPropsFromJsonDictionary(widget, options);

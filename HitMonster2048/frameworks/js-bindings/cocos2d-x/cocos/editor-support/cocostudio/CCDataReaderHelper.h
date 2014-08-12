@@ -103,8 +103,6 @@ public:
     static float getPositionReadScale();
 
     static void purge();
-	//pokosanguo_zhangqi
-	static std::string getZipData(const char* fileName);
 public:
 	/**
      * @js ctor

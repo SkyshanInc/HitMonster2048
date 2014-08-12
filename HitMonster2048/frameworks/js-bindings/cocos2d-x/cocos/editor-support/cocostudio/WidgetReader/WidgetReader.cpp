@@ -59,7 +59,7 @@ namespace cocostudio
     const char* P_Path = "path";
 
     
-    static WidgetReader* instanceWidgetReader = nullptr;
+    static WidgetReader* instanceWidgetReader = NULL;
     
     IMPLEMENT_CLASS_WIDGET_READER_INFO(WidgetReader)
     
@@ -87,7 +87,7 @@ namespace cocostudio
         };
         
         valueToFloat = [=](const std::string& str) -> float{
-            return utils::atof(str.c_str());
+            return atof(str.c_str());
         };
     }
     
@@ -113,9 +113,9 @@ namespace cocostudio
     
     void WidgetReader::setPropsFromJsonDictionary(Widget *widget, const rapidjson::Value &options)
     {        
-   
         bool ignoreSizeExsit = DICTOOL->checkObjectExist_json(options, P_IgnoreSize);
-        if (ignoreSizeExsit) {
+        if (ignoreSizeExsit)
+        {
             widget->ignoreContentAdaptWithSize(DICTOOL->getBooleanValue_json(options, P_IgnoreSize));
         }
         
@@ -139,7 +139,7 @@ namespace cocostudio
             w = DICTOOL->getFloatValue_json(options, P_Width);
             h = DICTOOL->getFloatValue_json(options, P_Height);
         }
-        widget->setContentSize(Size(w, h));
+        widget->setSize(Size(w, h));
         
         widget->setTag(DICTOOL->getIntValue_json(options, P_Tag));
         widget->setActionTag(DICTOOL->getIntValue_json(options, P_ActionTag));
@@ -151,15 +151,21 @@ namespace cocostudio
         float x = DICTOOL->getFloatValue_json(options, P_X);
         float y = DICTOOL->getFloatValue_json(options, P_Y);
         widget->setPosition(Vec2(x,y));
-      
-        widget->setScaleX(DICTOOL->getFloatValue_json(options, P_ScaleX,1.0));
-        
-       
-        widget->setScaleY(DICTOOL->getFloatValue_json(options, P_ScaleY,1.0));
-        
-      
-        widget->setRotation(DICTOOL->getFloatValue_json(options, P_Rotation,0));
-        
+        bool sx = DICTOOL->checkObjectExist_json(options, P_ScaleX);
+        if (sx)
+        {
+            widget->setScaleX(DICTOOL->getFloatValue_json(options, P_ScaleX));
+        }
+        bool sy = DICTOOL->checkObjectExist_json(options, P_ScaleY);
+        if (sy)
+        {
+            widget->setScaleY(DICTOOL->getFloatValue_json(options, P_ScaleY));
+        }
+        bool rt = DICTOOL->checkObjectExist_json(options, P_Rotation);
+        if (rt)
+        {
+            widget->setRotation(DICTOOL->getFloatValue_json(options, P_Rotation));
+        }
         bool vb = DICTOOL->checkObjectExist_json(options, P_Visbile);
         if (vb)
         {
@@ -258,9 +264,7 @@ namespace cocostudio
         widget->setColor(_color);
         widget->setOpacity(_opacity);
         //the setSize method will be conflict with scale9Width & scale9Height
-        if (!widget->isIgnoreContentAdaptWithSize()) {
-            widget->setContentSize(Size(_width, _height));
-        }
+        widget->setSize(Size(_width, _height));
         widget->setPosition(_position);
         widget->setAnchorPoint(_originalAnchorPoint);
     }
@@ -289,8 +293,8 @@ namespace cocostudio
     
     std::string WidgetReader::getResourcePath(CocoLoader *cocoLoader, stExpCocoNode *cocoNode, cocos2d::ui::Widget::TextureResType texType)
     {
-        stExpCocoNode *backGroundChildren = cocoNode->GetChildArray(cocoLoader);
-        std::string backgroundValue = backGroundChildren[0].GetValue(cocoLoader);
+        stExpCocoNode *backGroundChildren = cocoNode->GetChildArray();
+        std::string backgroundValue = backGroundChildren[0].GetValue();
 
         if (backgroundValue.size() < 3) {
             return "";
@@ -340,13 +344,13 @@ namespace cocostudio
     
     void WidgetReader::setPropsFromBinary(cocos2d::ui::Widget *widget, cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode)
     {
-        stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
+        stExpCocoNode *stChildArray = cocoNode->GetChildArray();
         
         this->beginSetBasicProperties(widget);
         
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
-            std::string value = stChildArray[i].GetValue(cocoLoader);
+            std::string value = stChildArray[i].GetValue();
             
             CC_BASIC_PROPERTY_BINARY_READER
         }

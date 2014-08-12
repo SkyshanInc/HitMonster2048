@@ -24,8 +24,6 @@ extern "C" {
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnResume() {
         if (Director::getInstance()->getOpenGLView()) {
             Application::getInstance()->applicationWillEnterForeground();
-            cocos2d::EventCustom foregroundEvent(EVENT_COME_TO_FOREGROUND);
-            cocos2d::Director::getInstance()->getEventDispatcher()->dispatchEvent(&foregroundEvent);
         }
     }
 

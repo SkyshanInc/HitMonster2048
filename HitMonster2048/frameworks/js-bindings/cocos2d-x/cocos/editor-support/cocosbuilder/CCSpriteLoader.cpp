@@ -12,10 +12,10 @@ namespace cocosbuilder {
 
 void SpriteLoader::onHandlePropTypeSpriteFrame(Node * pNode, Node * pParent, const char * pPropertyName, SpriteFrame * pSpriteFrame, CCBReader * ccbReader) {
     if(strcmp(pPropertyName, PROPERTY_DISPLAYFRAME) == 0) {
-        if(pSpriteFrame != nullptr) {
+        if(pSpriteFrame != NULL) {
             ((Sprite *)pNode)->setSpriteFrame(pSpriteFrame);
         } else {
-            CCLOG("ERROR: SpriteFrame nullptr");
+            CCLOG("ERROR: SpriteFrame NULL");
         }
     } else {
         NodeLoader::onHandlePropTypeSpriteFrame(pNode, pParent, pPropertyName, pSpriteFrame, ccbReader);

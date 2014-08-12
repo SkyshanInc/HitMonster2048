@@ -193,7 +193,7 @@ bool Sprite3D::loadFromC3x(const std::string& path)
         return false;
     }
     
-    _mesh = Mesh::create(meshdata.vertex, meshdata.vertexSizeInFloat, meshdata.indices, meshdata.attribs);
+    _mesh = Mesh::create(meshdata.vertex, meshdata.vertexSizeInFloat, meshdata.indices, meshdata.numIndex, meshdata.attribs, meshdata.attribCount);
     CC_SAFE_RETAIN(_mesh);
     
     _skin = MeshSkin::create(fullPath, "");
@@ -273,8 +273,6 @@ void Sprite3D::genGLProgramState()
     }
     
     setGLProgramState(programstate);
-    GLuint texID = _texture ? _texture->getName() : 0;
-    _meshCommand.genMaterialID(texID, programstate, _mesh, _blend);
 }
 
 GLProgram* Sprite3D::getDefaultGLProgram(bool textured)
@@ -298,12 +296,11 @@ GLProgram* Sprite3D::getDefaultGLProgram(bool textured)
 void Sprite3D::setTexture(const std::string& texFile)
 {
     auto tex = Director::getInstance()->getTextureCache()->addImage(texFile);
-//    if( tex && _texture != tex ) {
-//        CC_SAFE_RETAIN(tex);
-//        CC_SAFE_RELEASE_NULL(_texture);
-//        _texture = tex;
-//    }
-    setTexture(tex);
+    if( tex && _texture != tex ) {
+        CC_SAFE_RETAIN(tex);
+        CC_SAFE_RELEASE_NULL(_texture);
+        _texture = tex;
+    }
 }
 
 void Sprite3D::setTexture(Texture2D* texture)
@@ -312,11 +309,6 @@ void Sprite3D::setTexture(Texture2D* texture)
         CC_SAFE_RETAIN(texture);
         CC_SAFE_RELEASE_NULL(_texture);
         _texture = texture;
-        if (getGLProgramState() && _mesh)
-        {
-            GLuint texID = _texture ? _texture->getName() : 0;
-            _meshCommand.genMaterialID(texID, getGLProgramState(), _mesh, _blend);
-        }
     }
 }
 
@@ -342,7 +334,7 @@ void Sprite3D::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
     _meshCommand.setDepthTestEnabled(true);
     if (_skin)
     {
-        _meshCommand.setMatrixPaletteSize((int)_skin->getMatrixPaletteSize());
+        _meshCommand.setMatrixPaletteSize(_skin->getMatrixPaletteSize());
         _meshCommand.setMatrixPalette(_skin->getMatrixPalette());
     }
     //support tint and fade

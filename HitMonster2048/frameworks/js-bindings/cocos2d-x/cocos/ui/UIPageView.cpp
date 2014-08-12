@@ -134,7 +134,7 @@ void PageView::addPage(Layout* page)
     }
 
     
-    addChild(page);
+    addProtectedChild(page);
     _pages.pushBack(page);
     
     _doLayoutDirty = true;
@@ -156,7 +156,7 @@ void PageView::insertPage(Layout* page, int idx)
     else
     {
         _pages.insert(idx, page);
-        addChild(page);
+        addProtectedChild(page);
         
     }
     
@@ -169,7 +169,7 @@ void PageView::removePage(Layout* page)
     {
         return;
     }
-    removeChild(page);
+    removeProtectedChild(page);
     _pages.eraseObject(page);
     
     _doLayoutDirty = true;
@@ -189,7 +189,7 @@ void PageView::removeAllPages()
 {
     for(const auto& node : _pages)
     {
-        removeChild(node);
+        removeProtectedChild(node);
     }
     _pages.clear();
 }
@@ -336,6 +336,10 @@ void PageView::autoScroll(float dt)
 bool PageView::onTouchBegan(Touch *touch, Event *unusedEvent)
 {
     bool pass = Layout::onTouchBegan(touch, unusedEvent);
+    if (_hitted)
+    {
+        handlePressLogic(touch);
+    }
     return pass;
 }
 
@@ -429,6 +433,10 @@ bool PageView::scrollPages(float touchOffset)
     return true;
 }
 
+void PageView::handlePressLogic(Touch *touch)
+{
+    //no-op
+}
 
 void PageView::handleMoveLogic(Touch *touch)
 {
@@ -461,8 +469,7 @@ void PageView::handleReleaseLogic(Touch *touch)
         ssize_t pageCount = this->getPageCount();
         float curPageLocation = curPagePos.x;
         float pageWidth = getContentSize().width;
-        //pokosanguo_zhangqi
-        float boundary = MIN(40, pageWidth/2.0f);
+        float boundary = pageWidth/2.0f;
         if (curPageLocation <= -boundary)
         {
             if (_curPageIdx >= pageCount-1)
@@ -500,7 +507,7 @@ void PageView::interceptTouchEvent(TouchEventType event, Widget *sender, Touch *
     switch (event)
     {
         case TouchEventType::BEGAN:
-            //no-op
+            handlePressLogic(touch);
             break;
         case TouchEventType::MOVED:
         {

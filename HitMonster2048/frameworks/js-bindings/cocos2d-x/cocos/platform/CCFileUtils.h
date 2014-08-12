@@ -229,7 +229,7 @@ public:
      * @see setSearchResolutionsOrder(), fullPathForFilename().
      * @since v2.1
      */
-    virtual void addSearchResolutionsOrder(const std::string &order, const bool front=false);
+    virtual void addSearchResolutionsOrder(const std::string &order);
     
     /**
      *  Gets the array that contains the search order of the resources.
@@ -266,7 +266,7 @@ public:
      *
      * @since v2.1
      */
-    void addSearchPath(const std::string & path, const bool front=false);
+    void addSearchPath(const std::string & path);
     
     /**
      *  Gets the array of search paths.
@@ -308,6 +308,11 @@ public:
     virtual ValueVector getValueVectorFromFile(const std::string& filename);
     
     /**
+     *  Writes string to a file
+     */
+    virtual bool writeStringToFile(const std::string& content, const std::string& fullpath);
+    
+    /**
      *  Checks whether a file exists.
      *
      *  @note If a relative path was passed in, it will be inserted a default root path at the beginning.
@@ -330,7 +335,7 @@ public:
     /**
      *  Checks whether the path is a directory
      *
-     *  @param dirPath The path of the directory, it could be a relative or an absolute path.
+     *  @param dirPath The path of the directory, it must be an absolute path.
      *  @return true if the directory exists, otherwise it will return false.
      */
     virtual bool isDirectoryExist(const std::string& dirPath);
@@ -338,7 +343,7 @@ public:
     /**
      *  Creates a directory without recursive
      *
-     *  @param dirPath The path of the directory, it must be an absolute path.
+     *  @param dirPath The path of the directory, it must bn an absolute path.
      *  @return true if the directory have been created successfully, otherwise it will return false.
      */
     virtual bool createDirectory(const std::string& dirPath);
@@ -418,11 +423,6 @@ protected:
      *  Checks whether file exists without considering search paths and resolution orders.
      */
     virtual bool isFileExistInternal(const std::string& filename) const = 0;
-    
-    /**
-     *  Checks whether file exists without considering search paths and resolution orders.
-     */
-    virtual bool isDirectoryExistInternal(const std::string& dirPath) const;
     
     /**
      *  Gets full path for filename, resolution directory and search path.
