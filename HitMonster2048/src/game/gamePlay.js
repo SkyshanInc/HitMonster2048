@@ -1,7 +1,6 @@
 function GamePlay() {
 
     this.lll = "skyshan";
-    this.cellSpace = 10;
     this.cellSize = 0;
     this.cardArr = [];
     this.mDirection = -1;
@@ -19,7 +18,6 @@ function GamePlay() {
     //节点
     this.panScene = undefined;
     this.panGame = undefined;
-    this.allCardsNode = undefined;
     //Monster
     this.monsPos = undefined;
     this.panMonsterInitPos = undefined;
@@ -52,7 +50,17 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
     this.integrationLabel = this.findChild("node/pan_game/pan_playinfo/lab_fenshu");
     this.chengbaoNode = this.panFight.getChildByName("img_chengbao");
     this.panMonster = this.panFight.getChildByName("pan_monster");
+    this.allCardsNode = this.panGame.getChildByName("pan_allCards");
 
+    var self = this;
+   cc.eventManager.addListener({
+                event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+                onTouchesBegan: self.cardsNodeonTouchBegin, 
+                onTouchesMoved: self.cardsNodeonTouchMoved,
+                onTouchesEnded: self.cardsNodeonTouchEnded
+            }, this.allCardsNode);
+   
+   this.allCardsNode.setTouchEnabled(true);
 
 
 	
@@ -63,10 +71,6 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
     cc.spriteFrameCache.addSpriteFrames("card.plist");
     cc.spriteFrameCache.addSpriteFrames("general_guge_1.plist");
     
-    
-    this.allCardsNode = cc.Layer.create();
-    this.allCardsNode.setPosition(cc.p(0,10));
-    this.panGame.addChild(this.allCardsNode,10);
 
     this.init();
 }
@@ -147,6 +151,10 @@ GamePlay.prototype.init = function()
     
     this.recognizer = new SimpleRecognizer();
     
+
+   //  var map = cc.TMXTiledMap.create("tile_iso_offset.tmx");
+   //  cc.log("map:"+map);
+   // this.panFight.addChild(map, 0, 1);
     
     
     this.scheduleUpdate();
@@ -163,74 +171,13 @@ GamePlay.prototype.init = function()
 //     Director::getInstance().pause();
 // }
 
-GamePlay.prototype.onTouchBegin = function(pSender)
-{
-	var beginPoint = pSender.getTouchBeganPosition();
-    
-    cc.log("beginPoint->x:"+beginPoint.x+",y:"+beginPoint.y);
-    this.recognizer.beginPoint(beginPoint);
-    
-    return true;
-}
-
-GamePlay.prototype.onTouchMoved = function(pSender)
-{
-    var pos = pSender.getTouchMovePosition();
-    cc.log("MovePoint->x:"+pos.x+",y:"+pos.y);
-    this.recognizer.movePoint(pos);
-}
-
-GamePlay.prototype.onTouchEnded = function(pSender)
-{
-    var sceneLockFlag = true;
-    var pos = pSender.getTouchEndPosition();
-    cc.log("endPoint->x:"+pos.x+",y:"+pos.y);
-    var rtn = this.recognizer.endPoint(pos);
-    this.mDirection = rtn;
-    
-    switch (rtn) {
-        case SimpleGesturesLeft:
-            if(!this.doLeft()){
-                return;
-            };
-            break;
-        case SimpleGesturesRight:
-            if(!this.doRight()){
-                return;
-            };
-            break;
-        case SimpleGesturesUp:
-            if(!this.doUp()){
-                return;
-            };
-            break;
-        case SimpleGesturesDown:
-            if(!this.doDown()){
-                return;
-            };
-            break;
-            
-        case SimpleGesturesNotSupport:
-        case SimpleGesturesError:
-            sceneLockFlag = false;
-            log("not support or error touch,use geometricRecognizer!!");
-            break;
-            
-        default:
-            sceneLockFlag = false;
-            break;
-    }
-    this.cardRunActionFalg = true;
-    this.allCardActStopMaps = {};
-    LockScreen(sceneLockFlag,"[GamePlay]");
-}
-
 //根据屏幕大小创建卡片
 GamePlay.prototype.createCardSprite = function(size)
 {
     //求出单元格的宽和高
     //左右边距 this.cellSpace
-    this.cellSize = (size.width - 3*this.cellSpace - 40)/4;
+    this.cellSpace = 5
+    this.cellSize = (600 - 3*this.cellSpace - 40)/4;
     
     
     //绘制出4X4的单元格
@@ -247,7 +194,7 @@ GamePlay.prototype.createCardSprite = function(size)
             var pos = cc.p(pX,pY);
             var card = CardSprite.createCardSprite(0);
             var cardContSize = card.getContentSize();
-             cc.log("cardContSize.width:"+cardContSize.width+",cardContSize.height:"+cardContSize.height);
+             // cc.log("cardContSize.width:"+cardContSize.width+",cardContSize.height:"+cardContSize.height);
             card.setPosition(cc.p(pos.x+cardContSize.width/2,pos.y));
             this.cardArr[i][j] = card;
             this.allCardsNode.addChild(card);

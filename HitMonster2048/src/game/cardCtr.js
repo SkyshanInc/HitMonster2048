@@ -62,3 +62,64 @@ GamePlay.prototype.cardRunAction = function(cardAct,actIndex){
         })
     ));
 }
+GamePlay.prototype.cardsNodeonTouchBegin = function(pSender)
+{
+    var beginPoint = pSender.getTouchBeganPosition();
+    
+    cc.log("beginPoint->x:"+beginPoint.x+",y:"+beginPoint.y);
+    this.recognizer.beginPoint(beginPoint);
+    
+    return true;
+}
+
+GamePlay.prototype.cardsNodeonTouchMoved = function(pSender)
+{
+    var pos = pSender.getTouchMovePosition();
+    cc.log("MovePoint->x:"+pos.x+",y:"+pos.y);
+    this.recognizer.movePoint(pos);
+}
+
+GamePlay.prototype.cardsNodeonTouchEnded = function(pSender)
+{
+    var sceneLockFlag = true;
+    var pos = pSender.getTouchEndPosition();
+    cc.log("endPoint->x:"+pos.x+",y:"+pos.y);
+    var rtn = this.recognizer.endPoint(pos);
+    this.mDirection = rtn;
+    
+    switch (rtn) {
+        case SimpleGesturesLeft:
+            if(!this.doLeft()){
+                return;
+            };
+            break;
+        case SimpleGesturesRight:
+            if(!this.doRight()){
+                return;
+            };
+            break;
+        case SimpleGesturesUp:
+            if(!this.doUp()){
+                return;
+            };
+            break;
+        case SimpleGesturesDown:
+            if(!this.doDown()){
+                return;
+            };
+            break;
+            
+        case SimpleGesturesNotSupport:
+        case SimpleGesturesError:
+            sceneLockFlag = false;
+            log("not support or error touch,use geometricRecognizer!!");
+            break;
+            
+        default:
+            sceneLockFlag = false;
+            break;
+    }
+    this.cardRunActionFalg = true;
+    this.allCardActStopMaps = {};
+    LockScreen(sceneLockFlag,"[GamePlay]");
+}

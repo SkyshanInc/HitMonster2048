@@ -5,7 +5,7 @@ GamePlay.prototype.outGeneralHitMonster = function(hitValue){
 
     var moveGeneral = this.generalHitSprite.clone();
     moveGeneral.setVisible(true);
-    moveGeneral.setOpacity(0);
+    // moveGeneral.setOpacity(0);
     moveGeneral.loadTexture("general_"+hitValue+".png",LOADRESPLIST)
     this.panFight.addChild(moveGeneral);
     cc.log("hitValue:"+hitValue);   
@@ -24,11 +24,8 @@ GamePlay.prototype.outGeneralHitMonster = function(hitValue){
         	self.score += hitValue;
         	self.setScore();
             cc.log("动画结束回调");
-            
             self.monsterNode.getAnimation().play("smitten");
-
             self.hitValueFontAct(hitValue,monsPos);
-
             self.checkHitValue = true;
 
         }),

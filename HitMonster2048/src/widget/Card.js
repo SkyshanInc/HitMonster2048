@@ -23,17 +23,17 @@ CardSprite.createCardSprite = function(number)
 
 CardSprite.prototype.runNewNumberAction = function()
 {
-    var action = cc.ScaleBy.create(0.1,0.8);
+    var action = cc.ScaleBy.create(0.1,0.9);
     this.runAction(cc.Sequence.create(action, action.reverse()));
 }
-CardSprite.prototype.runNewNumberAction = function()
-{
-    var action = cc.ScaleBy.create(0.1,0.8);
-    this.runAction(cc.Sequence.create(action, action.reverse()));
-}
+// CardSprite.prototype.runNewNumberAction = function()
+// {
+//     var action = cc.ScaleBy.create(0.1,0.8);
+//     this.runAction(cc.Sequence.create(action, action.reverse()));
+// }
 CardSprite.prototype.runLargenAction = function()
 {
-    var action = cc.ScaleBy.create(0.1,0.8);
+    var action = cc.ScaleBy.create(0.1,0.9);
     this.runAction(cc.Sequence.create(action.reverse(),action));
 }
 //获取数据

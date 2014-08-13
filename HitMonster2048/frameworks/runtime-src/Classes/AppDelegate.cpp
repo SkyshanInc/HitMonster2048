@@ -85,9 +85,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     vector<string> searchPaths ;
     searchPaths.push_back("res/");
 	searchPaths.push_back("res/sd/");
-    searchPaths.push_back("res/sd/Armature");
+    searchPaths.push_back("res/sd/Armature/");
 	searchPaths.push_back("res/font/");
 	searchPaths.push_back("res/music/");
+	searchPaths.push_back("res/sd/Tiled/");
     FileUtils::getInstance()->setSearchPaths(searchPaths);
     
     ScriptEngineProtocol *engine = ScriptingCore::getInstance();

@@ -8,7 +8,7 @@ import re
 import json
 from contextlib import contextmanager
 
-configNore = ("png","json","plist","ExportJson")
+configNore = ("png","json","plist","ExportJson","tmx")
 # def isWriteConfig(name):
 # 	if group in not_rotate:
 # 		return True
