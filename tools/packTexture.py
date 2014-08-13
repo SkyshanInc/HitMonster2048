@@ -161,19 +161,17 @@ def process():
                     if is_images(name)]
         assert args.target in ['sd', 'hd', None]
 
+        #zi yuan shu chu
         options = {
-                'data': os.path.join(output, group+'.plist'),
-                'sheet': os.path.join(output, group+'.pvr.ccz'),
+                'data': os.path.join(output+'/Plist', group+'.plist'),
+                'sheet': os.path.join(output+'/Plist', group+'.pvr.ccz'),
                 "scale": "1",
             }
-
         if args.s != None:
             options.update({'scale':args.s}),
         #jimi
         if args.mm == "true":
             options.update({'content-protection':Encryptionkey})
-
-        #studio no Encryption
         options.update({'opt':'RGBA4444'})
         if not args.opt==None:
             options.update({'opt':args.opt})
@@ -181,17 +179,15 @@ def process():
         run_tp([os.path.join(group_dir, name) for name in files],
             options)
 
+        #studio
         options = {
                 'data': os.path.join(studio_out, group+'.plist'),
                 'sheet': os.path.join(studio_out, group+'.png'),
                 "scale": "1",
             }
-
         if args.s != None:
             options.update({'scale':args.s}),
-
         options.update({'opt':'RGBA4444'})
-
         if not args.opt==None:
             options.update({'opt':args.opt})
         options.update({'size-constraints':'NPOT'})
