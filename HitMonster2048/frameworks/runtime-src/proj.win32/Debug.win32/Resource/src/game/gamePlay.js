@@ -19,10 +19,9 @@ function GamePlay() {
     this.panScene = undefined;
     this.panGame = undefined;
     //Monster
-    this.monsPos = undefined;
     this.panMonsterInitPos = undefined;
     this.panMonster = undefined;
-    this.monsAnmation = "loading";
+    this.monsAnmation = "run";
 
     //攻击相关的
     this.hitValueArr = [];
@@ -53,13 +52,7 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
     this.allCardsNode = this.panGame.getChildByName("pan_allCards");
 
     var self = this;
-   cc.eventManager.addListener({
-                event: cc.EventListener.TOUCH_ALL_AT_ONCE,
-                onTouchesBegan: self.cardsNodeonTouchBegin, 
-                onTouchesMoved: self.cardsNodeonTouchMoved,
-                onTouchesEnded: self.cardsNodeonTouchEnded
-            }, this.allCardsNode);
-   
+   this.allCardsNode.addTouchEventListener(this.cardsTouchEvent, this);
    this.allCardsNode.setTouchEnabled(true);
 
 
@@ -75,45 +68,11 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
     this.init();
 }
 
-// Scene* GameScene::createScene()
-// {
-//     // 'scene' is an varrelease object
-//     var scene = Scene::create();
-    
-//     // 'layer' is an varrelease object
-//     var layer = GameScene::create();
-    
-//     // add layer as a child to scene
-//     scene.addChild(layer);
-    
-//     // return the scene
-//     return scene;
-// }
-
-// GameScene::~GameScene()
-// {
-//     delete recognizer;
-    
-//     HighScore::destroyInstance();
-// }
-
-// on "init" you need to initialize your instance
 GamePlay.prototype.init = function()
 {
     
     var visibleSize = GetWinSize();
-    //Point origin = Director::getInstance().getVisibleOrigin();
-    
-    
-//    var bgSprite = cc.Sprite.createWithSpriteFrameName("gameplalybg.png");
-//    bgSprite.setAnchorPoint(cc.p(0.5,0));
-//    bgSprite.setPosition(cc.p(visibleSize.width/2,0));
-//    this.allCardsNode.addChild(bgSprite);
-    
-    //加入游戏背景
-//    var layerColorBG = cc.LayerColor.create(cc.color(180, 170, 160, 255));
-//    this.addChild(layerColorBG);
-    
+    //Point origin = Director::getInstance().getVisibleOrigin();    
     
     var sceneName = "xueshan";
     ccs.armatureDataManager.addArmatureFileInfo("xueshan.ExportJson");
@@ -124,17 +83,19 @@ GamePlay.prototype.init = function()
     this.panScene.addChild(scene,0);
 
     ccs.armatureDataManager.addArmatureFileInfo("tauren.ExportJson");
-    this.monsterNode = ccs.Armature.create("tauren");;
+    this.monsterNode = ccs.Armature.create("tauren");
+    this.monsterNode.setScale(0.5);
     this.monsterNode.setAnchorPoint(cc.p(0,0));
     this.monsterNode.getAnimation().play(this.monsAnmation);
     // this.monsterNode.setPosition(this.monsPos);
 
     this.panMonsterInitPos  = this.panMonster.getPosition();
-    this.monsPos =  cc.p(this.panMonster.x+this.monsterNode.width/2,this.panMonster.y+this.monsterNode.height/2);
     this.panMonster.addChild(this.monsterNode);
 
+
+    this.panMonster.runAction(cc.MoveTo.create(120, this.chengbaoNode.getPosition()));
     this.monsterNode.getAnimation().setMovementEventCallFunc(this.onMovementEvent,this);
-        
+
     this.score = 0;
     
     //创建4X4卡片
@@ -176,7 +137,7 @@ GamePlay.prototype.createCardSprite = function(size)
 {
     //求出单元格的宽和高
     //左右边距 this.cellSpace
-    this.cellSpace = 5
+    this.cellSpace = 10;
     this.cellSize = (600 - 3*this.cellSpace - 40)/4;
     
     
@@ -187,7 +148,7 @@ GamePlay.prototype.createCardSprite = function(size)
         {
             //需要屏幕分辨率适配
             
-            var pX = 20 + this.cellSpace/2 + i*(this.cellSize+this.cellSpace);
+            var pX = this.cellSpace/2 + i*(this.cellSize+this.cellSpace);
             var pY = this.cellSize/2 + j*(this.cellSize+this.cellSpace);
             
             cc.log("px:"+pX+",py:"+pY);

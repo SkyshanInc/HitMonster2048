@@ -62,6 +62,24 @@ GamePlay.prototype.cardRunAction = function(cardAct,actIndex){
         })
     ));
 }
+GamePlay.prototype.cardsTouchEvent = function (sender, evt) {
+    switch (evt) {
+        case ccui.Widget.TOUCH_BEGAN:
+            return this.cardsNodeonTouchBegin(sender);
+            break;
+        case ccui.Widget.TOUCH_MOVED:
+            this.cardsNodeonTouchMoved(sender);
+            break;
+        case ccui.Widget.TOUCH_ENDED:
+            this.cardsNodeonTouchEnded(sender);
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 GamePlay.prototype.cardsNodeonTouchBegin = function(pSender)
 {
     var beginPoint = pSender.getTouchBeganPosition();

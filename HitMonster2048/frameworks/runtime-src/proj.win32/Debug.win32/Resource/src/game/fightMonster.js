@@ -10,7 +10,7 @@ GamePlay.prototype.outGeneralHitMonster = function(hitValue){
     this.panFight.addChild(moveGeneral);
     cc.log("hitValue:"+hitValue);   
 
-    var monsPos = cc.p(this.panMonster.x+this.monsterNode.width/2,this.panMonster.y+this.monsterNode.height/2);
+    var monsPos = cc.p(this.panMonster.x+this.monsterNode.width/2*0.5,this.panMonster.y+this.monsterNode.height/2*0.5);
 
     var moveAction = cc.MoveTo.create(0.5,monsPos);
     var fadeInAction = cc.FadeIn.create(0.1);
@@ -69,20 +69,7 @@ GamePlay.prototype.onMovementEvent = function(armature,type,movementID){
 
         case ccs.MovementEventType.loopComplete:
         	if(movementID != "loading" && movementID != "run"){
-            	this.monsterNode.getAnimation().stop();
-        	}
-        	if(movementID === "smitten"){
-        		this.monsterBackToInitPos();
-        	}
-        	if(movementID  == "attack"){
-       //  		this.monsterNode.getAnimation().play("loading");
-       //  		var moveAction = cc.MoveTo.create(0.1,this.panMonsterInitPos);
-			    // var self = this;
-			   	// this.panMonster.runAction(cc.Sequence.create(
-			    //     moveAction
-       //  			)
-    			// )
-				this.monsterBackToInitPos();			
+            	this.monsterNode.getAnimation().play("run");
         	}
 
             break;
@@ -92,69 +79,11 @@ GamePlay.prototype.onMovementEvent = function(armature,type,movementID){
 
     }
 
-    // cc.log("*** onMovementEvent **");
-    // cc.log(armature);
-    // cc.log(type);
-    // cc.log(movementID);
-    // if(this.smittenCount == undefined){
-    //     this.smittenCount = 1;
-    // }
-    // if(this.smittenCount >= 2 && movementID === "smitten"){
-    //     this.monsterNode.getAnimation().stop();
-    //     this.monsterNode.getAnimation().play("run");
-    //     this.smittenCount = 0;
-    // }
-    // if(movementID === "smitten"){
-    //     this.smittenCount ++;
-    // }
-
-    // if(this.attackCount == undefined){
-    //     this.attackCount = 0;
-    // }
-    // if(movementID === "attack"){
-    //     this.monsterNode.getAnimation().stop();
-    //     this.monsterNode.getAnimation().play("run");
-    //     this.attackCount = 0;
-    // }
-    // if(movementID === "attack"){
-    //     this.attackCount ++;
-    // }
 }
 
 //随机怪物攻击
 GamePlay.prototype.monsterHitPlayer = function(ft){
 
-	cc.log(" ====    monsterHitPlayer    ====  ");
-    this.monsterNode.getAnimation().play("run");
-
-
-    var moveAction = cc.MoveBy.create(0.5,cc.p(-200,0));
-    var self = this;
-   	this.panMonster.runAction(cc.Sequence.create(
-        moveAction,
-        cc.CallFunc.create(function(){
-
-        	self.monsterNode.getAnimation().play("attack");
-
-        	})
-        )
-    )
 
 }
 
-//怪物回到原点
-GamePlay.prototype.monsterBackToInitPos = function(){
-	var moveAction = cc.MoveTo.create(0.1,this.panMonsterInitPos);
-	var self = this;
-	this.panMonster.runAction(cc.Sequence.create(
-			    moveAction,
-			    cc.CallFunc.create(function(){
-
-			    	self.monsterNode.getAnimation().play("loading");
-		        	
-
-		        	})
-        	)
-    	)
-
-}
