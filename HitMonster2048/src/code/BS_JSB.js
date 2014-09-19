@@ -37,7 +37,9 @@ BS_JSB.performC_command =  function(func,param){
 	}else if(func === "CloseAPP"){
 		cc.director.end()
 		throw "退出"
-	} else {
+	}else if(func == "playGame"){
+        SceneMgr.showScene("mainScene");
+    } else {
         eval(func).apply(null, args);
     }
     

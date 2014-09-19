@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/rl_user_myinfo"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@color/info_user_info_back" >
+
+        <com.friendou.bn.widget.imageview.RoundedCornersImage
+            android:id="@+id/iv_personal_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/general_default_head"
+            android:padding="2dp"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/iv_personal_source"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/iv_personal_avatar"
+            android:layout_alignRight="@+id/iv_personal_avatar"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp" />
+
+        <FrameLayout
+            android:id="@+id/fl_info_score"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/tv_name"
+            android:layout_gravity="left"
+            android:layout_toLeftOf="@+id/btn_challengehe_user"
+            android:layout_toRightOf="@+id/iv_personal_avatar" >
+
+            <com.friendou.bn.widget.number.NumberView
+                android:id="@+id/tv_score_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_personal_avatar"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/btn_challengehe_user"
+            android:layout_toRightOf="@+id/iv_sex"
+            android:gravity="left|center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/list_item_name_brown"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_challengehe_user"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_orange_small" />
+
+        <ImageView
+            android:id="@+id/btn_challengehe_user_text"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_alignLeft="@+id/btn_challengehe_user"
+            android:layout_alignTop="@+id/btn_challengehe_user"
+            android:src="@drawable/friend_information_page_text_challenge_ta" />
+
+        <ImageView
+            android:id="@+id/btn_friendou_action"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/btn_challengehe_user"
+            android:background="@drawable/btn_green_small"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/btn_friendou_action_text"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_alignLeft="@+id/btn_friendou_action"
+            android:layout_alignTop="@+id/btn_friendou_action"
+            android:src="@drawable/friend_information_page_text_send_message"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/cut_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_user_myinfo"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:background="@drawable/general_cut_line" />
+
+    <!-- <ImageView -->
+    <!-- android:id="@+id/imageView1" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_alignBottom="@+id/tv_globalrank_num" -->
+    <!-- android:layout_alignParentLeft="true" -->
+    <!-- android:layout_below="@+id/rl_user_myinfo" /> -->
+
+    <ImageView
+        android:id="@+id/iv_topinweek_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_user_myinfo"
+        android:background="@drawable/general_text_this_week_highest_cheng_result" />
+
+    <ImageView
+        android:id="@+id/iv_globalrank_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fl_topinweek_num"
+        android:background="@drawable/general_text_global_ranking2" />
+
+    <FrameLayout
+        android:id="@+id/fl_topinweek_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_topinweek_icon"
+        android:layout_toLeftOf="@+id/tv_percent_num"
+        android:layout_toRightOf="@+id/iv_topinweek_icon"
+        android:background="@drawable/personal_information_page_ranking_bg"
+        android:padding="5dp"
+        android:gravity="center_vertical" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/nv_topinweek_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_globalrank_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_globalrank_icon"
+        android:layout_toLeftOf="@+id/tv_percent_num"
+        android:layout_toRightOf="@+id/iv_globalrank_icon"
+        android:background="@drawable/personal_information_page_ranking_bg"
+        android:padding="5dp"
+        android:gravity="center_vertical" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/nv_globalrank_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_percent_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rl_user_myinfo"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/beyond_the_friend_bottom_bg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/firststep"
+        android:textColor="@color/info_percent_back"
+        android:textSize="@dimen/info_percent_num"
+        android:textStyle="bold" />
+
+</RelativeLayout>

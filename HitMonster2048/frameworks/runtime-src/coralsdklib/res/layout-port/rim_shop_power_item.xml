@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_tab"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" >
+
+    <ImageView
+        android:id="@+id/iv_shopping_heart_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/top_physical_love_icon" />
+
+    <FrameLayout
+        android:id="@+id/ll_powerheart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/power_layout_center"
+        android:layout_toRightOf="@+id/iv_shopping_heart_icon" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/nv_buy_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/shopping_power_rl"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@+id/btn_pay"
+        android:paddingRight="15dp"
+        android:background="@drawable/store_page_bg" >
+
+        <ImageView
+            android:id="@+id/iv_shopping_diamond_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/top_physical_masonry_icon" />
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/nv_need_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/iv_shopping_diamond_icon" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/btn_pay"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_store_press"
+        android:padding="10dp"
+        android:src="@drawable/store_page_word_conversion" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/general_cut_line" />
+
+    <ImageView
+        android:id="@+id/power_layout_center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/store_page_word_conversion"
+        android:visibility="invisible" />
+
+</RelativeLayout>

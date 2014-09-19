@@ -8,12 +8,1634 @@
 package com.skyshan.hitMonster2048;
 
 public final class R {
+    public static final class anim {
+        public static final int alert_dialog_push_down_out=0x7f040000;
+        public static final int alert_dialog_push_up_in=0x7f040001;
+        public static final int finish_animation=0x7f040002;
+        public static final int main_invite_anim_list=0x7f040003;
+        public static final int main_left_in=0x7f040004;
+        public static final int main_left_out=0x7f040005;
+        public static final int main_right_in=0x7f040006;
+        public static final int main_right_out=0x7f040007;
+        public static final int slide_in_from_bottom=0x7f040008;
+        public static final int slide_in_from_top=0x7f040009;
+        public static final int slide_out_to_bottom=0x7f04000a;
+        public static final int slide_out_to_top=0x7f04000b;
+    }
     public static final class attr {
+        /**  BELOW HERE ARE DEPRECEATED. DO NOT USE. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrAdapterViewBackground=0x7f010010;
+        /**  Style of Animation should be used displayed when pulling. 
+         <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rotate</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>flip</code></td><td>0x1</td><td></td></tr>
+</table>
+         */
+        public static final int ptrAnimationStyle=0x7f01000c;
+        /**  Drawable to use as Loading Indicator. Changes both Header and Footer. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawable=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableBottom=0x7f010012;
+        /**  Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableEnd=0x7f010008;
+        /**  Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableStart=0x7f010007;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrDrawableTop=0x7f010011;
+        /**  A drawable to use as the background of the Header and Footer Loading Views 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderBackground=0x7f010001;
+        /**  Text Color of the Header and Footer Loading Views Sub Header 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderSubTextColor=0x7f010003;
+        /**  Base text color, typeface, size, and style for Header and Footer Loading Views 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrHeaderTextAppearance=0x7f01000a;
+        /**  Text Color of the Header and Footer Loading Views 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderTextColor=0x7f010002;
+        /** 
+        	Whether PullToRefreshListView has it's extras enabled. This allows the user to be 
+        	able to scroll while refreshing, and behaves better. It acheives this by adding
+        	Header and/or Footer Views to the ListView.
+        
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrListViewExtrasEnabled=0x7f01000e;
+        /**  Mode of Pull-to-Refresh that should be used 
+         <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>disabled</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>pullFromStart</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullFromEnd</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+<tr><td><code>manualOnly</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td> These last two are depreacted </td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+</table>
+         */
+        public static final int ptrMode=0x7f010004;
+        /**  Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrOverScroll=0x7f010009;
+        /**  A drawable to use as the background of the Refreshable View 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrRefreshableViewBackground=0x7f010000;
+        /** 
+        	Whether the Drawable should be continually rotated as you pull. This only
+        	takes effect when using the 'Rotate' Animation Style.
+        
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrRotateDrawableWhilePulling=0x7f01000f;
+        /**  Whether the user can scroll while the View is Refreshing 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrScrollingWhileRefreshingEnabled=0x7f01000d;
+        /**  Whether the Indicator overlay(s) should be used 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+         */
+        public static final int ptrShowIndicator=0x7f010005;
+        /**  Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int ptrSubHeaderTextAppearance=0x7f01000b;
+    }
+    public static final class color {
+        public static final int battlemsgtip_user_name=0x7f070041;
+        public static final int black=0x7f070005;
+        public static final int bngame_item_friend_num=0x7f07002f;
+        public static final int bngame_name=0x7f07001b;
+        public static final int bnresult_brown=0x7f070006;
+        public static final int bntip_challenge=0x7f070018;
+        public static final int challenge_clain=0x7f07001e;
+        /**  反馈页   内容 
+         */
+        public static final int feedback_send_content=0x7f070011;
+        /**  反馈页   友好的语言 
+         */
+        public static final int feedback_word=0x7f070012;
+        /**  关于页面用户信息字体颜色 
+         */
+        public static final int finish_blue=0x7f070023;
+        public static final int finish_history_score=0x7f070024;
+        public static final int finish_tab_text_back=0x7f070031;
+        public static final int fisnish_sinle_player_shadow=0x7f070020;
+        /**  好友排行榜字体色值 
+         */
+        public static final int frank_tittle=0x7f070007;
+        public static final int friend_msg_item_text=0x7f07002e;
+        public static final int friendrank_friend_title=0x7f07003b;
+        public static final int friendrank_friend_title_shadow=0x7f07003c;
+        public static final int general_cleartime_group=0x7f07003d;
+        public static final int general_cleartime_text=0x7f07003e;
+        public static final int global_rank_lastweek_text=0x7f070036;
+        public static final int history_top=0x7f070045;
+        /**  竖版颜色值 
+ 个人信息页  本周最高 
+         */
+        public static final int info_brown=0x7f070025;
+        /**  个人信息页  本周最高 
+ <color name="info_brown">#7c4519</color> 
+ 个人信息页  你的成绩超过了 
+         */
+        public static final int info_green=0x7f070008;
+        public static final int info_percent_back=0x7f070029;
+        /**  个人信息页  和在和谁玩的时间超过一天颜色 
+         */
+        public static final int info_time_black=0x7f070009;
+        public static final int info_user_info_back=0x7f070026;
+        public static final int info_user_info_rank_back=0x7f070027;
+        public static final int info_user_playwith=0x7f070028;
+        public static final int info_user_playwith_name=0x7f070034;
+        public static final int infouser_play_with_time=0x7f070033;
+        public static final int invite_btip_color=0x7f070038;
+        /**  邀请页   内容  邀请按键内容 
+         */
+        public static final int invite_btn_content=0x7f070010;
+        /**  邀请页   内容  没有好友很寂寞 
+         */
+        public static final int invite_content=0x7f07000f;
+        /**  <color name="finish_history_score">#428AB7</color> 
+         */
+        public static final int item_invite_clain=0x7f070019;
+        /**  列表   单行描述 
+         */
+        public static final int list_item_discriber_brown=0x7f070042;
+        public static final int list_item_name_brown=0x7f070043;
+        public static final int list_item_revenge_fail=0x7f070040;
+        public static final int list_item_revenge_success=0x7f07003f;
+        public static final int loading=0x7f070021;
+        public static final int meg_emptylist=0x7f07001f;
+        /**  邮件标题 
+         */
+        public static final int meg_title_selected=0x7f070016;
+        public static final int msg_btnet_vs_back=0x7f070030;
+        public static final int msg_tab_msgtitle=0x7f070039;
+        /**  列表   单行描述 
+ <color name="list_item_discriber_brown">#975b04</color> 
+ 列表   名字 
+ <color name="list_item_name_brown">#502e07</color> 
+ 列表   复仇失败 
+ <color name="list_item_revenge_fail">#b1a37d</color> 
+ 列表   复仇成功 
+ <color name="list_item_revenge_success">#6aa404</color> 
+ 消息列表   标题选中状态  战况 
+         */
+        public static final int msg_tab_press=0x7f07000c;
+        /**  关于页面用户信息字体颜色 
+ <color name="finish_blue">#616fb4</color> 
+ 提示没有数据 
+         */
+        public static final int msg_tip_blue=0x7f07000b;
+        public static final int my_item_back=0x7f070032;
+        public static final int nearby_bottom_back=0x7f07002b;
+        public static final int nearby_divider_back=0x7f07002d;
+        public static final int nearby_item_back=0x7f07002a;
+        public static final int nearby_noplayer_clain=0x7f07001a;
+        public static final int nearby_tips_button_back=0x7f07002c;
+        public static final int nomeg_tip=0x7f070017;
+        public static final int player_addtime=0x7f070044;
+        /**  几天后清除排行榜数据提示 
+         */
+        public static final int rank_cleardata_tips=0x7f07000a;
+        public static final int returnc=0x7f070022;
+        public static final int set_item_name=0x7f07001c;
+        /**  设置页 选项    好友送心 
+         */
+        public static final int setting_item_discriber=0x7f07000d;
+        public static final int setting_language=0x7f07003a;
+        /**  设置页   客服热线 
+         */
+        public static final int setting_phone_num=0x7f07000e;
+        public static final int setting_version=0x7f070035;
+        public static final int shadow=0x7f070002;
+        public static final int shadow2=0x7f070003;
+        public static final int share_border=0x7f070004;
+        public static final int share_game_name=0x7f07001d;
+        public static final int shoptable_buy_diamond_rmb_color=0x7f070037;
+        /**  双按钮弹窗 
+         */
+        public static final int tip_confirm=0x7f070014;
+        /**  反馈成功提示页面 
+         */
+        public static final int tip_word=0x7f070013;
+        public static final int transparent=0x7f070000;
+        /**  WEB标题背景色 
+         */
+        public static final int web_bg=0x7f070015;
+        public static final int white=0x7f070001;
+    }
+    public static final class dimen {
+        public static final int btipview_left_margin=0x7f08000d;
+        public static final int btipview_margin=0x7f08000c;
+        public static final int explain=0x7f080005;
+        public static final int global_tab_bottom_margin=0x7f08000f;
+        public static final int global_tab_top_margin=0x7f08000e;
+        public static final int header_footer_left_right_padding=0x7f080002;
+        public static final int header_footer_top_bottom_padding=0x7f080003;
+        public static final int home_content_magin=0x7f080004;
+        public static final int indicator_corner_radius=0x7f080001;
+        public static final int indicator_internal_padding=0x7f080013;
+        public static final int indicator_right_padding=0x7f080012;
+        public static final int info_percent_num=0x7f080008;
+        public static final int land_font_size=0x7f080014;
+        public static final int list_item_discribe_small=0x7f08000b;
+        public static final int list_item_name_big=0x7f080009;
+        public static final int list_item_name_small=0x7f08000a;
+        public static final int list_item_right_tip=0x7f080007;
+        public static final int sendlimittime=0x7f080006;
+        public static final int setting_about_btn_top_margin=0x7f080010;
+        public static final int shopping_content_bottom_margin=0x7f080011;
+        public static final int smalltextsize=0x7f080000;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int about_page=0x7f020000;
+        public static final int acquire_gold_show_bottom_bg=0x7f020001;
+        public static final int add_friends_default_head=0x7f020002;
+        public static final int add_friends_page_add_button_normal=0x7f020003;
+        public static final int add_friends_page_add_button_press=0x7f020004;
+        public static final int add_friends_page_text_get=0x7f020005;
+        public static final int battlefield_situation_page_text_battle=0x7f020006;
+        public static final int battlefield_situation_page_text_challenge=0x7f020007;
+        public static final int battlefield_situation_page_text_draw=0x7f020008;
+        public static final int battlefield_situation_page_text_lose=0x7f020009;
+        public static final int battlefield_situation_page_text_revenge=0x7f02000a;
+        public static final int battlefield_situation_page_text_revenge_lose=0x7f02000b;
+        public static final int battlefield_situation_page_text_revenge_succeed=0x7f02000c;
+        public static final int battlefield_situation_page_text_succeed=0x7f02000d;
+        public static final int battlefield_situation_particulars_word_draw=0x7f02000e;
+        public static final int battlefield_situation_particulars_word_lose=0x7f02000f;
+        public static final int battlefield_situation_particulars_word_win=0x7f020010;
+        public static final int battlenet_enter_bg=0x7f020011;
+        public static final int battlenet_icon=0x7f020012;
+        public static final int battlenet_loading=0x7f020013;
+        public static final int beyond_the_friend_bottom_bg=0x7f020014;
+        public static final int bn_logo=0x7f020015;
+        public static final int btn_challenge_mode_press=0x7f020016;
+        public static final int btn_close_press=0x7f020017;
+        public static final int btn_green=0x7f020018;
+        public static final int btn_green_small=0x7f020019;
+        public static final int btn_invite_press=0x7f02001a;
+        public static final int btn_loginbyfunchat_press=0x7f02001b;
+        public static final int btn_loginbysina_press=0x7f02001c;
+        public static final int btn_loginbytencent_press=0x7f02001d;
+        public static final int btn_logout_press=0x7f02001e;
+        public static final int btn_nearby_item_press=0x7f02001f;
+        public static final int btn_nearby_more_press=0x7f020020;
+        public static final int btn_orange_small=0x7f020021;
+        public static final int btn_page_name_press=0x7f020022;
+        public static final int btn_return=0x7f020023;
+        public static final int btn_share_close_press=0x7f020024;
+        public static final int btn_store_press=0x7f020025;
+        public static final int btn_tip_cancel_press=0x7f020026;
+        public static final int btn_tip_confirm_press=0x7f020027;
+        public static final int btn_yellow=0x7f020028;
+        public static final int btn_yellow_small=0x7f020029;
+        public static final int challenge_button_text_challenge_friend=0x7f02002a;
+        public static final int challenge_button_text_play_with_friends=0x7f02002b;
+        public static final int challenge_button_text_random_allocation_player=0x7f02002c;
+        public static final int challenge_button_text_random_challenge=0x7f02002d;
+        public static final int challenge_page_button_loading=0x7f02002e;
+        public static final int challenge_page_challenge_button_normal=0x7f02002f;
+        public static final int challenge_page_challenge_button_press=0x7f020030;
+        public static final int challenge_page_challenge_switchover_bottom_bg=0x7f020031;
+        public static final int challenge_page_friend_vs_icon=0x7f020032;
+        public static final int circular_border=0x7f020033;
+        public static final int content_bg_normal=0x7f020034;
+        public static final int content_bg_press=0x7f020035;
+        public static final int copper_medal_icon=0x7f020036;
+        public static final int custom_progress_draw=0x7f020037;
+        public static final int default_ptr_flip=0x7f020038;
+        public static final int default_ptr_rotate=0x7f020039;
+        public static final int distance_time_show_bottom_bg=0x7f02003a;
+        public static final int friend_circle_icon=0x7f02003b;
+        public static final int friend_information_page_text_add_friend=0x7f02003c;
+        public static final int friend_information_page_text_challenge_ta=0x7f02003d;
+        public static final int friend_information_page_text_send_message=0x7f02003e;
+        public static final int friends_ranking_list_switch_button_normal=0x7f02003f;
+        public static final int friends_ranking_list_switch_button_press=0x7f020040;
+        public static final int fun_chat_enter_button=0x7f020041;
+        public static final int fun_chat_enter_button_press=0x7f020042;
+        public static final int funchat_label=0x7f020043;
+        public static final int general_bottom_bg=0x7f020044;
+        public static final int general_bottom_bg_press=0x7f020045;
+        public static final int general_bottom_function_bg=0x7f020046;
+        public static final int general_button_1_normal=0x7f020047;
+        public static final int general_button_1_press=0x7f020048;
+        public static final int general_button_2_normal=0x7f020049;
+        public static final int general_button_2_press=0x7f02004a;
+        public static final int general_close_button_normal=0x7f02004b;
+        public static final int general_close_button_press=0x7f02004c;
+        public static final int general_cut_line=0x7f02004d;
+        public static final int general_cut_line_vertical=0x7f02004e;
+        public static final int general_default_game_head=0x7f02004f;
+        public static final int general_default_head=0x7f020050;
+        public static final int general_dilan_bg=0x7f020051;
+        public static final int general_loading_icon=0x7f020052;
+        public static final int general_number=0x7f020053;
+        public static final int general_number_3_max=0x7f020054;
+        public static final int general_prompt_box=0x7f020055;
+        public static final int general_return_icon_normal=0x7f020056;
+        public static final int general_return_icon_press=0x7f020057;
+        public static final int general_small_button_1_normal=0x7f020058;
+        public static final int general_small_button_1_press=0x7f020059;
+        public static final int general_small_button_2_normal=0x7f02005a;
+        public static final int general_small_button_2_press=0x7f02005b;
+        public static final int general_small_button_3_normal=0x7f02005c;
+        public static final int general_small_button_3_press=0x7f02005d;
+        public static final int general_text_about=0x7f02005e;
+        public static final int general_text_add=0x7f02005f;
+        public static final int general_text_all_take=0x7f020060;
+        public static final int general_text_battlenet_game=0x7f020061;
+        public static final int general_text_cancel=0x7f020062;
+        public static final int general_text_check_all=0x7f020063;
+        public static final int general_text_check_boy=0x7f020064;
+        public static final int general_text_check_girl=0x7f020065;
+        public static final int general_text_feedback=0x7f020066;
+        public static final int general_text_global_ranking2=0x7f020067;
+        public static final int general_text_multiplayer_game=0x7f020068;
+        public static final int general_text_people_nearby=0x7f020069;
+        public static final int general_text_pk_fight=0x7f02006a;
+        public static final int general_text_playback=0x7f02006b;
+        public static final int general_text_prepare=0x7f02006c;
+        public static final int general_text_rank=0x7f02006d;
+        public static final int general_text_restart=0x7f02006e;
+        public static final int general_text_return_ranking_list=0x7f02006f;
+        public static final int general_text_revenge=0x7f020070;
+        public static final int general_text_set=0x7f020071;
+        public static final int general_text_share_flaunt=0x7f020072;
+        public static final int general_text_share_to_friend_hub=0x7f020073;
+        public static final int general_text_share_to_wechat_friend=0x7f020074;
+        public static final int general_text_share_to_weibo_friend=0x7f020075;
+        public static final int general_text_singleplayer_game=0x7f020076;
+        public static final int general_text_star_game=0x7f020077;
+        public static final int general_text_sure=0x7f020078;
+        public static final int general_text_this_week_highest_cheng_result=0x7f020079;
+        public static final int general_text_update=0x7f02007a;
+        public static final int general_title_bg1=0x7f02007b;
+        public static final int general_title_bg2=0x7f02007c;
+        public static final int general_title_cut_line=0x7f02007d;
+        public static final int general_top_circular_button_normal=0x7f02007e;
+        public static final int general_top_circular_button_press=0x7f02007f;
+        public static final int gift_1=0x7f020080;
+        public static final int gift_2=0x7f020081;
+        public static final int gift_3=0x7f020082;
+        public static final int global_ranking_list_switch_button_normal=0x7f020083;
+        public static final int global_ranking_list_switch_button_press=0x7f020084;
+        public static final int gold_medal_icon=0x7f020085;
+        public static final int homepage_add_friend_button=0x7f020086;
+        public static final int homepage_battlenet_button=0x7f020087;
+        public static final int homepage_dilanpeople_nearby=0x7f020088;
+        public static final int homepage_dilanpeople_nearby_set_more_button_normal=0x7f020089;
+        public static final int homepage_dilanpeople_nearby_set_more_button_press=0x7f02008a;
+        public static final int homepage_number_gold_diamond_number=0x7f02008b;
+        public static final int homepage_number_ranking=0x7f02008c;
+        public static final int homepage_set_button=0x7f02008d;
+        public static final int homepage_top_message_button=0x7f02008e;
+        public static final int homepage_top_message_button_press=0x7f02008f;
+        public static final int icon=0x7f020090;
+        public static final int indicator_arrow=0x7f020091;
+        public static final int indicator_bg_bottom=0x7f020092;
+        public static final int indicator_bg_top=0x7f020093;
+        public static final int listitem_noyellowcolor=0x7f020094;
+        public static final int meg_list_switch_button_press=0x7f020095;
+        public static final int menu=0x7f020096;
+        public static final int nearby_no_player_icon=0x7f020097;
+        public static final int nearby_select_button_normal=0x7f020098;
+        public static final int nearby_select_button_press=0x7f020099;
+        public static final int not_selected_player_icon=0x7f02009a;
+        public static final int performance_score_show_bottom_bg=0x7f02009b;
+        public static final int person_bottom_bg=0x7f02009c;
+        public static final int person_bottom_bg2=0x7f02009d;
+        public static final int person_information_show_bottom_bg=0x7f02009e;
+        public static final int personal_information_boy=0x7f02009f;
+        public static final int personal_information_girl=0x7f0200a0;
+        public static final int personal_information_page_content_show=0x7f0200a1;
+        public static final int personal_information_page_ranking_bg=0x7f0200a2;
+        public static final int personal_information_person=0x7f0200a3;
+        public static final int personal_information_title_bottom_bg=0x7f0200a4;
+        public static final int pk_icon_normal=0x7f0200a5;
+        public static final int pk_icon_press=0x7f0200a6;
+        public static final int prompt_bg=0x7f0200a7;
+        public static final int prompt_box_bg=0x7f0200a8;
+        public static final int prompt_box_bottom_bg=0x7f0200a9;
+        public static final int prompt_box_content_bg=0x7f0200aa;
+        public static final int prompt_box_page_button_1=0x7f0200ab;
+        public static final int prompt_box_page_button_1_press=0x7f0200ac;
+        public static final int prompt_box_page_button_2=0x7f0200ad;
+        public static final int prompt_box_page_button_2_press=0x7f0200ae;
+        public static final int prompt_box_page_text_cancel=0x7f0200af;
+        public static final int prompt_box_page_text_sure=0x7f0200b0;
+        public static final int rank_invite_friendou_button_normal=0x7f0200b1;
+        public static final int rank_invite_friendou_button_press=0x7f0200b2;
+        public static final int ranking_bottom_bg=0x7f0200b3;
+        public static final int ranking_list__send_heart_no_allow_send_button=0x7f0200b4;
+        public static final int ranking_list_heart_no_status_button=0x7f0200b5;
+        public static final int ranking_list_next_page_arrow=0x7f0200b6;
+        public static final int ranking_list_next_page_arrow_press=0x7f0200b7;
+        public static final int ranking_list_send_heart_already_button_button=0x7f0200b8;
+        public static final int ranking_list_send_heart_off_button=0x7f0200b9;
+        public static final int ranking_list_send_heart_on_button=0x7f0200ba;
+        public static final int ranking_list_send_heart_send_button=0x7f0200bb;
+        public static final int ranking_list_send_heart_time_bottom_bg=0x7f0200bc;
+        public static final int ranking_list_title_prompt_bg=0x7f0200bd;
+        public static final int result_page_bottom_bg=0x7f0200be;
+        public static final int result_show_no_player_bottom_bg=0x7f0200bf;
+        public static final int result_show_page_bottom_bg=0x7f0200c0;
+        public static final int result_show_player_show_bottom_bg=0x7f0200c1;
+        public static final int result_show_player_show_first_icon=0x7f0200c2;
+        public static final int result_show_player_show_second_icon=0x7f0200c3;
+        public static final int result_show_player_show_third_icon=0x7f0200c4;
+        public static final int resultpage_historic_highs_show_bottom_bg=0x7f0200c5;
+        public static final int resultpage_history_highest_icon=0x7f0200c6;
+        public static final int resultpage_number_result=0x7f0200c7;
+        public static final int resultpage_one_person_play_prompt_bottom_bg=0x7f0200c8;
+        public static final int resultpage_one_person_play_prompt_smile_face_icon=0x7f0200c9;
+        public static final int resultpage_one_person_play_star_effect=0x7f0200ca;
+        public static final int resultpage_one_person_play_text=0x7f0200cb;
+        public static final int resultpage_result_show_bottom_bg=0x7f0200cc;
+        public static final int resultpage_this_week_highest_icon=0x7f0200cd;
+        public static final int selected_player_icon=0x7f0200ce;
+        public static final int selected_player_press_bg_effect=0x7f0200cf;
+        public static final int send_share_bottom_bg=0x7f0200d0;
+        public static final int send_share_close_button=0x7f0200d1;
+        public static final int send_share_close_button_press=0x7f0200d2;
+        public static final int send_share_game_prompt_show_bottom_bg=0x7f0200d3;
+        public static final int send_share_line_effect=0x7f0200d4;
+        public static final int set_page_text_check=0x7f0200d5;
+        public static final int set_page_text_feedback=0x7f0200d6;
+        public static final int set_page_text_quit_enter=0x7f0200d7;
+        public static final int silver_medal_icon=0x7f0200d8;
+        public static final int sina_weibo_enter_button=0x7f0200d9;
+        public static final int sina_weibo_enter_button_press=0x7f0200da;
+        public static final int sina_weibo_icon=0x7f0200db;
+        public static final int sina_weibo_label=0x7f0200dc;
+        public static final int store_page_bg=0x7f0200dd;
+        public static final int store_page_button_normal=0x7f0200de;
+        public static final int store_page_button_press=0x7f0200df;
+        public static final int store_page_china_yuan=0x7f0200e0;
+        public static final int store_page_content_show_bg=0x7f0200e1;
+        public static final int store_page_number_buy_number=0x7f0200e2;
+        public static final int store_page_number_price=0x7f0200e3;
+        public static final int store_page_number_x=0x7f0200e4;
+        public static final int store_page_word_buy=0x7f0200e5;
+        public static final int store_page_word_conversion=0x7f0200e6;
+        public static final int suggestion_feedback_page_import_bottom_bg=0x7f0200e7;
+        public static final int suggestion_feedback_page_text_send=0x7f0200e8;
+        public static final int switch_frame=0x7f0200e9;
+        public static final int switch_mask=0x7f0200ea;
+        public static final int switch_set_on_off_bg=0x7f0200eb;
+        public static final int switch_set_pg_button=0x7f0200ec;
+        public static final int tencent_weibo_enter_button=0x7f0200ed;
+        public static final int tencent_weibo_enter_button_press=0x7f0200ee;
+        public static final int tencent_weibo_icon=0x7f0200ef;
+        public static final int tencent_weibo_label=0x7f0200f0;
+        public static final int title_text_battlefield_situation=0x7f0200f1;
+        public static final int title_text_battlefield_situation_check=0x7f0200f2;
+        public static final int title_text_battlefield_situation_press=0x7f0200f3;
+        public static final int title_text_battlenet_game=0x7f0200f4;
+        public static final int title_text_buy_diamond=0x7f0200f5;
+        public static final int title_text_challenge_friend=0x7f0200f6;
+        public static final int title_text_exchange_gold=0x7f0200f7;
+        public static final int title_text_exchange_heart=0x7f0200f8;
+        public static final int title_text_frend_ranking_list_normal=0x7f0200f9;
+        public static final int title_text_frend_ranking_list_press=0x7f0200fa;
+        public static final int title_text_friend_information=0x7f0200fb;
+        public static final int title_text_friend_mail_normal=0x7f0200fc;
+        public static final int title_text_friend_mail_press=0x7f0200fd;
+        public static final int title_text_global_ranking_list=0x7f0200fe;
+        public static final int title_text_global_ranking_list_press=0x7f0200ff;
+        public static final int title_text_invite_friend=0x7f020100;
+        public static final int title_text_people_nearby=0x7f020101;
+        public static final int title_text_personal_information=0x7f020102;
+        public static final int title_text_random_challenge=0x7f020103;
+        public static final int title_text_screen=0x7f020104;
+        public static final int title_text_set=0x7f020105;
+        public static final int title_text_suggestion_feedback=0x7f020106;
+        public static final int title_text_system_mail_normal=0x7f020107;
+        public static final int title_text_system_mail_press=0x7f020108;
+        public static final int top_physical_add_button=0x7f020109;
+        public static final int top_physical_add_heart_button=0x7f02010a;
+        public static final int top_physical_bg=0x7f02010b;
+        public static final int top_physical_empty_love_icon=0x7f02010c;
+        public static final int top_physical_gold_icon=0x7f02010d;
+        public static final int top_physical_heart_bg=0x7f02010e;
+        public static final int top_physical_heart_number_colon=0x7f02010f;
+        public static final int top_physical_heart_number_heart_recover_time=0x7f020110;
+        public static final int top_physical_heart_number_plus=0x7f020111;
+        public static final int top_physical_love_icon=0x7f020112;
+        public static final int top_physical_masonry_icon=0x7f020113;
+        public static final int top_physical_ranklist_icon=0x7f020114;
+        public static final int total_score_title_pg=0x7f020115;
+        public static final int vs_icon=0x7f020116;
+    }
+    public static final class id {
+        public static final int PB_WebView_Progress=0x7f06017b;
+        public static final int base_auth_webview=0x7f06017c;
+        public static final int battlefield_situation_icon=0x7f060107;
+        public static final int battlenet_base_layout=0x7f060038;
+        public static final int battlenet_base_title_contain=0x7f060039;
+        public static final int bnresult_show_he=0x7f0600fb;
+        public static final int bnresult_show_me=0x7f060101;
+        public static final int both=0x7f060003;
+        public static final int btn_about=0x7f06015c;
+        public static final int btn_about_text=0x7f06015d;
+        public static final int btn_adddiamond=0x7f06007a;
+        public static final int btn_addglod=0x7f060080;
+        public static final int btn_allmeg=0x7f06005d;
+        public static final int btn_battleresult_msg=0x7f060119;
+        public static final int btn_bngame=0x7f060046;
+        public static final int btn_cancel=0x7f060177;
+        public static final int btn_challenge=0x7f06003c;
+        public static final int btn_challenge_friend_text=0x7f06004d;
+        public static final int btn_challenge_mode_bg=0x7f06004c;
+        public static final int btn_challenge_random_text=0x7f06004e;
+        public static final int btn_challenge_text=0x7f06003d;
+        public static final int btn_challengehe_user=0x7f0600b4;
+        public static final int btn_challengehe_user_text=0x7f0600b7;
+        public static final int btn_circle_reward=0x7f0600da;
+        public static final int btn_circle_reward_bg=0x7f0600db;
+        public static final int btn_confirm=0x7f060175;
+        public static final int btn_dealresult=0x7f0600f7;
+        public static final int btn_dealresult_green=0x7f0600f8;
+        public static final int btn_dealresult_text=0x7f0600f9;
+        public static final int btn_feedback=0x7f06015e;
+        public static final int btn_feedback_return=0x7f06013a;
+        public static final int btn_feedback_text=0x7f06015f;
+        public static final int btn_finish_return=0x7f060014;
+        public static final int btn_finish_return_text=0x7f060015;
+        public static final int btn_friend_msg=0x7f060118;
+        public static final int btn_friendou_action=0x7f0600b8;
+        public static final int btn_friendou_action_text=0x7f0600b9;
+        public static final int btn_friendrank=0x7f06009d;
+        public static final int btn_friendrank_un=0x7f0600a1;
+        public static final int btn_gainpower=0x7f060111;
+        public static final int btn_globalrank=0x7f0600a0;
+        public static final int btn_globalrank_un=0x7f06009e;
+        public static final int btn_invite=0x7f060069;
+        public static final int btn_invite_icon=0x7f060073;
+        public static final int btn_invite_return=0x7f0600d6;
+        public static final int btn_layout_text=0x7f060161;
+        public static final int btn_login=0x7f0600ec;
+        public static final int btn_logout=0x7f060160;
+        public static final int btn_look_all=0x7f06014f;
+        public static final int btn_look_boy_only=0x7f06014a;
+        public static final int btn_look_girl_only=0x7f06014d;
+        public static final int btn_nearby=0x7f060065;
+        public static final int btn_pay=0x7f06016c;
+        public static final int btn_relook=0x7f060108;
+        public static final int btn_relook_text=0x7f060109;
+        public static final int btn_replay=0x7f060016;
+        public static final int btn_replay_text=0x7f060017;
+        public static final int btn_send=0x7f060136;
+        public static final int btn_send_text=0x7f060138;
+        public static final int btn_sendpower=0x7f06008d;
+        public static final int btn_set_return=0x7f060153;
+        public static final int btn_setting=0x7f06006e;
+        public static final int btn_share_weibo=0x7f06001f;
+        public static final int btn_share_weibo_text=0x7f060020;
+        public static final int btn_sharetofriendcircle_text=0x7f060023;
+        public static final int btn_sharetoweixin_bg=0x7f060021;
+        public static final int btn_sharetoweixin_text=0x7f060022;
+        public static final int btn_sina_reward=0x7f0600df;
+        public static final int btn_sina_reward_bg=0x7f0600e0;
+        public static final int btn_sinalogin=0x7f0600ed;
+        public static final int btn_startgame=0x7f060042;
+        public static final int btn_startgame_text=0x7f060043;
+        public static final int btn_system_msg=0x7f06011b;
+        public static final int btn_tencent_reward=0x7f0600e4;
+        public static final int btn_tencent_reward_bg=0x7f0600e5;
+        public static final int btn_tencentlogin=0x7f0600ee;
+        public static final int btn_title_tips=0x7f060130;
+        public static final int btn_turntorank=0x7f06003f;
+        public static final int btn_turntorank_text=0x7f060040;
+        public static final int btn_visitorlogin=0x7f0600ef;
+        public static final int center_un=0x7f06010b;
+        public static final int challenge_mode=0x7f060061;
+        public static final int challenge_mode_bg=0x7f060060;
+        public static final int cut_line=0x7f0600ae;
+        public static final int disabled=0x7f060000;
+        public static final int empty_listview=0x7f0600d5;
+        public static final int et_suggestion=0x7f060135;
+        public static final int finish_framelayout2=0x7f06000e;
+        public static final int finish_id=0x7f06000b;
+        public static final int finish_score_num=0x7f06000f;
+        public static final int finish_score_show=0x7f060018;
+        public static final int finish_top_score_backiv=0x7f060012;
+        public static final int fl_diamond_bg=0x7f060078;
+        public static final int fl_friend_explain=0x7f060058;
+        public static final int fl_friend_score=0x7f060055;
+        public static final int fl_globalrank_num=0x7f0600bf;
+        public static final int fl_glod_bg=0x7f06007e;
+        public static final int fl_info_score=0x7f0600b2;
+        public static final int fl_inner=0x7f060124;
+        public static final int fl_num=0x7f06008e;
+        public static final int fl_rank_bg=0x7f060084;
+        public static final int fl_rank_contain=0x7f0600a2;
+        public static final int fl_sharecontent=0x7f060019;
+        public static final int fl_topinweek_num=0x7f0600bc;
+        public static final int flip=0x7f060008;
+        public static final int frameLayout4=0x7f060034;
+        public static final int game_backgroud=0x7f060011;
+        public static final int hs_hisfriend=0x7f0600c7;
+        public static final int hs_hisgame=0x7f0600c3;
+        public static final int ib_bngame_return=0x7f060132;
+        public static final int ib_bnresulttip_close=0x7f06010a;
+        public static final int ib_info_return=0x7f0600ac;
+        public static final int ib_search_criteria=0x7f060143;
+        public static final int ib_settinf_close=0x7f060151;
+        public static final int ib_shareview_return=0x7f060024;
+        public static final int ib_shop_return=0x7f060171;
+        public static final int ibtn_nearby_return=0x7f060147;
+        public static final int icon=0x7f0600eb;
+        public static final int im_invite_anim=0x7f06006c;
+        public static final int info_gallery_rl=0x7f0600c1;
+        public static final int info_left_layout=0x7f0600aa;
+        public static final int info_other_info=0x7f0600ab;
+        public static final int item_bngame=0x7f06012b;
+        public static final int item_bnresult=0x7f0600f0;
+        public static final int item_challenge_friend=0x7f06004f;
+        public static final int item_finish=0x7f06000a;
+        public static final int item_friend_rank=0x7f060089;
+        public static final int item_friendmail=0x7f06010c;
+        public static final int item_global_rank=0x7f060092;
+        public static final int item_invite=0x7f060072;
+        public static final int item_nearby_item=0x7f06013b;
+        public static final int iv_avater=0x7f0600f1;
+        public static final int iv_bg=0x7f060050;
+        public static final int iv_bngame_icon=0x7f06012c;
+        public static final int iv_bngame_un=0x7f060047;
+        public static final int iv_bnmeg_vs_un=0x7f060106;
+        public static final int iv_btn_bngame_un=0x7f0600a5;
+        public static final int iv_challenge_icon=0x7f06004a;
+        public static final int iv_challenge_mode=0x7f06005f;
+        public static final int iv_content_bg_un=0x7f060057;
+        public static final int iv_cut_line_un=0x7f060100;
+        public static final int iv_cutline_un=0x7f060010;
+        public static final int iv_cutline_un1=0x7f06011a;
+        public static final int iv_diamond_icon=0x7f06007b;
+        public static final int iv_dilan_un=0x7f060049;
+        public static final int iv_finish_avater=0x7f06000c;
+        public static final int iv_frank_avater=0x7f06008b;
+        public static final int iv_friend_avater=0x7f060052;
+        public static final int iv_friend_circle_icon=0x7f0600d9;
+        public static final int iv_friendmail_avater=0x7f06010d;
+        public static final int iv_game_icon=0x7f06001c;
+        public static final int iv_global_avater=0x7f060094;
+        public static final int iv_globalrank_icon=0x7f0600bb;
+        public static final int iv_glod_icon=0x7f060081;
+        public static final int iv_gold_icon=0x7f060033;
+        public static final int iv_hisavatar=0x7f0600fc;
+        public static final int iv_hisresult=0x7f0600fe;
+        public static final int iv_info_title=0x7f0600a8;
+        public static final int iv_invite_avater=0x7f060074;
+        public static final int iv_invite_friend_un=0x7f06006a;
+        public static final int iv_myavatar=0x7f060102;
+        public static final int iv_myresult=0x7f060104;
+        public static final int iv_nearby_avater=0x7f06013d;
+        public static final int iv_nearby_un=0x7f060066;
+        public static final int iv_other_head=0x7f0600ca;
+        public static final int iv_personal_avatar=0x7f0600b0;
+        public static final int iv_personal_source=0x7f0600b1;
+        public static final int iv_pkicon=0x7f060054;
+        public static final int iv_rank_icon=0x7f060087;
+        public static final int iv_rank_name=0x7f060086;
+        public static final int iv_revengeresult=0x7f0600f6;
+        public static final int iv_reward_icon=0x7f0600cf;
+        public static final int iv_reward_icon1=0x7f0600dd;
+        public static final int iv_reward_icon2=0x7f0600e2;
+        public static final int iv_reward_icon3=0x7f0600e7;
+        public static final int iv_rewarddiamondnum_bg=0x7f0600cd;
+        public static final int iv_scoreflag=0x7f060036;
+        public static final int iv_setting_un=0x7f06006f;
+        public static final int iv_sex=0x7f0600b6;
+        public static final int iv_sex_icon=0x7f060141;
+        public static final int iv_sex_icon_un=0x7f06014c;
+        public static final int iv_shopping_diamond_icon=0x7f06016a;
+        public static final int iv_shopping_gold_icon=0x7f060164;
+        public static final int iv_shopping_heart_icon=0x7f060173;
+        public static final int iv_shopping_x_icon=0x7f060165;
+        public static final int iv_sina_weibo_icon=0x7f0600de;
+        public static final int iv_tab_friendrank=0x7f0600d3;
+        public static final int iv_tencent_weibo_icon=0x7f0600e3;
+        public static final int iv_text_lingqu=0x7f0600ce;
+        public static final int iv_text_lingqu1=0x7f0600dc;
+        public static final int iv_text_lingqu2=0x7f0600e1;
+        public static final int iv_text_lingqu3=0x7f0600e6;
+        public static final int iv_title_bg_un=0x7f060113;
+        public static final int iv_topinweek_icon=0x7f0600ba;
+        public static final int iv_un=0x7f060028;
+        public static final int ll_bnresult_show=0x7f0600fa;
+        public static final int ll_btn_layout=0x7f0600a3;
+        public static final int ll_glod_num=0x7f06007f;
+        public static final int ll_hisfriend=0x7f0600c8;
+        public static final int ll_hisgame=0x7f0600c4;
+        public static final int ll_main_footer=0x7f060044;
+        public static final int ll_play=0x7f060037;
+        public static final int ll_powerheart=0x7f060166;
+        public static final int ll_rank_num=0x7f060085;
+        public static final int ll_set1=0x7f060154;
+        public static final int ll_shop=0x7f060170;
+        public static final int ll_tab_msg=0x7f060114;
+        public static final int loading_process_dialog_progressBar=0x7f0600ea;
+        public static final int loadingdialog_prgress=0x7f0600e8;
+        public static final int loadingdialog_text=0x7f0600e9;
+        public static final int logobg=0x7f060009;
+        public static final int lv_bngame=0x7f060131;
+        public static final int lv_chalenge_contain=0x7f060062;
+        public static final int lv_friend_list=0x7f060071;
+        public static final int lv_invite_friend=0x7f0600d4;
+        public static final int lv_nearby=0x7f060145;
+        public static final int lv_playwith=0x7f06002d;
+        public static final int lv_rank=0x7f060099;
+        public static final int mainview_content=0x7f06003a;
+        public static final int manualOnly=0x7f060004;
+        public static final int meg_list=0x7f060122;
+        public static final int msg_cut_line=0x7f060123;
+        public static final int msg_tab_content=0x7f060144;
+        public static final int nv_buy_num=0x7f060167;
+        public static final int nv_friend_score=0x7f060056;
+        public static final int nv_globalrank_num=0x7f0600c0;
+        public static final int nv_need_num=0x7f06016b;
+        public static final int nv_rank_score=0x7f06008f;
+        public static final int nv_topinweek_num=0x7f0600be;
+        public static final int pb_bngame=0x7f060133;
+        public static final int pb_grobal_rank=0x7f0600a4;
+        public static final int pb_info=0x7f0600ad;
+        public static final int pb_invite=0x7f0600d8;
+        public static final int pb_near=0x7f060149;
+        public static final int pb_share=0x7f060025;
+        public static final int pb_webview_loading=0x7f06017d;
+        public static final int power_layout_center=0x7f06016d;
+        public static final int pullDownFromTop=0x7f060005;
+        public static final int pullFromEnd=0x7f060002;
+        public static final int pullFromStart=0x7f060001;
+        public static final int pullUpFromBottom=0x7f060006;
+        public static final int pull_to_refresh_image=0x7f060125;
+        public static final int pull_to_refresh_progress=0x7f060126;
+        public static final int pull_to_refresh_sub_text=0x7f060128;
+        public static final int pull_to_refresh_text=0x7f060127;
+        public static final int rank_score_tv=0x7f060098;
+        public static final int rank_score_tv_num=0x7f060097;
+        public static final int rel_challenge=0x7f06003b;
+        public static final int rel_finish=0x7f060013;
+        public static final int rel_startgame=0x7f060041;
+        public static final int rel_turntorank=0x7f06003e;
+        public static final int rl_btn_bngame=0x7f060045;
+        public static final int rl_btn_invite=0x7f060068;
+        public static final int rl_btn_nearby=0x7f060064;
+        public static final int rl_btn_setting=0x7f06006d;
+        public static final int rl_diamond_bg=0x7f060079;
+        public static final int rl_diamond_contain=0x7f060077;
+        public static final int rl_glod_contain=0x7f06007d;
+        public static final int rl_gold_view=0x7f060032;
+        public static final int rl_nearby_footer=0x7f060146;
+        public static final int rl_power=0x7f060076;
+        public static final int rl_power_challenge=0x7f060063;
+        public static final int rl_rank_contain=0x7f060083;
+        public static final int rl_score_bg_un=0x7f060026;
+        public static final int rl_sharebtn=0x7f06001a;
+        public static final int rl_single_player=0x7f06002e;
+        public static final int rl_tab=0x7f060163;
+        public static final int rl_tab_bngame=0x7f06012f;
+        public static final int rl_tab_challenge=0x7f060059;
+        public static final int rl_tab_feedback=0x7f060134;
+        public static final int rl_tab_friendrank=0x7f06009b;
+        public static final int rl_tab_info=0x7f0600a7;
+        public static final int rl_tab_invite=0x7f0600d2;
+        public static final int rl_tab_nearby=0x7f060142;
+        public static final int rl_tab_setting=0x7f060152;
+        public static final int rl_tab_shop=0x7f06016e;
+        public static final int rl_user_myinfo=0x7f0600af;
+        public static final int rl_web_title=0x7f060178;
+        public static final int rotate=0x7f060007;
+        public static final int sb_music=0x7f060156;
+        public static final int sb_sound_effect=0x7f060158;
+        public static final int score_title_un=0x7f06002a;
+        public static final int share_content=0x7f06001b;
+        public static final int shopping_item_icon=0x7f060168;
+        public static final int shopping_power_rl=0x7f060169;
+        public static final int showName=0x7f060129;
+        public static final int showTopScore=0x7f06012a;
+        public static final int smile_icon=0x7f06002f;
+        public static final int tab_friendrank=0x7f06009f;
+        public static final int tab_globalrank=0x7f06009c;
+        public static final int textView1=0x7f060159;
+        public static final int tv_base_score=0x7f06002b;
+        public static final int tv_battleresult_msg_press_un=0x7f060116;
+        public static final int tv_behave_score=0x7f06002c;
+        public static final int tv_bngame_dilan=0x7f060172;
+        public static final int tv_bngame_un=0x7f060048;
+        public static final int tv_bnresult_describe=0x7f0600f5;
+        public static final int tv_bnresult_name=0x7f0600f2;
+        public static final int tv_bnresult_score=0x7f0600f4;
+        public static final int tv_bnresult_time=0x7f0600f3;
+        public static final int tv_btn_bngame_un=0x7f0600a6;
+        public static final int tv_center=0x7f060162;
+        public static final int tv_challenge_clain=0x7f06004b;
+        public static final int tv_clearrank=0x7f06009a;
+        public static final int tv_diamond_value=0x7f06007c;
+        public static final int tv_dilan_un=0x7f0600a9;
+        public static final int tv_distance=0x7f06013f;
+        public static final int tv_finish_gold_num=0x7f060035;
+        public static final int tv_finish_name=0x7f06000d;
+        public static final int tv_finish_score_num=0x7f060029;
+        public static final int tv_friend_explain=0x7f0600d1;
+        public static final int tv_friend_explain1=0x7f06005a;
+        public static final int tv_friend_explain2=0x7f06005b;
+        public static final int tv_friend_explain3=0x7f06005c;
+        public static final int tv_friend_id=0x7f060051;
+        public static final int tv_friend_msg_press_un=0x7f060115;
+        public static final int tv_friend_name=0x7f060053;
+        public static final int tv_friend_rank=0x7f06008a;
+        public static final int tv_friendmail_describe=0x7f060110;
+        public static final int tv_friendmail_name=0x7f06010e;
+        public static final int tv_friendmail_time=0x7f06010f;
+        public static final int tv_game_describe=0x7f06012e;
+        public static final int tv_game_name=0x7f06001d;
+        public static final int tv_game_playernum=0x7f06012d;
+        public static final int tv_getallpower=0x7f060120;
+        public static final int tv_getallpower_text=0x7f060121;
+        public static final int tv_global_name=0x7f060095;
+        public static final int tv_global_rank=0x7f060093;
+        public static final int tv_global_time=0x7f060096;
+        public static final int tv_glod_value=0x7f060082;
+        public static final int tv_haohua=0x7f060137;
+        public static final int tv_hisfriend=0x7f0600c6;
+        public static final int tv_hisname=0x7f0600fd;
+        public static final int tv_hisscore=0x7f0600ff;
+        public static final int tv_invite_dilan_un=0x7f0600d7;
+        public static final int tv_invite_friend_un=0x7f06006b;
+        public static final int tv_invite_score=0x7f060075;
+        public static final int tv_look_all=0x7f060150;
+        public static final int tv_look_boy_only=0x7f06014b;
+        public static final int tv_look_girl_only=0x7f06014e;
+        public static final int tv_msg_retrun=0x7f060112;
+        public static final int tv_msg_retrun_text=0x7f06011f;
+        public static final int tv_myname=0x7f060103;
+        public static final int tv_myscore=0x7f060105;
+        public static final int tv_name=0x7f0600b3;
+        public static final int tv_nearby_dilan=0x7f060148;
+        public static final int tv_nearby_item=0x7f06013c;
+        public static final int tv_nearby_name=0x7f06013e;
+        public static final int tv_nearby_score=0x7f060140;
+        public static final int tv_nearby_un=0x7f060067;
+        public static final int tv_no_info=0x7f0600c5;
+        public static final int tv_no_player=0x7f0600c9;
+        public static final int tv_other_addtime=0x7f0600cc;
+        public static final int tv_other_name=0x7f0600cb;
+        public static final int tv_percent_num=0x7f0600bd;
+        public static final int tv_player_name=0x7f06001e;
+        public static final int tv_rank_name=0x7f06008c;
+        public static final int tv_rank_score=0x7f060090;
+        public static final int tv_rank_time=0x7f060091;
+        public static final int tv_rank_value=0x7f060088;
+        public static final int tv_rewarddiamondnum=0x7f0600d0;
+        public static final int tv_score_num=0x7f0600b5;
+        public static final int tv_set_language=0x7f06015a;
+        public static final int tv_set_music=0x7f060155;
+        public static final int tv_set_sound_effect=0x7f060157;
+        public static final int tv_setting_un=0x7f060070;
+        public static final int tv_system_msg_press_un=0x7f060117;
+        public static final int tv_tab_hisgame=0x7f0600c2;
+        public static final int tv_tab_shop=0x7f06016f;
+        public static final int tv_textnum=0x7f060139;
+        public static final int tv_tip_content=0x7f060174;
+        public static final int tv_tip_title=0x7f060176;
+        public static final int tv_title_tips=0x7f06011c;
+        public static final int tv_topinhiatory=0x7f060027;
+        public static final int tv_unread_friendmsg=0x7f06011e;
+        public static final int tv_unreadmeg=0x7f06005e;
+        public static final int tv_version=0x7f06015b;
+        public static final int vp_msg_contain=0x7f06011d;
+        public static final int web_back=0x7f060179;
+        public static final int web_title=0x7f06017a;
+        public static final int xingxing1=0x7f060030;
+        public static final int xingxing2=0x7f060031;
+    }
+    public static final class layout {
+        public static final int bnlogo_layout=0x7f030000;
+        public static final int finish_item=0x7f030001;
+        public static final int finish_layout=0x7f030002;
+        public static final int finish_share_layout=0x7f030003;
+        public static final int finish_tab=0x7f030004;
+        public static final int home_a_layout=0x7f030005;
+        public static final int home_challenge_change_tab=0x7f030006;
+        public static final int home_challenge_item=0x7f030007;
+        public static final int home_challenge_view=0x7f030008;
+        public static final int home_footer=0x7f030009;
+        public static final int home_friend_list=0x7f03000a;
+        public static final int home_invite_tab=0x7f03000b;
+        public static final int home_power_tab=0x7f03000c;
+        public static final int home_rank_friend_item=0x7f03000d;
+        public static final int home_rank_global_item=0x7f03000e;
+        public static final int home_rank_global_list=0x7f03000f;
+        public static final int home_rank_view=0x7f030010;
+        public static final int info_layout=0x7f030011;
+        public static final int info_main_tab=0x7f030012;
+        public static final int info_other_tab=0x7f030013;
+        public static final int info_othergame_item=0x7f030014;
+        public static final int info_otherplayer_item=0x7f030015;
+        public static final int invite_friend_item=0x7f030016;
+        public static final int invite_friend_layout=0x7f030017;
+        public static final int invite_more_tab=0x7f030018;
+        public static final int loading_dialog=0x7f030019;
+        public static final int loading_progressbar_layout=0x7f03001a;
+        public static final int login_layout=0x7f03001b;
+        public static final int msg_bnresult_item=0x7f03001c;
+        public static final int msg_bnresult_tip_layout=0x7f03001d;
+        public static final int msg_friendemail_item=0x7f03001e;
+        public static final int msg_layout=0x7f03001f;
+        public static final int msg_listview=0x7f030020;
+        public static final int pull_to_refresh_header_horizontal=0x7f030021;
+        public static final int pull_to_refresh_header_vertical=0x7f030022;
+        public static final int rim_about_layout=0x7f030023;
+        public static final int rim_bngame_item=0x7f030024;
+        public static final int rim_bngame_layout=0x7f030025;
+        public static final int rim_feedback_layout=0x7f030026;
+        public static final int rim_nearby_item=0x7f030027;
+        public static final int rim_nearby_layout=0x7f030028;
+        public static final int rim_nearby_select_tip=0x7f030029;
+        public static final int rim_setting_layout=0x7f03002a;
+        public static final int rim_shop_diamond_item=0x7f03002b;
+        public static final int rim_shop_gold_item=0x7f03002c;
+        public static final int rim_shop_layout=0x7f03002d;
+        public static final int rim_shop_power_item=0x7f03002e;
+        public static final int tip_layout=0x7f03002f;
+        public static final int webview_layout=0x7f030030;
+        public static final int wx_ret_layout=0x7f030031;
+    }
+    public static final class raw {
+        public static final int click=0x7f050000;
+        public static final int general_number=0x7f050001;
+        public static final int homepage_number_gold_diamond_number=0x7f050002;
+        public static final int homepage_number_ranking=0x7f050003;
+        public static final int resultpage_number_result=0x7f050004;
+        public static final int store_page_number_buy_number=0x7f050005;
+        public static final int store_page_number_price=0x7f050006;
+        public static final int top_physical_heart_number_heart_recover_time=0x7f050007;
     }
     public static final class string {
-        public static final int app_name=0x7f030000;
+        public static final int addfriend=0x7f090015;
+        public static final int app_name=0x7f0900eb;
+        public static final int are_you_sure_to_buy_diamond=0x7f0900d8;
+        public static final int are_you_sure_to_buy_gold=0x7f0900d9;
+        public static final int are_you_sure_to_buy_power=0x7f0900da;
+        public static final int ascore=0x7f09004f;
+        public static final int auth_cancel=0x7f090060;
+        public static final int auth_error=0x7f09005f;
+        public static final int auth_error_notuser_friendou=0x7f090062;
+        public static final int auth_success=0x7f090061;
+        public static final int authfail=0x7f090097;
+        public static final int base_score=0x7f09004d;
+        public static final int battlent_game_tip=0x7f090071;
+        public static final int battlent_message_tip=0x7f09006f;
+        public static final int bbs_address=0x7f090032;
+        public static final int beatyou=0x7f0900af;
+        public static final int before=0x7f0900a6;
+        public static final int behave_score=0x7f09004e;
+        public static final int bngame=0x7f0900c5;
+        public static final int bnresult_tip=0x7f090054;
+        public static final int btn_about=0x7f09003f;
+        public static final int btn_cancel=0x7f090051;
+        public static final int btn_confirm=0x7f090050;
+        public static final int btn_feedback=0x7f09003c;
+        public static final int btn_invite=0x7f090030;
+        public static final int btn_login_out=0x7f090041;
+        public static final int btn_relook=0x7f090053;
+        public static final int btn_send=0x7f090046;
+        public static final int btnplayagain=0x7f09004b;
+        public static final int btnreturn=0x7f09004a;
+        public static final int buy_diamond_word=0x7f09008e;
+        public static final int cancel=0x7f09009a;
+        public static final int challenge=0x7f09005d;
+        public static final int challenge_friend_clain=0x7f0900df;
+        public static final int challenge_nofriend_clain=0x7f0900e0;
+        public static final int challenge_random_clain=0x7f0900de;
+        public static final int challengefriend=0x7f090002;
+        public static final int challengehe=0x7f090013;
+        public static final int challengenumtip=0x7f090063;
+        public static final int challengeyou=0x7f0900b4;
+        public static final int chaoyuele=0x7f0900a9;
+        public static final int confirm=0x7f090099;
+        public static final int day=0x7f09009b;
+        public static final int daybefore=0x7f09009f;
+        public static final int diamondnotenough=0x7f09008f;
+        public static final int distance=0x7f09005a;
+        public static final int empty_battlentmessage_tip=0x7f09006c;
+        public static final int empty_friendmessage_tip=0x7f09006b;
+        public static final int empty_invite_friend=0x7f09008c;
+        public static final int empty_sysmessage_tip=0x7f09006d;
+        public static final int errcode_cancel=0x7f090093;
+        public static final int errcode_deny=0x7f090094;
+        public static final int errcode_success=0x7f090092;
+        public static final int errcode_unknown=0x7f090095;
+        public static final int feedback_tip=0x7f090052;
+        public static final int fight=0x7f0900b0;
+        public static final int finish_single_player=0x7f0900e4;
+        public static final int finishgame=0x7f09007e;
+        public static final int firststep=0x7f0900a8;
+        public static final int friend=0x7f090005;
+        public static final int friend_explain1=0x7f090022;
+        public static final int friend_explain2=0x7f090023;
+        public static final int friend_message_tip=0x7f09006e;
+        public static final int friendcircle=0x7f090056;
+        public static final int friendoulogin=0x7f0900bf;
+        public static final int gain_power=0x7f090076;
+        public static final int gain_powera1=0x7f090077;
+        public static final int getallpower=0x7f090029;
+        public static final int getlocationfail=0x7f090069;
+        public static final int globalrank=0x7f090018;
+        public static final int goldnotenough=0x7f090091;
+        public static final int goodchange=0x7f090090;
+        public static final int guanfang_address=0x7f090031;
+        public static final int haseinviteed=0x7f090088;
+        public static final int hi_top_of_history=0x7f0900ab;
+        public static final int hichaoyuele=0x7f0900ad;
+        public static final int hisgame=0x7f09001a;
+        public static final int hourbefore=0x7f0900a4;
+        public static final int howmuchplayer=0x7f0900aa;
+        public static final int ichat=0x7f090057;
+        public static final int info_no_friend=0x7f0900e2;
+        public static final int info_no_meg=0x7f0900e1;
+        public static final int info_play_with_friend=0x7f0900e3;
+        public static final int invite=0x7f090080;
+        public static final int invite_cant_be_login_account=0x7f09008b;
+        public static final int invite_data_error=0x7f09008a;
+        public static final int invite_friend=0x7f0900c4;
+        public static final int invite_friend_circle_clain=0x7f0900db;
+        public static final int invite_sina_clain=0x7f0900dc;
+        public static final int invite_sina_explain=0x7f090027;
+        public static final int invite_tencent_clain=0x7f0900dd;
+        public static final int inviteclain=0x7f090081;
+        public static final int invitefalse=0x7f090089;
+        public static final int invitefriend=0x7f09002d;
+        public static final int inviteseccess1=0x7f090082;
+        public static final int inviteseccess2=0x7f090083;
+        public static final int inviteseccess3=0x7f090084;
+        public static final int invitesinafriend=0x7f090004;
+        public static final int inviteword1=0x7f09002e;
+        public static final int language=0x7f090039;
+        public static final int loading=0x7f090068;
+        public static final int login=0x7f090000;
+        public static final int login_already=0x7f09007b;
+        public static final int look_all=0x7f090044;
+        public static final int look_boy_only=0x7f090042;
+        public static final int look_girl_only=0x7f090043;
+        public static final int lookinfo=0x7f0900c2;
+        public static final int lookingfor=0x7f090072;
+        public static final int main_bngame=0x7f09000c;
+        public static final int main_friendrank=0x7f090007;
+        public static final int main_globlerank=0x7f09000b;
+        public static final int main_nearby=0x7f09000a;
+        public static final int main_setting=0x7f090010;
+        public static final int main_sysset=0x7f090011;
+        public static final int messagebox=0x7f090096;
+        public static final int mimutebefore=0x7f0900a5;
+        public static final int monthbefore=0x7f0900a1;
+        public static final int msg_battleresult=0x7f09002a;
+        public static final int msg_friend=0x7f090028;
+        public static final int msg_system=0x7f09002b;
+        public static final int mygame=0x7f09001c;
+        public static final int myplaywithwho=0x7f09001d;
+        public static final int nearby_noplayer=0x7f090073;
+        public static final int network_error=0x7f090079;
+        public static final int nextpage=0x7f09005e;
+        public static final int no_friend_tip=0x7f09002f;
+        public static final int nodata_error=0x7f09007c;
+        public static final int noempty=0x7f0900b7;
+        public static final int nofirst=0x7f0900ac;
+        public static final int nologin=0x7f09007f;
+        public static final int nomoredate=0x7f09009d;
+        public static final int nopower=0x7f090066;
+        public static final int norandomfriend=0x7f090065;
+        public static final int oneday=0x7f09009c;
+        public static final int onemonthbefore=0x7f0900a2;
+        public static final int oneweekbefore=0x7f0900a3;
+        public static final int outh_pasttime=0x7f09007d;
+        public static final int percent=0x7f090019;
+        public static final int phone=0x7f090033;
+        public static final int playerinfo=0x7f090012;
+        public static final int playernum=0x7f09005b;
+        public static final int playwithwho=0x7f09001b;
+        public static final int pleaseenter=0x7f0900b8;
+        public static final int pull_to_refresh_from_bottom_pull_label=0x7f0900bc;
+        public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f0900be;
+        public static final int pull_to_refresh_from_bottom_release_label=0x7f0900bd;
+        public static final int pull_to_refresh_pull_label=0x7f0900b9;
+        public static final int pull_to_refresh_refreshing_label=0x7f0900bb;
+        public static final int pull_to_refresh_release_label=0x7f0900ba;
+        public static final int random=0x7f090006;
+        public static final int random_explain1=0x7f090024;
+        public static final int random_explain2=0x7f090026;
+        public static final int random_explain3=0x7f090025;
+        public static final int randomchallenge=0x7f090003;
+        public static final int rank_cleartime=0x7f09001f;
+        public static final int rank_cleartime0=0x7f09001e;
+        public static final int rank_cleartime1=0x7f090020;
+        public static final int rank_cleartime2=0x7f090021;
+        public static final int revenge=0x7f09005c;
+        public static final int revengefaile=0x7f0900b1;
+        public static final int revengesuccess=0x7f0900b2;
+        public static final int rewardtype1=0x7f090085;
+        public static final int rewardtype2=0x7f090086;
+        public static final int rewardtype3=0x7f090087;
+        public static final int score=0x7f0900b3;
+        public static final int sendmsg=0x7f090014;
+        public static final int sendpowerword=0x7f09006a;
+        public static final int set_about=0x7f09003e;
+        public static final int set_language=0x7f09003a;
+        public static final int set_login_status=0x7f090040;
+        public static final int set_more=0x7f09002c;
+        public static final int set_suggest=0x7f09003b;
+        public static final int set_version=0x7f090037;
+        public static final int set_version_value=0x7f090038;
+        public static final int share_faile=0x7f0900e6;
+        public static final int share_success=0x7f0900e5;
+        public static final int shop_buy=0x7f0900e7;
+        public static final int shop_buy_gold=0x7f0900ea;
+        public static final int shop_buy_power=0x7f0900e9;
+        public static final int shop_diamand=0x7f09000f;
+        public static final int shop_gold=0x7f09000e;
+        public static final int shop_pay_what=0x7f0900e8;
+        public static final int shop_power=0x7f09000d;
+        public static final int sinalogin=0x7f0900c0;
+        public static final int singleplaytip=0x7f090064;
+        public static final int startgame=0x7f090001;
+        public static final int suggestion_hint=0x7f090049;
+        public static final int suggestion_word=0x7f090048;
+        public static final int supassyou=0x7f0900b5;
+        public static final int switch_music=0x7f090035;
+        public static final int switch_sendpower=0x7f090034;
+        public static final int switch_sound_effect=0x7f090036;
+        public static final int system_message_tip=0x7f090070;
+        public static final int tab_feedback=0x7f090045;
+        public static final int tab_feedback_success=0x7f090047;
+        public static final int tab_globalrank=0x7f090008;
+        public static final int tab_invite=0x7f090009;
+        public static final int tencentlogin=0x7f0900c1;
+        public static final int testname=0x7f090058;
+        public static final int testnum=0x7f090059;
+        public static final int top_history_0=0x7f0900d7;
+        public static final int top_in_history=0x7f09004c;
+        public static final int topinweek=0x7f090017;
+        public static final int topscore_history=0x7f0900d6;
+        public static final int update=0x7f090078;
+        public static final int update_word=0x7f09008d;
+        public static final int user_lastweekscore=0x7f090074;
+        public static final int user_weekscore=0x7f090075;
+        public static final int userinfo_error=0x7f09007a;
+        public static final int visitor_mode_addfriend=0x7f0900cd;
+        public static final int visitor_mode_addfriend1=0x7f0900d5;
+        public static final int visitor_mode_challenge=0x7f0900c8;
+        public static final int visitor_mode_challenge1=0x7f0900d0;
+        public static final int visitor_mode_challengehe=0x7f0900cc;
+        public static final int visitor_mode_challengehe1=0x7f0900d4;
+        public static final int visitor_mode_finish=0x7f0900c6;
+        public static final int visitor_mode_finish1=0x7f0900ce;
+        public static final int visitor_mode_invite=0x7f0900ca;
+        public static final int visitor_mode_invite1=0x7f0900d2;
+        public static final int visitor_mode_lookinfo=0x7f0900cb;
+        public static final int visitor_mode_lookinfo1=0x7f0900d3;
+        public static final int visitor_mode_nearby=0x7f0900c9;
+        public static final int visitor_mode_nearby1=0x7f0900d1;
+        public static final int visitor_mode_share=0x7f0900c7;
+        public static final int visitor_mode_share1=0x7f0900cf;
+        public static final int visitorlogin=0x7f0900c3;
+        public static final int webtitle=0x7f090098;
+        public static final int weekbefore=0x7f0900a0;
+        public static final int wei=0x7f09009e;
+        public static final int weixin=0x7f090055;
+        public static final int word_sendsuccess=0x7f09003d;
+        public static final int yiyang=0x7f0900b6;
+        public static final int you_top_of_history=0x7f0900a7;
+        public static final int youbeatit=0x7f0900ae;
+        public static final int zanweikaifangtip=0x7f090067;
+        public static final int zhanji=0x7f090016;
     }
+    public static final class style {
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
+
+
+
+
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+
+
+
+
+
+
+        
+         */
+        public static final int AppBaseTheme=0x7f0a0000;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f0a0001;
+        public static final int DialogAnimation=0x7f0a0008;
+        public static final int battlenet_basedialog_animation=0x7f0a0004;
+        public static final int battlenet_basemain_style=0x7f0a0003;
+        public static final int battlenet_homepage_style=0x7f0a0002;
+        public static final int friendou_dialog=0x7f0a0007;
+        /**  <style name="battlenet_basedialog_animation1" parent="@android:style/Animation.Dialog"> 
+ <item name="android:windowEnterAnimation">@anim/main_right_in</item> 
+ <item name="android:windowExitAnimation">@anim/main_left_out</item> 
+ </style> 
+         */
+        public static final int loading_dialog=0x7f0a0005;
+        public static final int loading_prodialog=0x7f0a0006;
+    }
+    public static final class styleable {
+        /** Attributes that can be used with a PullToRefresh.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrAdapterViewBackground com.skyshan.hitMonster2048:ptrAdapterViewBackground}</code></td><td> BELOW HERE ARE DEPRECEATED.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrAnimationStyle com.skyshan.hitMonster2048:ptrAnimationStyle}</code></td><td> Style of Animation should be used displayed when pulling.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawable com.skyshan.hitMonster2048:ptrDrawable}</code></td><td> Drawable to use as Loading Indicator.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableBottom com.skyshan.hitMonster2048:ptrDrawableBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableEnd com.skyshan.hitMonster2048:ptrDrawableEnd}</code></td><td> Drawable to use as Loading Indicator in the Footer View.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableStart com.skyshan.hitMonster2048:ptrDrawableStart}</code></td><td> Drawable to use as Loading Indicator in the Header View.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrDrawableTop com.skyshan.hitMonster2048:ptrDrawableTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderBackground com.skyshan.hitMonster2048:ptrHeaderBackground}</code></td><td> A drawable to use as the background of the Header and Footer Loading Views </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderSubTextColor com.skyshan.hitMonster2048:ptrHeaderSubTextColor}</code></td><td> Text Color of the Header and Footer Loading Views Sub Header </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderTextAppearance com.skyshan.hitMonster2048:ptrHeaderTextAppearance}</code></td><td> Base text color, typeface, size, and style for Header and Footer Loading Views </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderTextColor com.skyshan.hitMonster2048:ptrHeaderTextColor}</code></td><td> Text Color of the Header and Footer Loading Views </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrListViewExtrasEnabled com.skyshan.hitMonster2048:ptrListViewExtrasEnabled}</code></td><td>
+        	Whether PullToRefreshListView has it's extras enabled.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrMode com.skyshan.hitMonster2048:ptrMode}</code></td><td> Mode of Pull-to-Refresh that should be used </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrOverScroll com.skyshan.hitMonster2048:ptrOverScroll}</code></td><td> Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrRefreshableViewBackground com.skyshan.hitMonster2048:ptrRefreshableViewBackground}</code></td><td> A drawable to use as the background of the Refreshable View </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrRotateDrawableWhilePulling com.skyshan.hitMonster2048:ptrRotateDrawableWhilePulling}</code></td><td>
+        	Whether the Drawable should be continually rotated as you pull.</td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrScrollingWhileRefreshingEnabled com.skyshan.hitMonster2048:ptrScrollingWhileRefreshingEnabled}</code></td><td> Whether the user can scroll while the View is Refreshing </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrShowIndicator com.skyshan.hitMonster2048:ptrShowIndicator}</code></td><td> Whether the Indicator overlay(s) should be used </td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrSubHeaderTextAppearance com.skyshan.hitMonster2048:ptrSubHeaderTextAppearance}</code></td><td> Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header </td></tr>
+           </table>
+           @see #PullToRefresh_ptrAdapterViewBackground
+           @see #PullToRefresh_ptrAnimationStyle
+           @see #PullToRefresh_ptrDrawable
+           @see #PullToRefresh_ptrDrawableBottom
+           @see #PullToRefresh_ptrDrawableEnd
+           @see #PullToRefresh_ptrDrawableStart
+           @see #PullToRefresh_ptrDrawableTop
+           @see #PullToRefresh_ptrHeaderBackground
+           @see #PullToRefresh_ptrHeaderSubTextColor
+           @see #PullToRefresh_ptrHeaderTextAppearance
+           @see #PullToRefresh_ptrHeaderTextColor
+           @see #PullToRefresh_ptrListViewExtrasEnabled
+           @see #PullToRefresh_ptrMode
+           @see #PullToRefresh_ptrOverScroll
+           @see #PullToRefresh_ptrRefreshableViewBackground
+           @see #PullToRefresh_ptrRotateDrawableWhilePulling
+           @see #PullToRefresh_ptrScrollingWhileRefreshingEnabled
+           @see #PullToRefresh_ptrShowIndicator
+           @see #PullToRefresh_ptrSubHeaderTextAppearance
+         */
+        public static final int[] PullToRefresh = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
+            0x7f010010, 0x7f010011, 0x7f010012
+        };
+        /**
+          <p>
+          @attr description
+           BELOW HERE ARE DEPRECEATED. DO NOT USE. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrAdapterViewBackground
+        */
+        public static final int PullToRefresh_ptrAdapterViewBackground = 16;
+        /**
+          <p>
+          @attr description
+           Style of Animation should be used displayed when pulling. 
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rotate</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>flip</code></td><td>0x1</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:ptrAnimationStyle
+        */
+        public static final int PullToRefresh_ptrAnimationStyle = 12;
+        /**
+          <p>
+          @attr description
+           Drawable to use as Loading Indicator. Changes both Header and Footer. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrDrawable
+        */
+        public static final int PullToRefresh_ptrDrawable = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.skyshan.hitMonster2048.R.attr#ptrDrawableBottom}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableBottom
+        */
+        public static final int PullToRefresh_ptrDrawableBottom = 18;
+        /**
+          <p>
+          @attr description
+           Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrDrawableEnd
+        */
+        public static final int PullToRefresh_ptrDrawableEnd = 8;
+        /**
+          <p>
+          @attr description
+           Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrDrawableStart
+        */
+        public static final int PullToRefresh_ptrDrawableStart = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.skyshan.hitMonster2048.R.attr#ptrDrawableTop}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:ptrDrawableTop
+        */
+        public static final int PullToRefresh_ptrDrawableTop = 17;
+        /**
+          <p>
+          @attr description
+           A drawable to use as the background of the Header and Footer Loading Views 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrHeaderBackground
+        */
+        public static final int PullToRefresh_ptrHeaderBackground = 1;
+        /**
+          <p>
+          @attr description
+           Text Color of the Header and Footer Loading Views Sub Header 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrHeaderSubTextColor
+        */
+        public static final int PullToRefresh_ptrHeaderSubTextColor = 3;
+        /**
+          <p>
+          @attr description
+           Base text color, typeface, size, and style for Header and Footer Loading Views 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrHeaderTextAppearance
+        */
+        public static final int PullToRefresh_ptrHeaderTextAppearance = 10;
+        /**
+          <p>
+          @attr description
+           Text Color of the Header and Footer Loading Views 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrHeaderTextColor
+        */
+        public static final int PullToRefresh_ptrHeaderTextColor = 2;
+        /**
+          <p>
+          @attr description
+          
+        	Whether PullToRefreshListView has it's extras enabled. This allows the user to be 
+        	able to scroll while refreshing, and behaves better. It acheives this by adding
+        	Header and/or Footer Views to the ListView.
+        
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          <p>This is a private symbol.
+          @attr name android:ptrListViewExtrasEnabled
+        */
+        public static final int PullToRefresh_ptrListViewExtrasEnabled = 14;
+        /**
+          <p>
+          @attr description
+           Mode of Pull-to-Refresh that should be used 
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>disabled</code></td><td>0x0</td><td></td></tr>
+<tr><td><code>pullFromStart</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>pullFromEnd</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>both</code></td><td>0x3</td><td></td></tr>
+<tr><td><code>manualOnly</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>pullDownFromTop</code></td><td>0x1</td><td> These last two are depreacted </td></tr>
+<tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:ptrMode
+        */
+        public static final int PullToRefresh_ptrMode = 4;
+        /**
+          <p>
+          @attr description
+           Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          <p>This is a private symbol.
+          @attr name android:ptrOverScroll
+        */
+        public static final int PullToRefresh_ptrOverScroll = 9;
+        /**
+          <p>
+          @attr description
+           A drawable to use as the background of the Refreshable View 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrRefreshableViewBackground
+        */
+        public static final int PullToRefresh_ptrRefreshableViewBackground = 0;
+        /**
+          <p>
+          @attr description
+          
+        	Whether the Drawable should be continually rotated as you pull. This only
+        	takes effect when using the 'Rotate' Animation Style.
+        
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          <p>This is a private symbol.
+          @attr name android:ptrRotateDrawableWhilePulling
+        */
+        public static final int PullToRefresh_ptrRotateDrawableWhilePulling = 15;
+        /**
+          <p>
+          @attr description
+           Whether the user can scroll while the View is Refreshing 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          <p>This is a private symbol.
+          @attr name android:ptrScrollingWhileRefreshingEnabled
+        */
+        public static final int PullToRefresh_ptrScrollingWhileRefreshingEnabled = 13;
+        /**
+          <p>
+          @attr description
+           Whether the Indicator overlay(s) should be used 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
+          <p>This is a private symbol.
+          @attr name android:ptrShowIndicator
+        */
+        public static final int PullToRefresh_ptrShowIndicator = 5;
+        /**
+          <p>
+          @attr description
+           Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:ptrSubHeaderTextAppearance
+        */
+        public static final int PullToRefresh_ptrSubHeaderTextAppearance = 11;
+    };
 }

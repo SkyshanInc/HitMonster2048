@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="smalltextsize">11sp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+
+</resources>

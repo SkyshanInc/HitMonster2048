@@ -68,6 +68,8 @@ GamePlay.prototype.onCreate = function (isShow,itemList) {
     this.init();
 }
 
+
+
 GamePlay.prototype.init = function()
 {
     
@@ -87,10 +89,15 @@ GamePlay.prototype.init = function()
     this.monsterNode.setScale(0.5);
     this.monsterNode.setAnchorPoint(cc.p(0,0));
     this.monsterNode.getAnimation().play(this.monsAnmation);
-    // this.monsterNode.setPosition(this.monsPos);
-
+   
     this.panMonsterInitPos  = this.panMonster.getPosition();
     this.panMonster.addChild(this.monsterNode);
+
+//
+//    var gurdTLay = PlayLayer.create();
+//    gurdTLay.setScale( 0.5 );
+//    gurdTLay.setPositionY(-300);
+//    this.panFight.addChild(gurdTLay);
 
 
     this.panMonster.runAction(cc.MoveTo.create(120, this.chengbaoNode.getPosition()));
@@ -124,7 +131,14 @@ GamePlay.prototype.init = function()
     
     return true;
 }
-
+GamePlay.prototype.onButtonClick = function (sender, evt) {
+    if (evt != ccui.Widget.TOUCH_ENDED) 
+        return;
+    cc.log("sender.getName():"+sender.getName())
+    if (sender.getName() === "btn_zanting") {
+        this.playOver();
+    }
+}
 // void GameScene::onPause(Ref* pSender)
 // {
 //     PopLayer *poplayer = PopLayer::create(Color4B(0,0,0,180));
@@ -137,8 +151,9 @@ GamePlay.prototype.createCardSprite = function(size)
 {
     //求出单元格的宽和高
     //左右边距 this.cellSpace
+    var width = GetWinSize().width;
     this.cellSpace = 10;
-    this.cellSize = (600 - 3*this.cellSpace - 40)/4;
+    this.cellSize = (width - 3*this.cellSpace - 40)/4;
     
     
     //绘制出4X4的单元格
@@ -431,36 +446,19 @@ GamePlay.prototype.doCheck = function()
 
     if (this.isWin()) {
         
-        // successLayer = LayerColor::create(Color4B(0, 0, 0, 180));
-        // Size winSize = Director::getInstance().getWinSize();
-        // Point centerPos = Point(winSize.width / 2, winSize.height / 2);
-        // var gameOverTitle = Label::createWithSystemFont("YOU WIN","Consolas",80);
-        // gameOverTitle.setPosition(centerPos);
-        // successLayer.addChild(gameOverTitle);
-        
-        // getParent().addChild(successLayer,1);
-        
-        // scheduleOnce(SEL_SCHEDULE(&GameScene::removeSuccessLayer), 2);
+        this.playOver();
         return;
     }
     
     //isGameOver = true;
     if (isGameOver)
     {
-        // log("game over");
-        // UserDefault::getInstance().setItem("history", false);
-
-        // HighScore::getInstance().setScore(score);
-        // GameOverLayer *gameoverLayer = GameOverLayer::create(Color4B(0, 0, 0, 180));
-        // getParent().addChild(gameoverLayer,1);
-        
-        // Director::getInstance().pause();
+        this.playOver();
     }
     else
     {
         if (this.shouldCreateCardNumber()) {
             this.createCardNumber();
-            
             this.saveStatus();
         }
     }
@@ -558,12 +556,6 @@ GamePlay.prototype.pushCardsAction = function(cardOne,cardTwo){
     
     this.cardsActions.push(cardAct);
 }
-
-
-
-
-
-// void GameScene::removeSuccessLayer()
-// {
-//     successLayer.removeFromParent();
-// }
+GamePlay.prototype.playOver= function(){
+    BS_JSB.ToCFun("playOver",this.score);
+}

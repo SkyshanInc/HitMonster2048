@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_bngame"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp" >
+
+    <ImageView
+        android:id="@+id/iv_bngame_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/general_default_game_head"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_bngame_icon"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/iv_bngame_icon"
+        android:gravity="center"
+        android:text="@string/testname"
+        android:textColor="@color/list_item_name_brown"
+        android:textSize="@dimen/list_item_name_big" />
+
+    <TextView
+        android:id="@+id/tv_game_playernum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/distance_time_show_bottom_bg"
+        android:ems="11"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/playernum"
+        android:textColor="@color/bngame_item_friend_num"
+        android:textSize="9sp" />
+
+    <TextView
+        android:id="@+id/tv_game_describe"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_bngame_icon"
+        android:layout_below="@+id/tv_game_name"
+        android:layout_marginRight="20dp"
+        android:paddingRight="20dp"
+        android:layout_toRightOf="@+id/iv_bngame_icon"
+        android:gravity="left|center"
+        android:singleLine="true"
+        android:text="@string/testnum"
+        android:textColor="@color/friend_msg_item_text"
+        android:textSize="@dimen/list_item_discribe_small" />
+
+</RelativeLayout>

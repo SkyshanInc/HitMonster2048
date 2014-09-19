@@ -58,7 +58,14 @@ _p._ctor = function(start, end, v) {
 
 _p = cc.LayerMultiplex.prototype;
 _p._ctor = function(layers) {
-	layers && layers.length ? this.initWithArray(layers) : cc.LayerMultiplex.prototype.init.call(this);
+    if(layers != undefined){
+        if (layers instanceof Array)
+            cc.LayerMultiplex.prototype.initWithArray.call(this, layers);
+        else
+            cc.LayerMultiplex.prototype.initWithArray.call(this, Array.prototype.slice.call(arguments));
+    }else{
+        cc.LayerMultiplex.prototype.init.call(this);
+    }
 };
 
 
@@ -101,14 +108,16 @@ _p._ctor = function(fileImage, capacity) {
 
 _p = cc.SpriteFrame.prototype;
 _p._ctor = function(filename, rect, rotated, offset, originalSize){
-
-    if(filename !== undefined && rect !== undefined ){
-        if(rotated === undefined || offset === undefined || originalSize === undefined){
+    if(originalSize != undefined){
+        if(filename instanceof cc.Texture2D)
+            this.initWithTexture(filename, rect, rotated, offset, originalSize);
+        else
+            this.initWithTexture(filename, rect, rotated, offset, originalSize);
+    }else if(rect != undefined){
+        if(filename instanceof cc.Texture2D)
             this.initWithTexture(filename, rect);
-        }
-        else{
-            this.initWithTexture(filename, rect, rotated, offset, originalSize)
-        }
+        else
+            this.initWithTextureFilename(filename, rect);
     }
 };
 
@@ -134,27 +143,30 @@ _p._ctor = function(gridSize, texture, flipped){
 
 _p = cc.Menu.prototype;
 _p._ctor = function(menuItems) {
-	if((arguments.length > 0) && (arguments[arguments.length-1] == null))
-		cc.log("parameters should not be ending with null in Javascript");
+    if((arguments.length > 0) && (arguments[arguments.length-1] == null))
+        cc.log("parameters should not be ending with null in Javascript");
 
-	var argc = arguments.length, items;
-	if (argc == 0) {
-		items = [];
-	} else if (argc == 1) {
-		if (menuItems instanceof Array) {
-			items = menuItems;
-		}
-		else items = [];
-	}
-	else if (argc > 1) {
-		var items = [];
-		for (var i = 0; i < argc; i++) {
-			if (arguments[i])
-				items.push(arguments[i]);
-		}
-	}
+    var argc = arguments.length,
+        items = [];
+    if (argc == 1) {
+        if (menuItems instanceof Array) {
+            items = menuItems;
+        }
+        else{
+            items.push(arguments[0]);
+        }
+    }
+    else if (argc > 1) {
+        for (var i = 0; i < argc; i++) {
+            if (arguments[i])
+                items.push(arguments[i]);
+        }
+    }
 
-	items && items.length > 0 && this.initWithArray(items);
+    if(items && items.length > 0)
+        this.initWithArray(items);
+    else
+        this.init();
 };
 
 
@@ -259,7 +271,8 @@ _p._ctor = function() {
 			if (arguments[i])
 				this.addSubItem(arguments[i]);
 		}
-		this.setCallback(callback, target);
+        if (callback)
+            target ? this.setCallback(callback, target) : this.setCallback(callback);
 	}
 	else {
 		callback = callback ? callback.bind(target) : null;
@@ -295,6 +308,20 @@ _p._ctor = function(plistFile){
     }
 };
 
+cc.ParticleFire.prototype._ctor  = cc.ParticleFireworks.prototype._ctor
+                                      = cc.ParticleSun.prototype._ctor
+                                      = cc.ParticleGalaxy.prototype._ctor
+                                      = cc.ParticleMeteor.prototype._ctor
+                                      = cc.ParticleFlower.prototype._ctor
+                                      = cc.ParticleSpiral.prototype._ctor
+                                      = cc.ParticleExplosion.prototype._ctor
+                                      = cc.ParticleSmoke.prototype._ctor
+                                      = cc.ParticleRain.prototype._ctor
+                                      = cc.ParticleSnow.prototype._ctor
+                                      = function(){
+                                            this.init();
+                                      };
+
 /************************  PhysicsSprite  *************************/
 _p = cc.PhysicsSprite.prototype;
 _p._ctor = function(fileName, rect){
@@ -322,6 +349,12 @@ _p._ctor = function(fileName, rect){
             this.initWithSpriteFrame(fileName);
         }
     }
+};
+
+/************************  ProgressTimer  *************************/
+_p = cc.ProgressTimer.prototype;
+_p._ctor = function(sprite){
+    sprite && this.initWithSprite(sprite);
 };
 
 /************************  TextFieldTTF  *************************/
@@ -387,6 +420,16 @@ _p = cc.TransitionScene.prototype;
 _p._ctor = function(t, scene){
     if(t !== undefined && scene !== undefined)
         this.initWithDuration(t, scene);
+};
+
+_p = cc.TransitionSceneOriented.prototype;
+_p._ctor = function(t, scene, orientation){
+    orientation != undefined && this.initWithDuration(t, scene, orientation);
+};
+
+_p = cc.TransitionPageTurn.prototype;
+_p._ctor = function(t, scene, backwards){
+    backwards != undefined && this.initWithDuration(t, scene, backwards);
 };
 
 /************************  Actions  *************************/
@@ -617,7 +660,7 @@ cc.JumpBy.prototype._ctor = cc.JumpTo.prototype._ctor = function(duration, posit
 };
 
 cc.BezierBy.prototype._ctor = cc.BezierTo.prototype._ctor = function(t, c) {
-	c && this.initWithDuration(t, c);
+	c !== undefined && this.initWithDuration(t, c);
 };
 
 cc.ScaleTo.prototype._ctor = cc.ScaleBy.prototype._ctor = function(duration, sx, sy) {
@@ -636,8 +679,12 @@ cc.FadeTo.prototype._ctor = function(duration, opacity) {
 	opacity !== undefined && this.initWithDuration(duration, opacity);
 };
 
-cc.FadeIn.prototype._ctor = cc.FadeOut.prototype._ctor = function(duration) {
-	duration !== undefined && this.initWithDuration(duration);
+cc.FadeIn.prototype._ctor = function(duration) {
+	duration !== undefined && this.initWithDuration(duration, 255);
+};
+
+cc.FadeOut.prototype._ctor = function(duration) {
+    duration !== undefined && this.initWithDuration(duration, 0);
 };
 
 cc.TintTo.prototype._ctor = cc.TintBy.prototype._ctor = function(duration, red, green, blue) {
@@ -705,7 +752,7 @@ cc.ActionTween.prototype._ctor = function(duration, key, from, to) {
 
 cc.Animation.prototype._ctor = function(frames, delay, loops) {
 	if (frames === undefined) {
-		this.initWithSpriteFrames(null, 0);
+		this.init();
 	} else {
 		var frame0 = frames[0];
 		delay = delay === undefined ? 0 : delay;
@@ -730,8 +777,10 @@ cc.AtlasNode.prototype._ctor = function(tile, tileWidth, tileHeight, itemsToRend
 };
 
 cc.ClippingNode.prototype._ctor = function(stencil) {
-	stencil = stencil || null;
-	cc.ClippingNode.prototype.init.call(this, stencil);
+    if(stencil != undefined)
+        cc.ClippingNode.prototype.init.call(this, stencil);
+    else
+        cc.ClippingNode.prototype.init.call(this);
 };
 
 cc.DrawNode.prototype._ctor = function() {
@@ -739,16 +788,17 @@ cc.DrawNode.prototype._ctor = function() {
 };
 
 cc.LabelAtlas.prototype._ctor = function(strText, charMapFile, itemWidth, itemHeight, startCharMap) {
-	if (charMapFile) {
-		itemWidth = itemWidth || 0;
-		itemHeight = itemHeight || 0;
-		startCharMap = startCharMap || "";
-		cc.LabelAtlas.prototype.initWithString.call(this, strText, charMapFile, itemWidth, itemHeight, startCharMap);
-	}
+    if(startCharMap != undefined){
+        startCharMap = startCharMap.charCodeAt(0);
+        cc.LabelAtlas.prototype.initWithString.call(this, strText, charMapFile, itemWidth, itemHeight, startCharMap);
+    }else if(charMapFile != undefined){
+        this.initWithString(strText, charMapFile);
+    }
 };
 
 cc.LabelBMFont.prototype._ctor = function(str, fntFile, width, alignment, imageOffset) {
-	if( str && fntFile ) {
+    str = str || "";
+	if( fntFile ) {
 		width = width || 0;
 		alignment = alignment === undefined ? cc.TEXT_ALIGNMENT_LEFT : alignment;
 		imageOffset = imageOffset || cc.p(0, 0);
@@ -773,6 +823,13 @@ cc.LabelTTF.prototype._ctor = function(text, fontName, fontSize, dimensions, hAl
 
 
 /************************  Other classes  *************************/
+
+cc.EventTouch.prototype._ctor = function(touches) {
+    touches && cc.EventTouch.prototype.setTouches.call(this, touches);
+};
+cc.Touch.prototype._ctor = function(x, y, id) {
+    id !== undefined && cc.Touch.prototype.setTouchInfo.call(this, x, y, id);
+};
 
 cc.GLProgram.prototype._ctor = function(vShaderFileName, fShaderFileName) {
 	vShaderFileName && fShaderFileName && cc.GLProgram.prototype.init.call(this, vShaderFileName, fShaderFileName);
@@ -1174,4 +1231,27 @@ cc.Animation.create = function (frames, delay, loops) {
         delay = delay || 0;
         return cc.Animation.createWithSpriteFrames.apply(this, arguments);
     }
+};
+
+cc.Menu.create = function(menuItems) {
+    if((arguments.length > 0) && (arguments[arguments.length-1] == null))
+        cc.log("parameters should not be ending with null in Javascript");
+
+    var argc = arguments.length,
+        items = [];
+    if (argc == 1) {
+        if (menuItems instanceof Array) {
+            items = menuItems;
+        }
+        else{
+            items.push(arguments[0]);
+        }
+    }
+    else if (argc > 1) {
+        for (var i = 0; i < argc; i++) {
+            if (arguments[i])
+                items.push(arguments[i]);
+        }
+    }
+    return cc.Menu._create.apply(null, items);
 };

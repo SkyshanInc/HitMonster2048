@@ -18,6 +18,9 @@
 #include "network/XMLHTTPRequest.h"
 #include "network/jsb_websocket.h"
 #include "network/jsb_socketio.h"
+#include "JSB_AUTO.hpp"
+#include "CoralSdkApi/BnCallBack.h"
+#include "GameManager.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/CCJavascriptJavaBridge.h"
 #endif
@@ -75,6 +78,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     sc->addRegisterCallback(register_jsb_websocket);
 	sc->addRegisterCallback(register_jsb_socketio);
     
+    sc->addRegisterCallback(register_all);
+    
+    
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sc->addRegisterCallback(JavascriptJavaBridge::_js_register);
     #endif
@@ -93,6 +99,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 	searchPaths.push_back("res/font/");
 	searchPaths.push_back("res/music/");
     FileUtils::getInstance()->setSearchPaths(searchPaths);
+    
+    
+    
+    
+    
+    BnCallBack *pCallback = new BnCallBack();
+    pCallback->SetSDKCallback(pCallback);
+    deGameManager->start();
     
     ScriptEngineProtocol *engine = ScriptingCore::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
@@ -120,7 +134,7 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 }
-void ReportError(const char* erro){
-
-	    
-}
+//void ReportError(const char* erro){
+//
+//	    
+//}

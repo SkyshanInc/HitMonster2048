@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_challenge_friend"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp" >
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/selected_player_press_bg_effect" 
+        android:visibility="gone"/>
+
+    <com.friendou.bn.widget.number.NumberView
+        android:id="@+id/tv_friend_id"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:gravity="center" />
+
+    <com.friendou.bn.widget.imageview.RoundedCornersImage
+        android:id="@+id/iv_friend_avater"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/tv_friend_id"
+        android:background="@drawable/general_default_head"
+        android:gravity="center"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/tv_friend_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/iv_pkicon"
+        android:layout_toRightOf="@+id/iv_friend_avater"
+        android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:text="@string/testname"
+        android:textColor="@color/list_item_name_brown"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_friend_score"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tv_friend_name"
+        android:layout_toLeftOf="@+id/iv_pkicon"
+        android:layout_toRightOf="@+id/iv_friend_avater" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/nv_friend_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_pkicon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:padding="2dp"
+        android:src="@drawable/not_selected_player_icon" />
+
+</RelativeLayout>

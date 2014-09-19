@@ -991,6 +991,9 @@ void Layout::doLayout()
     {
         return;
     }
+    
+    sortAllChildren();
+    
     LayoutManager* executant = this->createLayoutManager();
     
     if (executant)
@@ -1104,7 +1107,7 @@ Vec2 Layout::getWorldCenterPoint(Widget* widget)const
     return widget->convertToWorldSpace(Vec2(widgetSize.width/2, widgetSize.height/2));
 }
 
-float Layout::caculateNearestDistance(Widget* baseWidget)
+float Layout::calculateNearestDistance(Widget* baseWidget)
 {
     float distance = FLT_MAX;
     
@@ -1114,7 +1117,7 @@ float Layout::caculateNearestDistance(Widget* baseWidget)
         Layout *layout = dynamic_cast<Layout*>(node);
         int length;
         if (layout) {
-            length = layout->caculateNearestDistance(baseWidget);
+            length = layout->calculateNearestDistance(baseWidget);
         }
         else
         {
@@ -1137,7 +1140,7 @@ float Layout::caculateNearestDistance(Widget* baseWidget)
     return distance;
 }
     
-float Layout::caculateFarestDistance(cocos2d::ui::Widget *baseWidget)
+float Layout::calculateFarthestDistance(cocos2d::ui::Widget *baseWidget)
 {
     float distance = -FLT_MAX;
     
@@ -1147,7 +1150,7 @@ float Layout::caculateFarestDistance(cocos2d::ui::Widget *baseWidget)
         Layout *layout = dynamic_cast<Layout*>(node);
         int length;
         if (layout) {
-            length = layout->caculateFarestDistance(baseWidget);
+            length = layout->calculateFarthestDistance(baseWidget);
         }
         else
         {
@@ -1194,7 +1197,8 @@ int Layout::findNearestChildWidgetIndex(FocusDirection direction, Widget* baseWi
     
     float distance = FLT_MAX;
     int found = 0;
-    if (direction == FocusDirection::LEFT || direction == FocusDirection::RIGHT)
+    if (direction == FocusDirection::LEFT || direction == FocusDirection::RIGHT ||
+        direction == FocusDirection::DOWN || direction == FocusDirection::UP)
     {
         Vec2 widgetPosition =  this->getWorldCenterPoint(baseWidget);
         while (index <  count)
@@ -1207,7 +1211,7 @@ int Layout::findNearestChildWidgetIndex(FocusDirection direction, Widget* baseWi
                 Layout *layout = dynamic_cast<Layout*>(w);
                 if (layout)
                 {
-                    length = layout->caculateNearestDistance(baseWidget);
+                    length = layout->calculateNearestDistance(baseWidget);
                 }
                 else
                 {
@@ -1225,44 +1229,12 @@ int Layout::findNearestChildWidgetIndex(FocusDirection direction, Widget* baseWi
         return  found;
     }
     
-    index = 0;
-    found = 0;
-    distance = FLT_MAX;
-    if (direction == FocusDirection::DOWN || direction == FocusDirection::UP) {
-        Vec2 widgetPosition = this->getWorldCenterPoint(baseWidget);
-        while (index < count)
-        {
-            Widget *w = dynamic_cast<Widget*>(this->getChildren().at(index));
-            if (w && w->isFocusEnabled())
-            {
-                Vec2 wPosition = this->getWorldCenterPoint(w);
-                float length;
-                Layout *layout = dynamic_cast<Layout*>(w);
-                if (layout)
-                {
-                    length = layout->caculateNearestDistance(baseWidget);
-                }
-                else
-                {
-                    length = (wPosition - widgetPosition).getLength();
-                }
-                
-                if (length < distance)
-                {
-                    found = index;
-                    distance = length;
-                }
-
-            }
-            index++;
-        }
-        return found;
-    }
+    
     CCASSERT(0, "invalid focus direction!!!");
     return 0;
 }
     
-int Layout::findFarestChildWidgetIndex(FocusDirection direction, cocos2d::ui::Widget *baseWidget)
+int Layout::findFarthestChildWidgetIndex(FocusDirection direction, cocos2d::ui::Widget *baseWidget)
 {
     if (baseWidget == nullptr || baseWidget == this)
     {
@@ -1273,7 +1245,8 @@ int Layout::findFarestChildWidgetIndex(FocusDirection direction, cocos2d::ui::Wi
     
     float distance = -FLT_MAX;
     int found = 0;
-    if (direction == FocusDirection::LEFT || direction == FocusDirection::RIGHT)
+    if (direction == FocusDirection::LEFT || direction == FocusDirection::RIGHT
+        || direction == FocusDirection::DOWN || direction == FocusDirection::UP)
     {
         Vec2 widgetPosition =  this->getWorldCenterPoint(baseWidget);
         while (index <  count)
@@ -1286,7 +1259,7 @@ int Layout::findFarestChildWidgetIndex(FocusDirection direction, cocos2d::ui::Wi
                 Layout *layout = dynamic_cast<Layout*>(w);
                 if (layout)
                 {
-                    length = layout->caculateFarestDistance(baseWidget);
+                    length = layout->calculateFarthestDistance(baseWidget);
                 }
                 else
                 {
@@ -1304,39 +1277,6 @@ int Layout::findFarestChildWidgetIndex(FocusDirection direction, cocos2d::ui::Wi
         return  found;
     }
     
-    index = 0;
-    found = 0;
-    distance = -FLT_MAX;
-    if (direction == FocusDirection::DOWN || direction == FocusDirection::UP) {
-        Vec2 widgetPosition = this->getWorldCenterPoint(baseWidget);
-        while (index < count)
-        {
-            Widget *w = dynamic_cast<Widget*>(this->getChildren().at(index));
-            if (w && w->isFocusEnabled())
-            {
-                Vec2 wPosition = this->getWorldCenterPoint(w);
-                float length;
-                Layout *layout = dynamic_cast<Layout*>(w);
-                if (layout)
-                {
-                    length = layout->caculateFarestDistance(baseWidget);
-                }
-                else
-                {
-                    length = (wPosition - widgetPosition).getLength();
-                }
-                
-                if (length > distance)
-                {
-                    found = index;
-                    distance = length;
-                }
-                
-            }
-            index++;
-        }
-        return found;
-    }
     CCASSERT(0, "invalid focus direction!!!");
     return 0;
 }
@@ -1368,6 +1308,9 @@ Widget *Layout::findFirstNonLayoutWidget()
         Layout* layout = dynamic_cast<Layout*>(node);
         if (layout) {
             widget = layout->findFirstNonLayoutWidget();
+            if (widget != nullptr) {
+                return widget;
+            }
         }
         else{
             Widget *w = dynamic_cast<Widget*>(node);
@@ -1397,11 +1340,11 @@ void Layout::findProperSearchingFunctor(FocusDirection dir, Widget* baseWidget)
             onPassFocusToChild = CC_CALLBACK_2(Layout::findNearestChildWidgetIndex, this);
         }
         else{
-            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarestChildWidgetIndex, this);
+            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarthestChildWidgetIndex, this);
         }
     }else if(dir == FocusDirection::RIGHT){
         if (previousWidgetPosition.x > widgetPosition.x) {
-            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarestChildWidgetIndex, this);
+            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarthestChildWidgetIndex, this);
         }
         else{
             onPassFocusToChild = CC_CALLBACK_2(Layout::findNearestChildWidgetIndex, this);
@@ -1410,13 +1353,13 @@ void Layout::findProperSearchingFunctor(FocusDirection dir, Widget* baseWidget)
         if (previousWidgetPosition.y > widgetPosition.y) {
             onPassFocusToChild = CC_CALLBACK_2(Layout::findNearestChildWidgetIndex, this);
         }else{
-            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarestChildWidgetIndex, this);
+            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarthestChildWidgetIndex, this);
         }
     }else if(dir == FocusDirection::UP){
         if (previousWidgetPosition.y < widgetPosition.y) {
             onPassFocusToChild = CC_CALLBACK_2(Layout::findNearestChildWidgetIndex, this);
         }else{
-            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarestChildWidgetIndex, this);
+            onPassFocusToChild = CC_CALLBACK_2(Layout::findFarthestChildWidgetIndex, this);
         }
     }else{
         CCASSERT(0, "invalid direction!");
@@ -1708,7 +1651,7 @@ bool  Layout::isLastWidgetInContainer(Widget* widget, FocusDirection direction)c
         if (direction == FocusDirection::LEFT) {
             if (index == 0)
             {
-                return true * isLastWidgetInContainer(parent, direction);
+                return isLastWidgetInContainer(parent, direction);
             }
             else
             {
@@ -1718,7 +1661,7 @@ bool  Layout::isLastWidgetInContainer(Widget* widget, FocusDirection direction)c
         if (direction == FocusDirection::RIGHT) {
             if (index == container.size()-1)
             {
-                return true * isLastWidgetInContainer(parent, direction);
+                return isLastWidgetInContainer(parent, direction);
             }
             else
             {
@@ -1741,7 +1684,7 @@ bool  Layout::isLastWidgetInContainer(Widget* widget, FocusDirection direction)c
         {
             if (index == 0)
             {
-                return true * isLastWidgetInContainer(parent, direction);
+                return isLastWidgetInContainer(parent, direction);
                 
             }
             else
@@ -1753,7 +1696,7 @@ bool  Layout::isLastWidgetInContainer(Widget* widget, FocusDirection direction)c
         {
             if (index == container.size() - 1)
             {
-                return true * isLastWidgetInContainer(parent, direction);
+                return isLastWidgetInContainer(parent, direction);
             }
             else
             {

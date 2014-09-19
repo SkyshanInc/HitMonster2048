@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <RelativeLayout
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/general_prompt_box" >
+
+        <LinearLayout
+            android:id="@+id/ll_bnresult_show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/bnresult_show_he"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <com.friendou.bn.widget.imageview.RoundedCornersImage
+                    android:id="@+id/iv_hisavatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/general_default_head"
+                    android:padding="2dp" />
+
+                <TextView
+                    android:id="@+id/tv_hisname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/iv_hisavatar"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/iv_hisresult"
+                    android:layout_toRightOf="@+id/iv_hisavatar"
+                    android:singleLine="true"
+                    android:text="流刃"
+                    android:textColor="@color/battlemsgtip_user_name"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.friendou.bn.widget.number.NumberView
+                    android:id="@+id/tv_hisscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@+id/iv_hisavatar"
+                    android:layout_below="@+id/tv_hisname"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toLeftOf="@+id/iv_hisresult"
+                    android:layout_toRightOf="@+id/iv_hisavatar" />
+
+                <ImageView
+                    android:id="@+id/iv_hisresult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_cut_line_un"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/general_cut_line" >
+            </ImageView>
+
+            <RelativeLayout
+                android:id="@+id/bnresult_show_me"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@color/nearby_tips_button_back" >
+
+                <com.friendou.bn.widget.imageview.RoundedCornersImage
+                    android:id="@+id/iv_myavatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/general_default_head"
+                    android:padding="2dp" />
+
+                <TextView
+                    android:id="@+id/tv_myname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/iv_myavatar"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/iv_myresult"
+                    android:layout_toRightOf="@+id/iv_myavatar"
+                    android:singleLine="true"
+                    android:text="@string/testname"
+                    android:textColor="@color/battlemsgtip_user_name"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.friendou.bn.widget.number.NumberView
+                    android:id="@+id/tv_myscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@+id/iv_myavatar"
+                    android:layout_below="@+id/tv_myname"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toLeftOf="@+id/iv_myresult"
+                    android:layout_toRightOf="@+id/iv_myavatar" />
+
+                <ImageView
+                    android:id="@+id/iv_myresult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_bnmeg_vs_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ll_bnresult_show"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/ll_bnresult_show"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/vs_icon" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/battlefield_situation_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iv_content_bg_un"
+        android:layout_alignRight="@id/iv_content_bg_un"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/title_text_battlefield_situation_check" />
+
+    <ImageView
+        android:id="@+id/btn_relook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_content_bg_un"
+        android:background="@drawable/btn_green" />
+
+    <ImageView
+        android:id="@+id/btn_relook_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_relook"
+        android:layout_alignTop="@+id/btn_relook"
+        android:src="@drawable/general_text_playback" />
+
+    <ImageView
+        android:id="@+id/btn_dealresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_content_bg_un"
+        android:layout_toRightOf="@+id/btn_relook"
+        android:background="@drawable/btn_yellow" />
+
+    <ImageView
+        android:id="@+id/btn_dealresult_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_dealresult"
+        android:layout_alignTop="@+id/btn_dealresult"
+        android:src="@drawable/general_text_revenge" />
+
+    <ImageButton
+        android:id="@+id/ib_bnresulttip_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_close_press" />
+
+    <TextView
+        android:id="@+id/center_un"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

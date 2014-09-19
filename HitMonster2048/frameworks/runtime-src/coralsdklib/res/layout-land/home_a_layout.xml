@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/battlenet_base_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <include
+        android:id="@+id/battlenet_base_title_contain"
+        layout="@layout/home_power_tab" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/battlenet_base_title_contain"
+        android:layout_centerInParent="true" >
+
+        <FrameLayout
+            android:id="@+id/mainview_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mainview_content"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/mainview_content" >
+
+            <ImageView
+                android:id="@+id/btn_challenge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btn_challenge_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/general_text_multiplayer_game"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_turntorank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mainview_content"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/mainview_content" >
+
+            <ImageView
+                android:id="@+id/btn_turntorank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/btn_turntorank_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/general_text_return_ranking_list"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_startgame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mainview_content"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/mainview_content" >
+
+            <ImageView
+                android:id="@+id/btn_startgame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_yellow"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btn_startgame_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/btn_startgame"
+                android:layout_alignRight="@id/btn_startgame"
+                android:layout_centerInParent="true"
+                android:src="@drawable/general_text_singleplayer_game"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

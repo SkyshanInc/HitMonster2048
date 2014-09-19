@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
+    android:gravity="center" >
+
+    <include
+        android:id="@+id/battlenet_base_title_contain"
+        layout="@layout/home_power_tab" />
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/tv_msg_retrun"
+        android:layout_below="@+id/battlenet_base_title_contain"
+        android:layout_marginLeft="@dimen/home_content_magin"
+        android:layout_marginRight="@dimen/home_content_magin"
+        android:background="@drawable/general_bottom_bg" />
+
+    <ImageView
+        android:id="@+id/iv_title_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/general_title_bg2"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/ll_tab_msg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_title_bg_un"
+        android:layout_alignLeft="@+id/iv_title_bg_un"
+        android:layout_alignRight="@+id/iv_title_bg_un"
+        android:layout_alignTop="@+id/iv_title_bg_un"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/tv_friend_msg_press_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-8dp"
+            android:layout_weight="1"
+            android:background="@drawable/meg_list_switch_button_press"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_friend_mail_press"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/tv_battleresult_msg_press_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-8dp"
+            android:layout_marginRight="-8dp"
+            android:layout_weight="1"
+            android:background="@drawable/meg_list_switch_button_press"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_battlefield_situation_press" />
+
+        <ImageView
+            android:id="@+id/tv_system_msg_press_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-8dp"
+            android:layout_marginRight="-5dp"
+            android:layout_weight="1"
+            android:background="@drawable/meg_list_switch_button_press"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_system_mail_press"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ll_tab_msg"
+        android:layout_alignLeft="@+id/ll_tab_msg"
+        android:layout_alignRight="@+id/ll_tab_msg"
+        android:layout_alignTop="@+id/ll_tab_msg"
+        android:layout_marginBottom="-5dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/btn_friend_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_friend_mail_normal" />
+
+        <ImageView
+            android:id="@+id/iv_cutline_un"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/general_title_cut_line" />
+
+        <ImageView
+            android:id="@+id/btn_battleresult_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_battlefield_situation" />
+
+        <ImageView
+            android:id="@+id/iv_cutline_un1"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/general_title_cut_line" />
+
+        <ImageView
+            android:id="@+id/btn_system_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:src="@drawable/title_text_system_mail_normal" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title_tips"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/iv_title_bg_un"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ranking_list_title_prompt_bg"
+        android:gravity="center"
+        android:text="@string/battlent_message_tip"
+        android:textColor="@color/general_cleartime_text"
+        android:textSize="@dimen/explain" />
+
+    <FrameLayout
+        android:id="@+id/vp_msg_contain"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_dilan_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/tv_title_tips"
+        android:layout_gravity="center"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" >
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_unread_friendmsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:background="@drawable/prompt_bg"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_dilan_un"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_msg_retrun"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ImageView
+        android:id="@+id/tv_msg_retrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_green" />
+
+    <ImageView
+        android:id="@+id/tv_msg_retrun_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_msg_retrun"
+        android:layout_alignTop="@+id/tv_msg_retrun"
+        android:src="@drawable/general_text_return_ranking_list" />
+
+    <ImageView
+        android:id="@+id/tv_getallpower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/tv_msg_retrun"
+        android:background="@drawable/btn_yellow" />
+
+    <ImageView
+        android:id="@+id/tv_getallpower_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_getallpower"
+        android:layout_alignTop="@+id/tv_getallpower"
+        android:src="@drawable/general_text_all_take" />
+
+</RelativeLayout>

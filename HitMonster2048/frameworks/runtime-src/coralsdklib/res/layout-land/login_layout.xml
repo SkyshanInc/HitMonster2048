@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/battlenet_enter_bg"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/battlenet_icon" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_loginbyfunchat_press"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btn_sinalogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_login"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_loginbysina_press"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btn_tencentlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sinalogin"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_loginbytencent_press"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btn_visitorlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_tencentlogin"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_loginbyfunchat_press"
+        android:gravity="center" />
+
+</RelativeLayout>

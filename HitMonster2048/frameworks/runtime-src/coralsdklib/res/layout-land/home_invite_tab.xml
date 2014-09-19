@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_invite"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:background="@color/transparent"
+    android:gravity="center_vertical" >
+
+    <ImageView
+        android:id="@+id/btn_invite_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rank_invite_friendou_button_normal" />
+
+    <ImageView
+        android:id="@+id/iv_invite_avater"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/btn_invite_icon"
+        android:layout_toRightOf="@+id/btn_invite_icon"
+        android:background="@drawable/add_friends_default_head"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_invite_score"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/iv_invite_avater"
+        android:gravity="center"
+        android:text="@string/inviteword1"
+        android:textColor="@color/item_invite_clain"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

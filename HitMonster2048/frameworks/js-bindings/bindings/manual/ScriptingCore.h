@@ -37,6 +37,8 @@
 #include <assert.h>
 #include <memory>
 
+#define ENGINE_VERSION "Cocos2d-JS v3.0 RC3"
+
 void js_log(const char *format, ...);
 
 typedef void (*sc_register_sth)(JSContext* cx, JSObject* global);
@@ -144,6 +146,7 @@ public:
      */
     void cleanScript(const char *path);
     
+    std::unordered_map<std::string, JSScript*> &getFileScprite();
      /**
      * will clean all script object
      */
@@ -229,7 +232,7 @@ public:
 	 * enable the debug environment
 	 */
 	void debugProcessInput(const std::string& str);
-	void enableDebugger();
+	void enableDebugger(unsigned int port = 5086);
 	JSObject* getDebugGlobal() { return _debugGlobal; }
     JSObject* getGlobalObject() { return _global; }
 

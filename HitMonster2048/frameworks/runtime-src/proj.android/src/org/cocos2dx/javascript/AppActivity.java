@@ -29,14 +29,37 @@ package org.cocos2dx.javascript;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
+import com.friendou.Interface.coralsdk;
+
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.KeyEvent;
+
 
 public class AppActivity extends Cocos2dxActivity {
+	Cocos2dxGLSurfaceView mCocos2dxGLSurfaceView = null;
 	@Override
     public Cocos2dxGLSurfaceView onCreateView() {
-        Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
+		mCocos2dxGLSurfaceView = new Cocos2dxGLSurfaceView(this);
         // TestCpp should create stencil buffer
-        glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
+		mCocos2dxGLSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
 
-        return glSurfaceView;
+        return mCocos2dxGLSurfaceView;
+    }
+	protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); StrictMode.setThreadPolicy(policy);
+        }
+        coralsdk.init(this);
+    }
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if(mCocos2dxGLSurfaceView != null)
+        {
+            mCocos2dxGLSurfaceView.onKeyDown(keyCode, event);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

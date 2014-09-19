@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_finish"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="7dp"
+    android:paddingTop="7dp" >
+
+    <ImageView
+        android:id="@+id/finish_id"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/result_show_player_show_second_icon" />
+
+    <com.friendou.bn.widget.imageview.RoundedCornersImage
+        android:id="@+id/iv_finish_avater"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/finish_id"
+        android:background="@drawable/general_default_head"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_finish_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_finish_avater"
+        android:layout_toRightOf="@+id/iv_finish_avater"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/testname"
+        android:textColor="@color/bngame_name"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:id="@+id/finish_framelayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_finish_avater"
+        android:layout_toRightOf="@+id/iv_finish_avater" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/finish_score_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_cutline_un"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/iv_finish_avater"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/general_cut_line"
+        android:visibility="gone" />
+
+</RelativeLayout>

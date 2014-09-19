@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/general_prompt_box"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/btn_look_boy_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_nearby_item_press"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/tv_look_boy_only"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/iv_sex_icon_un"
+                android:gravity="center"
+                android:src="@drawable/general_text_check_boy" />
+
+            <ImageView
+                android:id="@+id/iv_sex_icon_un"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/personal_information_boy" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_look_girl_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_nearby_item_press"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/tv_look_girl_only"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/iv_sex_icon_un"
+                android:gravity="center"
+                android:src="@drawable/general_text_check_girl" />
+
+            <ImageView
+                android:id="@+id/iv_sex_icon_un"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/personal_information_girl" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_look_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_nearby_item_press"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/tv_look_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/iv_sex_icon_un"
+                android:gravity="center"
+                android:src="@drawable/general_text_check_all" />
+
+            <ImageView
+                android:id="@+id/iv_sex_icon_un"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/personal_information_person" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_settinf_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_close_press" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_content_bg_un"
+        android:layout_alignLeft="@id/iv_content_bg_un"
+        android:layout_alignRight="@id/iv_content_bg_un"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/title_text_screen" />
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/info_gallery_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personal_information_page_content_show" >
+
+    <TextView
+        android:id="@+id/tv_tab_hisgame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/personal_information_title_bottom_bg"
+        android:gravity="center"
+        android:text="@string/hisgame"
+        android:textColor="@color/info_user_playwith_name"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <com.friendou.bn.widget.BouncyHScrollView
+        android:id="@+id/hs_hisgame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_tab_hisgame"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/ll_hisgame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </com.friendou.bn.widget.BouncyHScrollView>
+
+    <TextView
+        android:id="@+id/tv_no_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hs_hisgame"
+        android:layout_alignLeft="@+id/hs_hisgame"
+        android:layout_alignRight="@+id/hs_hisgame"
+        android:layout_alignTop="@+id/hs_hisgame"
+        android:gravity="center"
+        android:text="@string/info_no_meg"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_hisfriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hs_hisgame"
+        android:background="@drawable/personal_information_title_bottom_bg"
+        android:gravity="center"
+        android:text="@string/playwithwho"
+        android:textColor="@color/info_user_playwith_name"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <com.friendou.bn.widget.BouncyHScrollView
+        android:id="@+id/hs_hisfriend"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_hisfriend"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/ll_hisfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </com.friendou.bn.widget.BouncyHScrollView>
+
+    <TextView
+        android:id="@+id/tv_no_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hs_hisfriend"
+        android:layout_alignLeft="@+id/hs_hisfriend"
+        android:layout_alignRight="@+id/hs_hisfriend"
+        android:layout_alignTop="@+id/hs_hisfriend"
+        android:gravity="center"
+        android:text="@string/info_no_friend"
+        android:textSize="14sp" />
+
+</RelativeLayout>

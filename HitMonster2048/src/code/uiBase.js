@@ -75,10 +75,10 @@ uiBase.prototype.setupUIMode = function () {
             this.mWinNode.addTouchEventListener(this.touchEvent, this);
 			this.mRoot.setTouchEnabled(false);
         }
-//        else {
-//            this.mRoot.setTouchEnabled(true);
-//            this.mRoot.addTouchEventListener(this.touchEvent, this);
-//        }
+       else {
+           this.mRoot.setTouchEnabled(true);
+           this.mRoot.addTouchEventListener(this.touchEvent, this);
+       }
     }
     else {
         this.mRoot.setTouchEnabled(true);

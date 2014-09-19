@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/finish_top_score_backiv"
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        android:background="@drawable/send_share_line_effect" />
+
+    <RelativeLayout
+        android:id="@+id/rel_finish"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/btn_finish_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_green" />
+
+        <ImageView
+            android:id="@+id/btn_finish_return_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_finish_return"
+            android:layout_alignTop="@+id/btn_finish_return"
+            android:background="@drawable/general_text_return_ranking_list" />
+
+        <ImageView
+            android:id="@+id/btn_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_yellow" />
+
+        <ImageView
+            android:id="@+id/btn_replay_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_replay"
+            android:layout_alignTop="@+id/btn_replay"
+            android:background="@drawable/general_text_restart" />
+
+        <include
+            android:id="@+id/finish_score_show"
+            layout="@layout/finish_tab" />
+    </RelativeLayout>
+
+</FrameLayout>

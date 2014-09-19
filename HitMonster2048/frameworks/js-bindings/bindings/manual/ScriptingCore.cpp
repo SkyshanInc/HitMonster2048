@@ -86,7 +86,7 @@ static int clientSocket = -1;
 static uint32_t s_nestedLoopLevel = 0;
 
 // server entry point for the bg thread
-static void serverEntryPoint(void);
+static void serverEntryPoint(unsigned int port);
 
 js_proxy_t *_native_js_global_ht = NULL;
 js_proxy_t *_js_native_global_ht = NULL;
@@ -282,17 +282,17 @@ bool JSBCore_platform(JSContext *cx, uint32_t argc, jsval *vp)
         return false;
     }
 
-    JSString * platform;
+    Application::Platform platform;
 
     // config.deviceType: Device Type
     // 'mobile' for any kind of mobile devices, 'desktop' for PCs, 'browser' for Web Browsers
     // #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
     //     platform = JS_InternString(_cx, "desktop");
     // #else
-    platform = JS_InternString(cx, "mobile");
+    platform = Application::getInstance()->getTargetPlatform();
     // #endif
 
-    jsval ret = STRING_TO_JSVAL(platform);
+    jsval ret = INT_TO_JSVAL((int)platform);
 
     JS_SET_RVAL(cx, vp, ret);
 
@@ -642,6 +642,10 @@ void ScriptingCore::cleanScript(const char *path)
 
 }
 
+std::unordered_map<std::string, JSScript*>  &ScriptingCore::getFileScprite()
+{
+    return filename_script;
+}
 void ScriptingCore::cleanAllScript()
 {
     filename_script.clear();
@@ -1486,7 +1490,7 @@ static void clearBuffers() {
     }
 }
 
-static void serverEntryPoint(void)
+static void serverEntryPoint(unsigned int port)
 {
     // start a server, accept the connection and keep reading data from it
     struct addrinfo hints, *result = nullptr, *rp = nullptr;
@@ -1497,7 +1501,7 @@ static void serverEntryPoint(void)
     hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
     
     std::stringstream portstr;
-    portstr << JSB_DEBUGGER_PORT;
+    portstr << port;
     
     int err = 0;
     
@@ -1591,7 +1595,7 @@ bool JSBDebug_BufferWrite(JSContext* cx, unsigned argc, jsval* vp)
     return true;
 }
 
-void ScriptingCore::enableDebugger()
+void ScriptingCore::enableDebugger(unsigned int port)
 {
     if (_debugGlobal == NULL)
     {
@@ -1624,7 +1628,7 @@ void ScriptingCore::enableDebugger()
         }
         
         // start bg thread
-        auto t = std::thread(&serverEntryPoint);
+        auto t = std::thread(&serverEntryPoint,port);
         t.detach();
 
         Scheduler* scheduler = Director::getInstance()->getScheduler();

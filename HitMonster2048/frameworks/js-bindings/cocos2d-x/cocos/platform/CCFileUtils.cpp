@@ -31,6 +31,7 @@
 #include "base/ccMacros.h"
 #include "base/CCDirector.h"
 #include "platform/CCSAXParser.h"
+#include "base/ccUtils.h"
 
 #include "tinyxml2.h"
 #include "unzip.h"
@@ -261,7 +262,7 @@ public:
                 else if (sName == "integer")
                     _curArray->push_back(Value(atoi(_curValue.c_str())));
                 else
-                    _curArray->push_back(Value(atof(_curValue.c_str())));
+                    _curArray->push_back(Value(utils::atof(_curValue.c_str())));
             }
             else if (SAX_DICT == curState)
             {
@@ -270,7 +271,7 @@ public:
                 else if (sName == "integer")
                     (*_curDict)[_curKey] = Value(atoi(_curValue.c_str()));
                 else
-                    (*_curDict)[_curKey] = Value(atof(_curValue.c_str()));
+                    (*_curDict)[_curKey] = Value(utils::atof(_curValue.c_str()));
             }
             
             _curValue.clear();
@@ -769,13 +770,17 @@ void FileUtils::setSearchResolutionsOrder(const std::vector<std::string>& search
     }
 }
 
-void FileUtils::addSearchResolutionsOrder(const std::string &order)
+void FileUtils::addSearchResolutionsOrder(const std::string &order,const bool front)
 {
     std::string resOrder = order;
     if (!resOrder.empty() && resOrder[resOrder.length()-1] != '/')
         resOrder.append("/");
-    
-    _searchResolutionsOrderArray.push_back(resOrder);
+
+    if (front) {
+        _searchResolutionsOrderArray.insert(_searchResolutionsOrderArray.begin(), resOrder);
+    } else {
+        _searchResolutionsOrderArray.push_back(resOrder);
+    }
 }
 
 const std::vector<std::string>& FileUtils::getSearchResolutionsOrder()
@@ -822,7 +827,7 @@ void FileUtils::setSearchPaths(const std::vector<std::string>& searchPaths)
     }
 }
 
-void FileUtils::addSearchPath(const std::string &searchpath)
+void FileUtils::addSearchPath(const std::string &searchpath,const bool front)
 {
     std::string prefix;
     if (!isAbsolutePath(searchpath))
@@ -833,7 +838,11 @@ void FileUtils::addSearchPath(const std::string &searchpath)
     {
         path += "/";
     }
-    _searchPathArray.push_back(path);
+    if (front) {
+        _searchPathArray.insert(_searchPathArray.begin(), path);
+    } else {
+        _searchPathArray.push_back(path);
+    }
 }
 
 void FileUtils::setFilenameLookupDictionary(const ValueMap& filenameLookupDict)
@@ -915,31 +924,6 @@ std::string FileUtils::searchFullPathForFilename(const std::string& filename) co
     return "";
 }
 
-bool FileUtils::writeStringToFile(const std::string& content, const std::string& fullpath)
-{
-    size_t pos = fullpath.find_last_of("\\/");
-    if (pos == std::string::npos)
-    {
-        return false;
-    }
-    std::string dir = fullpath.substr(0, pos);
-    
-    if (!isFileExist(dir))
-    {
-        createDirectories(dir);
-    }
-    
-    FILE* fp = fopen(fullpath.c_str(), "wb");
-    if (nullptr == fp)
-    {
-        return false;
-    }
-    
-    fwrite(content.data(), content.length(), 1, fp);
-    fclose(fp);
-    return true;
-}
-
 bool FileUtils::isFileExist(const std::string& filename) const
 {
     if (isAbsolutePath(filename))
@@ -961,14 +945,14 @@ bool FileUtils::isAbsolutePath(const std::string& path) const
     return (path[0] == '/');
 }
 
-bool FileUtils::isDirectoryExist(const std::string& dirPath)
+bool FileUtils::isDirectoryExistInternal(const std::string& dirPath) const
 {
-    CCASSERT(!dirPath.empty(), "Invalid path");
-    
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 	struct stat st;
 	if (stat(dirPath.c_str(), &st) == 0)
-		return S_ISDIR(st.st_mode);
+    {
+        return S_ISDIR(st.st_mode);
+    }
     
 	return false;
 #else
@@ -982,6 +966,40 @@ bool FileUtils::isDirectoryExist(const std::string& dirPath)
 #endif
 }
 
+bool FileUtils::isDirectoryExist(const std::string& dirPath)
+{
+    CCASSERT(!dirPath.empty(), "Invalid path");
+    
+    if (isAbsolutePath(dirPath))
+    {
+        return isDirectoryExistInternal(dirPath);
+    }
+    
+    // Already Cached ?
+    auto cacheIter = _fullPathCache.find(dirPath);
+    if( cacheIter != _fullPathCache.end() )
+    {
+        return isDirectoryExistInternal(cacheIter->second);
+    }
+    
+	std::string fullpath;
+    for (auto searchIt = _searchPathArray.cbegin(); searchIt != _searchPathArray.cend(); ++searchIt)
+    {
+        for (auto resolutionIt = _searchResolutionsOrderArray.cbegin(); resolutionIt != _searchResolutionsOrderArray.cend(); ++resolutionIt)
+        {
+            // searchPath + file_path + resourceDirectory
+            fullpath = *searchIt + dirPath + *resolutionIt;
+            if (isDirectoryExistInternal(fullpath))
+            {
+                const_cast<FileUtils*>(this)->_fullPathCache.insert(std::make_pair(dirPath, fullpath));
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
 bool FileUtils::createDirectory(const std::string& dirPath)
 {
     CCASSERT(!dirPath.empty(), "Invalid path");
@@ -990,15 +1008,16 @@ bool FileUtils::createDirectory(const std::string& dirPath)
         return true;
     
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
-    if (mkdir(dirPath.c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+    if (mkdir(dirPath.c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0 && errno != EEXIST)
     {
         CCLOGERROR("Create directory (%s) failed", dirPath.c_str());
+        return false;
     }
     return true;
 #else
     if (GetFileAttributesA(dirPath.c_str()) == INVALID_FILE_ATTRIBUTES)
     {
-		BOOL ret = CreateDirectoryA(dirPath.c_str(), NULL);
+		bool ret = CreateDirectoryA(dirPath.c_str(), nullptr);
         if (!ret && ERROR_ALREADY_EXISTS != GetLastError())
         {
             return false;
@@ -1010,6 +1029,11 @@ bool FileUtils::createDirectory(const std::string& dirPath)
 
 bool FileUtils::createDirectories(const std::string& path)
 {
+    CCASSERT(!path.empty(), "Invalid path");
+    
+    if (isDirectoryExist(path))
+        return true;
+    
     // Split the path
     size_t start = 0;
     size_t found = path.find_first_of("/\\", start);
@@ -1036,40 +1060,17 @@ bool FileUtils::createDirectories(const std::string& path)
         }
     }
     
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
-    DIR *dir = NULL;
-    
     // Create path recursively
     subpath = "";
     for (int i = 0; i < dirs.size(); ++i) {
         subpath += dirs[i];
-        dir = opendir(subpath.c_str());
-        if (!dir)
+        
+        if (!createDirectory(subpath))
         {
-            int ret = mkdir(subpath.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
-            if (ret != 0 && (errno != EEXIST))
-            {
-                return false;
-            }
+            return false;
         }
     }
     return true;
-#else
-    if ((GetFileAttributesA(path.c_str())) == INVALID_FILE_ATTRIBUTES)
-    {
-		subpath = "";
-		for(int i = 0 ; i < dirs.size() ; ++i)
-		{
-			subpath += dirs[i];
-			BOOL ret = CreateDirectoryA(subpath.c_str(), NULL);
-            if (!ret && ERROR_ALREADY_EXISTS != GetLastError())
-            {
-                return false;
-            }
-		}
-    }
-    return true;
-#endif
 }
 
 bool FileUtils::removeDirectory(const std::string& path)

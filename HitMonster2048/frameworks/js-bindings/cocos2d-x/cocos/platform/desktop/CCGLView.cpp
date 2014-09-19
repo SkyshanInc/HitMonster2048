@@ -30,6 +30,7 @@ THE SOFTWARE.
 #include "base/CCEventKeyboard.h"
 #include "base/CCEventMouse.h"
 #include "base/CCIMEDispatcher.h"
+#include "base/ccUtils.h"
 
 #include <unordered_map>
 
@@ -356,7 +357,7 @@ bool GLView::initWithRect(const std::string& viewName, Rect rect, float frameZoo
     // check OpenGL version at first
     const GLubyte* glVersion = glGetString(GL_VERSION);
 
-    if ( atof((const char*)glVersion) < 1.5 )
+    if ( utils::atof((const char*)glVersion) < 1.5 )
     {
         char strComplain[256] = {0};
         sprintf(strComplain,
@@ -703,9 +704,9 @@ static bool glew_dynamic_binding()
     const char *gl_extensions = (const char*)glGetString(GL_EXTENSIONS);
 
     // If the current opengl driver doesn't have framebuffers methods, check if an extension exists
-    if (glGenFramebuffers == NULL)
+    if (glGenFramebuffers == nullptr)
     {
-        log("OpenGL: glGenFramebuffers is NULL, try to detect an extension");
+        log("OpenGL: glGenFramebuffers is nullptr, try to detect an extension");
         if (strstr(gl_extensions, "ARB_framebuffer_object"))
         {
             log("OpenGL: ARB_framebuffer_object is supported");

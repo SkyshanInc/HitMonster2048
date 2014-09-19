@@ -7,8 +7,21 @@ LOCAL_MODULE := cocos2djs_shared
 LOCAL_MODULE_FILENAME := libcocos2djs
 
 LOCAL_SRC_FILES := hellojavascript/main.cpp \
-                   ../../Classes/AppDelegate.cpp \
-                   ../../Classes/ErroReport_android.cpp
+					../../Classes/JSB_AUTO.cpp \
+					../../Classes/BS_JSBFun.cpp \
+					../../Classes/GameManager.cpp \
+					../../Classes/GameOver.cpp \
+					../../Classes/Menu.cpp \
+					../../Classes/Welcome.cpp \
+					../../Classes/CoralSdkApi/BnInterface.cpp \
+					../../Classes/CoralSdkApi/BnSDKCallback.cpp \
+					../../Classes/CoralSdkApi/BnCallback.cpp \
+					../../Classes/CoralSdkApi/fmjson/FMjson_reader.cpp \
+					../../Classes/CoralSdkApi/fmjson/FMjson_value.cpp \
+					../../Classes/CoralSdkApi/fmjson/FMjson_writer.cpp \
+					../../Classes/CoralSdkApi/fmjson/FMContentJsonDictionary.cpp \
+					../../Classes/ErroReport_android.cpp \
+					../../Classes/AppDelegate.cpp 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/shopping_content_bottom_margin"
+        android:layout_marginLeft="@dimen/home_content_magin"
+        android:layout_marginRight="@dimen/home_content_magin"
+        android:layout_marginTop="@dimen/global_tab_top_margin"
+        android:background="@drawable/general_bottom_bg"
+        android:minHeight="350dp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_shop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:id="@+id/tv_tab_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_exchange_heart" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/hs_hisfriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_shop"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/ll_shop"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_bngame_dilan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/hs_hisfriend"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="-17dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ImageView
+        android:id="@+id/ib_shop_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/btn_return" />
+
+</RelativeLayout>

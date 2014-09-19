@@ -232,8 +232,6 @@
             "text-input", "menus", "tilemap", "parallax", "audio"
         ],
 
-
-
         "ccbreader" : [
             "core", "audio", "gui", "menus", "particle", "actions", "labels",
 
@@ -256,15 +254,16 @@
             "extensions/editbox/CCEditBox.js"
         ],
         "ccpool" : [
-            "core", "gui",
+            "core",
 
             "extensions/ccpool/CCPool.js"
         ],
         "ccui" : [
-            "core", "gui", "actions", "labels", "text-input","clipping-nodes",
+            "core", "actions", "labels", "text-input","clipping-nodes",
             "extensions/ccui/base-classes/CCProtectedNode.js",
             "extensions/ccui/system/CocosGUI.js",
             "extensions/ccui/base-classes/UIWidget.js",
+            "extensions/ccui/base-classes/UIScale9Sprite.js",
             "extensions/ccui/layouts/UILayout.js",
             "extensions/ccui/layouts/UILayoutParameter.js",
             "extensions/ccui/layouts/UILayoutManager.js",
@@ -292,7 +291,6 @@
             "extensions/cocostudio/components/CCComponent.js",
             "extensions/cocostudio/components/CCComponentContainer.js",
             "extensions/cocostudio/CocoStudio.js",
-            "extensions/cocostudio/ActionManagerEx.js",
 
             "extensions/cocostudio/armature/utils/CCArmatureDefine.js",
             "extensions/cocostudio/armature/utils/CCDataReaderHelper.js",

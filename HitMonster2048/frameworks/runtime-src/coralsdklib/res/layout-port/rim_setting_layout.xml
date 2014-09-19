@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/btn_feedback"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/setting_about_btn_top_margin"
+        android:layout_marginLeft="@dimen/home_content_magin"
+        android:layout_marginRight="@dimen/home_content_magin"
+        android:layout_marginTop="@dimen/global_tab_top_margin"
+        android:background="@drawable/general_bottom_bg"
+        android:minHeight="300dp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_set" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_set1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_setting"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_set_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:text="@string/switch_music"
+                android:textColor="@color/set_item_name"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <com.friendou.bn.widget.switchbtn.SwitchButton
+                android:id="@+id/sb_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/general_cut_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_set_sound_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:text="@string/switch_sound_effect"
+                android:textColor="@color/set_item_name"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <com.friendou.bn.widget.switchbtn.SwitchButton
+                android:id="@+id/sb_sound_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/general_cut_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minHeight="40dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/language"
+                android:textColor="@color/set_item_name"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_set_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView1"
+                android:layout_alignBottom="@+id/textView1"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:gravity="center_vertical"
+                android:text="@string/set_language"
+                android:textColor="@color/setting_language"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/general_cut_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minHeight="40dp" >
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/setting_version"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:text="@string/set_version"
+                android:textColor="@color/set_item_name"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/general_cut_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/set_login_status"
+                android:textColor="@color/set_item_name"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                 android:layout_marginRight="5dp"
+                android:background="@drawable/btn_logout_press"
+                android:src="@drawable/set_page_text_quit_enter" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tv_dilan_un"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ImageView
+        android:id="@+id/btn_set_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/btn_return" />
+
+    <ImageButton
+        android:id="@+id/btn_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_page_name_press"
+        android:src="@drawable/general_text_about" />
+
+    <ImageButton
+        android:id="@+id/btn_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_about"
+        android:padding="5dp"
+        android:background="@drawable/btn_page_name_press"
+        android:src="@drawable/general_text_feedback" />
+
+    <TextView
+        android:id="@+id/tv_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

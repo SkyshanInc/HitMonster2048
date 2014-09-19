@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@+id/btn_finish_return"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/rl_score_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/resultpage_result_show_bottom_bg" />
+
+    <TextView
+        android:id="@+id/tv_topinhiatory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/resultpage_historic_highs_show_bottom_bg"
+        android:gravity="left"
+        android:singleLine="true"
+        android:text="@string/top_in_history"
+        android:textColor="@color/history_top"
+        android:textSize="14sp" />
+
+    <com.friendou.bn.widget.number.NumberView
+        android:id="@+id/tv_finish_score_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_topinhiatory"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp" />
+
+    <ImageView
+        android:id="@+id/iv_un"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/tv_finish_score_num"
+        android:background="@drawable/performance_score_show_bottom_bg"
+        android:gravity="center" >
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/score_title_un"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/total_score_title_pg"
+        android:gravity="center" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv_base_score"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_un"
+        android:layout_alignRight="@+id/iv_un"
+        android:layout_alignTop="@+id/iv_un"
+        android:gravity="left"
+        android:lineSpacingExtra="6dp"
+        android:text="@string/base_score"
+        android:textColor="@color/finish_tab_text_back"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_behave_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_un"
+        android:layout_alignLeft="@+id/iv_un"
+        android:layout_alignRight="@+id/iv_un"
+        android:layout_alignTop="@+id/iv_un"
+        android:gravity="left"
+        android:lineSpacingExtra="5dp"
+        android:text="@string/behave_score"
+        android:textColor="@color/finish_tab_text_back"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <com.friendou.bn.widget.BouncyHScrollView
+        android:id="@+id/lv_playwith"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_score_bg_un"
+        android:background="@drawable/result_show_player_show_bottom_bg"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:minHeight="60dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/ll_play"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+        </LinearLayout>
+    </com.friendou.bn.widget.BouncyHScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_single_player"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_score_bg_un"
+        android:background="@drawable/resultpage_one_person_play_prompt_bottom_bg" >
+
+        <ImageView
+            android:id="@+id/smile_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/resultpage_one_person_play_prompt_smile_face_icon" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/smile_icon"
+            android:lineSpacingExtra="6dp"
+            android:shadowColor="@color/fisnish_sinle_player_shadow"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:text="@string/finish_single_player"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/xingxing1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rl_single_player"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/resultpage_one_person_play_star_effect" />
+
+    <ImageView
+        android:id="@+id/xingxing2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/rl_single_player"
+        android:layout_alignTop="@+id/rl_single_player"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/resultpage_one_person_play_star_effect" />
+
+    <LinearLayout
+        android:id="@+id/rl_gold_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lv_playwith"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/acquire_gold_show_bottom_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_gold_icon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/top_physical_gold_icon" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <com.friendou.bn.widget.number.NumberView
+                android:id="@+id/tv_finish_gold_num"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_scoreflag"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignRight="@+id/score_title_un"
+        android:layout_alignTop="@+id/score_title_un"
+        android:background="@drawable/resultpage_history_highest_icon"
+        android:visibility="visible" />
+
+</RelativeLayout>

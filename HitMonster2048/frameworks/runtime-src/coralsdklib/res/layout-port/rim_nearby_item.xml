@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_nearby_item"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp" >
+
+    <com.friendou.bn.widget.number.NumberView
+        android:id="@+id/tv_nearby_item"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center" />
+
+    <com.friendou.bn.widget.imageview.RoundedCornersImage
+        android:id="@+id/iv_nearby_avater"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/tv_nearby_item"
+        android:background="@drawable/general_default_head"
+        android:gravity="center"
+        android:padding="2dp" />
+
+    <FrameLayout
+        android:id="@+id/fl_num"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tv_nearby_name"
+        android:layout_toLeftOf="@+id/tv_distance"
+        android:layout_toRightOf="@+id/iv_nearby_avater" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/tv_nearby_score"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tv_nearby_name"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/distance_time_show_bottom_bg"
+        android:ems="6"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/distance"
+        android:textColor="@color/nearby_bottom_back"
+        android:textSize="9sp" />
+
+    <ImageView
+        android:id="@+id/iv_sex_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_nearby_avater"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_nearby_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_sex_icon"
+        android:layout_toLeftOf="@+id/tv_distance"
+        android:layout_toRightOf="@+id/iv_sex_icon"
+        android:gravity="bottom"
+        android:singleLine="true"
+        android:text="@string/testname"
+        android:textColor="@color/list_item_name_brown"
+        android:textSize="16sp" />
+
+</RelativeLayout>

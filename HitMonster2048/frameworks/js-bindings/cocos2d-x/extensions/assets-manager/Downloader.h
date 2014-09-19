@@ -89,17 +89,40 @@ public:
         bool resumeDownload;
     };
     
+    struct StreamData
+    {
+        long offset;
+        long total;
+        unsigned char *buffer;
+    };
+    
     typedef std::unordered_map<std::string, DownloadUnit> DownloadUnits;
+    
+    typedef std::function<void(const Downloader::Error &)> ErrorCallback;
+    typedef std::function<void(double, double, const std::string &, const std::string &)> ProgressCallback;
+    typedef std::function<void(const std::string &, const std::string &, const std::string &)> SuccessCallback;
 
     int getConnectionTimeout();
 
     void setConnectionTimeout(int timeout);
+    
+    void setErrorCallback(const ErrorCallback &callback) { _onError = callback; };
+    
+    void setProgressCallback(const ProgressCallback &callback) { _onProgress = callback; };
+    
+    void setSuccessCallback(const SuccessCallback &callback) { _onSuccess = callback; };
 
-    std::function<void(const Downloader::Error &)> getErrorCallback() const { return _onError; };
+    ErrorCallback getErrorCallback() const { return _onError; };
 
-    std::function<void(double, double, const std::string &, const std::string &)> getProgressCallback() const { return _onProgress; };
+    ProgressCallback getProgressCallback() const { return _onProgress; };
 
-    std::function<void(const std::string &, const std::string &, const std::string &)> getSuccessCallback() const { return _onSuccess; };
+    SuccessCallback getSuccessCallback() const { return _onSuccess; };
+    
+    long getContentSize(const std::string &srcUrl) const;
+    
+    void downloadToBufferAsync(const std::string &srcUrl, unsigned char *buffer, const long &size, const std::string &customId = "");
+    
+    void downloadToBufferSync(const std::string &srcUrl, unsigned char *buffer, const long &size, const std::string &customId = "");
 
     void downloadAsync(const std::string &srcUrl, const std::string &storagePath, const std::string &customId = "");
 
@@ -126,7 +149,9 @@ protected:
 
     void prepareDownload(const std::string &srcUrl, const std::string &storagePath, const std::string &customId, bool resumeDownload, FileDescriptor *fDesc, ProgressData *pData);
     
-    bool prepareHeader(void *curl, const std::string &srcUrl);
+    bool prepareHeader(void *curl, const std::string &srcUrl) const;
+    
+    void downloadToBuffer(const std::string &srcUrl, const std::string &customId, const StreamData &buffer, const ProgressData &data);
 
     void download(const std::string &srcUrl, const std::string &customId, const FileDescriptor &fDesc, const ProgressData &data);
     
@@ -142,11 +167,11 @@ private:
 
     int _connectionTimeout;
 
-    std::function<void(const Downloader::Error &)> _onError;
+    ErrorCallback _onError;
 
-    std::function<void(double, double, const std::string &, const std::string &)> _onProgress;
+    ProgressCallback _onProgress;
 
-    std::function<void(const std::string &, const std::string &, const std::string &)> _onSuccess;
+    SuccessCallback _onSuccess;
 
     std::string getFileNameFromUrl(const std::string &srcUrl);
     

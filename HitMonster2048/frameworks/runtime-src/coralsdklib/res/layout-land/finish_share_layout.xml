@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <FrameLayout
+        android:id="@+id/fl_sharecontent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/rl_sharebtn"
+        android:background="@drawable/result_show_page_bottom_bg" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/send_share_bottom_bg" >
+
+            <ImageView
+                android:id="@+id/share_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/send_share_game_prompt_show_bottom_bg" >
+
+                <ImageView
+                    android:id="@+id/iv_game_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/general_default_head" />
+
+                <TextView
+                    android:id="@+id/tv_game_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/iv_game_icon"
+                    android:shadowColor="@color/shadow"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:textColor="@color/share_game_name"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_player_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@+id/tv_game_name"
+                    android:ems="8"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </FrameLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/rl_sharebtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/result_page_bottom_bg"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <ImageView
+        android:id="@+id/btn_share_weibo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rl_sharebtn"
+        android:background="@drawable/btn_yellow" />
+
+    <ImageView
+        android:id="@+id/btn_share_weibo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_share_weibo"
+        android:layout_alignTop="@+id/btn_share_weibo"
+        android:src="@drawable/general_text_share_to_weibo_friend" />
+
+    <ImageView
+        android:id="@+id/btn_sharetoweixin_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rl_sharebtn"
+        android:background="@drawable/btn_green" />
+
+    <ImageView
+        android:id="@+id/btn_sharetoweixin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_share_weibo"
+        android:layout_alignTop="@+id/btn_share_weibo"
+        android:src="@drawable/general_text_share_to_wechat_friend"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/btn_sharetofriendcircle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_sharetoweixin_bg"
+        android:layout_alignTop="@+id/btn_sharetoweixin_bg"
+        android:src="@drawable/general_text_share_to_friend_hub" />
+
+    <ImageButton
+        android:id="@+id/ib_shareview_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_share_close_press" />
+
+    <ProgressBar
+        android:id="@+id/pb_share"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/custom_progress_draw"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -14,7 +14,7 @@ var AppCtrl = {
 		SceneMgr.init();
 //		MusicMgr.init();
 		
-		SceneMgr.showScene("mainScene");
+		// SceneMgr.showScene("mainScene");
 	},
 	
 	onEnter:function(){

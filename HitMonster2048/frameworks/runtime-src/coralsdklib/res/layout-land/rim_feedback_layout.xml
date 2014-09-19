@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/general_bottom_bg"
+        android:minHeight="300dp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_feedback"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_suggestion_feedback" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_suggestion"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_send"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_feedback"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/suggestion_feedback_page_import_bottom_bg"
+        android:gravity="top|left"
+        android:maxLength="50"
+        android:text=""
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_haohua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_dilan_un"
+        android:layout_alignLeft="@+id/rl_tab_feedback"
+        android:layout_alignTop="@+id/btn_send"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@+id/btn_send"
+        android:layout_toRightOf="@+id/btn_send"
+        android:gravity="center_vertical|top"
+        android:maxLines="3"
+        android:text="@string/suggestion_word"
+        android:textColor="@color/feedback_word" />
+
+    <ImageView
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_dilan_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_tip_confirm_press" />
+
+    <ImageView
+        android:id="@+id/btn_send_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/btn_send"
+        android:layout_alignTop="@id/btn_send"
+        android:src="@drawable/suggestion_feedback_page_text_send" />
+
+    <TextView
+        android:id="@+id/tv_textnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/et_suggestion"
+        android:layout_below="@+id/rl_tab_feedback"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/feedback_word" />
+
+    <ImageView
+        android:id="@+id/btn_feedback_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="10dp"
+        android:src="@drawable/btn_return" />
+
+    <ImageView
+        android:id="@+id/tv_dilan_un"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+</RelativeLayout>

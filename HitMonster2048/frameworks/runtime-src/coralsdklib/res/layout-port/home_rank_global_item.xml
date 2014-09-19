@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_global_rank"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp" >
+
+    <com.friendou.bn.widget.number.NumberView
+        android:id="@+id/tv_global_rank"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center" />
+
+    <com.friendou.bn.widget.imageview.RoundedCornersImage
+        android:id="@+id/iv_global_avater"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/tv_global_rank"
+        android:background="@drawable/general_default_head"
+        android:gravity="center"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/tv_global_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tv_global_time"
+        android:layout_toRightOf="@+id/iv_global_avater"
+        android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:text="@string/testname"
+        android:textColor="@color/list_item_name_brown"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_num"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tv_global_name"
+        android:layout_toLeftOf="@+id/tv_global_time"
+        android:layout_toRightOf="@+id/iv_global_avater" >
+
+        <com.friendou.bn.widget.number.NumberView
+            android:id="@+id/rank_score_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/rank_score_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tv_global_name"
+        android:layout_toLeftOf="@+id/tv_global_time"
+        android:layout_toRightOf="@+id/iv_global_avater"
+        android:gravity="left|center_vertical"
+        android:text="@string/testnum"
+        android:textColor="@color/global_rank_lastweek_text"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_global_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/distance_time_show_bottom_bg"
+        android:ems="6"
+        android:gravity="center"
+        android:maxLength="5"
+        android:singleLine="true"
+        android:text="@string/testnum"
+        android:textColor="@color/white"
+        android:textSize="@dimen/list_item_right_tip"
+        android:visibility="visible" />
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/prompt_box_bottom_bg"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_tip_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/btn_confirm"
+        android:layout_below="@+id/tv_tip_title"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/prompt_box_content_bg"
+        android:gravity="center" 
+        android:text="@string/word_sendsuccess"
+        android:textColor="@color/tip_word"
+        android:textSize="17sp" />
+
+<!--     <TextView -->
+<!--         android:id="@+id/tv_tip_content" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignTop="@+id/rl_content" -->
+<!--         android:layout_centerHorizontal="true" -->
+<!--         android:gravity="center" -->
+<!--         android:text="@string/word_sendsuccess" -->
+<!--         android:textColor="@color/tip_word" -->
+<!--         android:textSize="17sp" /> -->
+
+    <ImageButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:background="@drawable/btn_tip_confirm_press"
+        android:src="@drawable/prompt_box_page_text_sure" />
+
+    <ImageButton
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_tip_cancel_press"
+        android:gravity="center"
+        android:src="@drawable/prompt_box_page_text_cancel" />
+
+    <TextView
+        android:id="@+id/tv_tip_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:shadowColor="@color/shadow"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="@string/feedback_tip"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

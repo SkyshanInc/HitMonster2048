@@ -40,11 +40,25 @@ NS_CC_EXT_BEGIN
 
 #define TEMP_EXT            ".temp"
 
-size_t curlWriteFunc(void *ptr, size_t size, size_t nmemb, void *userdata)
+size_t fileWriteFunc(void *ptr, size_t size, size_t nmemb, void *userdata)
 {
     FILE *fp = (FILE*)userdata;
     size_t written = fwrite(ptr, size, nmemb, fp);
     return written;
+}
+
+size_t bufferWriteFunc(void *ptr, size_t size, size_t nmemb, void *userdata)
+{
+    Downloader::StreamData *streamBuffer = (Downloader::StreamData *)userdata;
+    size_t written = size * nmemb;
+    // Avoid pointer overflow
+    if (streamBuffer->offset + written <= streamBuffer->total)
+    {
+        memcpy(streamBuffer->buffer + streamBuffer->offset, ptr, written);
+        streamBuffer->offset += written;
+        return written;
+    }
+    else return 0;
 }
 
 // This is only for batchDownload process, will notify file succeed event in progress function
@@ -259,7 +273,7 @@ void Downloader::prepareDownload(const std::string &srcUrl, const std::string &s
     }
 }
 
-bool Downloader::prepareHeader(void *curl, const std::string &srcUrl)
+bool Downloader::prepareHeader(void *curl, const std::string &srcUrl) const
 {
     curl_easy_setopt(curl, CURLOPT_URL, srcUrl.c_str());
     curl_easy_setopt(curl, CURLOPT_HEADER, 1);
@@ -268,6 +282,109 @@ bool Downloader::prepareHeader(void *curl, const std::string &srcUrl)
         return true;
     else
         return false;
+}
+
+long Downloader::getContentSize(const std::string &srcUrl) const
+{
+    double contentLength = -1;
+    CURL *header = curl_easy_init();
+    if (prepareHeader(header, srcUrl))
+    {
+        curl_easy_getinfo(header, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &contentLength);
+    }
+    curl_easy_cleanup(header);
+    
+    return contentLength;
+}
+
+void Downloader::downloadToBufferAsync(const std::string &srcUrl, unsigned char *buffer, const long &size, const std::string &customId/* = ""*/)
+{
+    if (buffer != nullptr)
+    {
+        std::shared_ptr<Downloader> downloader = shared_from_this();
+        ProgressData pData;
+        pData.customId = customId;
+        pData.url = srcUrl;
+        pData.downloader = downloader;
+        pData.downloaded = 0;
+        pData.totalToDownload = 0;
+        
+        StreamData streamBuffer;
+        streamBuffer.buffer = buffer;
+        streamBuffer.total = size;
+        streamBuffer.offset = 0;
+        
+        auto t = std::thread(&Downloader::downloadToBuffer, this, srcUrl, customId, streamBuffer, pData);
+        t.detach();
+    }
+}
+
+void Downloader::downloadToBufferSync(const std::string &srcUrl, unsigned char *buffer, const long &size, const std::string &customId/* = ""*/)
+{
+    if (buffer != nullptr)
+    {
+        std::shared_ptr<Downloader> downloader = shared_from_this();
+        ProgressData pData;
+        pData.customId = customId;
+        pData.url = srcUrl;
+        pData.downloader = downloader;
+        pData.downloaded = 0;
+        pData.totalToDownload = 0;
+        
+        StreamData streamBuffer;
+        streamBuffer.buffer = buffer;
+        streamBuffer.total = size;
+        streamBuffer.offset = 0;
+        
+        downloadToBuffer(srcUrl, customId, streamBuffer, pData);
+    }
+}
+
+void Downloader::downloadToBuffer(const std::string &srcUrl, const std::string &customId, const StreamData &buffer, const ProgressData &data)
+{
+    std::weak_ptr<Downloader> ptr = shared_from_this();
+    CURL *curl = curl_easy_init();
+    if (!curl)
+    {
+        this->notifyError(ErrorCode::CURL_EASY_ERROR, "Can not init curl with curl_easy_init", customId);
+        return;
+    }
+    
+    // Download pacakge
+    curl_easy_setopt(curl, CURLOPT_URL, srcUrl.c_str());
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bufferWriteFunc);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, false);
+    curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, downloadProgressFunc);
+    curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, &data);
+    curl_easy_setopt(curl, CURLOPT_FAILONERROR, true);
+    if (_connectionTimeout) curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, _connectionTimeout);
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
+    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME);
+    
+    CURLcode res = curl_easy_perform(curl);
+    if (res != CURLE_OK)
+    {
+        AssetsManager::removeFile(data.path + data.name + TEMP_EXT);
+        std::string msg = StringUtils::format("Unable to download file: [curl error]%s", curl_easy_strerror(res));
+        this->notifyError(msg, customId, res);
+    }
+    
+    curl_easy_cleanup(curl);
+    
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]{
+        if (!ptr.expired())
+        {
+            std::shared_ptr<Downloader> downloader = ptr.lock();
+            
+            auto successCB = downloader->getSuccessCallback();
+            if (successCB != nullptr)
+            {
+                successCB(data.url, "", data.customId);
+            }
+        }
+    });
 }
 
 void Downloader::downloadAsync(const std::string &srcUrl, const std::string &storagePath, const std::string &customId/* = ""*/)
@@ -305,7 +422,7 @@ void Downloader::download(const std::string &srcUrl, const std::string &customId
     
     // Download pacakge
     curl_easy_setopt(curl, CURLOPT_URL, srcUrl.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteFunc);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fileWriteFunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, fDesc.fp);
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, false);
     curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, downloadProgressFunc);
@@ -430,7 +547,7 @@ void Downloader::groupBatchDownload(const DownloadUnits &units)
         {
             CURL* curl = curl_easy_init();
             curl_easy_setopt(curl, CURLOPT_URL, srcUrl.c_str());
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteFunc);
+            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fileWriteFunc);
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, fDesc->fp);
             curl_easy_setopt(curl, CURLOPT_NOPROGRESS, false);
             curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, batchDownloadProgressFunc);

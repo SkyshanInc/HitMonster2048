@@ -74,25 +74,28 @@ public:
              Look at the manual of plugins.
     */
     void share(TShareInfo info);
+    void share(TShareInfo &info, ProtocolShareCallback &cb);
 
     /**
+    @deprecated
     @breif set the result listener
     @param pListener The callback object for share result
     @wraning Must invoke this interface before share
     */
-    void setResultListener(ShareResultListener* pListener);
+    CC_DEPRECATED_ATTRIBUTE void setResultListener(ShareResultListener* pListener);
     
     /**
+     @deprecated
      @breif get the result listener
      @return The callback object for share result
      @wraning Must invoke this interface before share
      */
-    ShareResultListener* getResultListener();
+    CC_DEPRECATED_ATTRIBUTE ShareResultListener* getResultListener();
     
     /**
      @brief set login callback function
      */
-    inline void setListener(const ProtocolShareCallback &cb)
+    inline void setCallback(const ProtocolShareCallback &cb)
     {
         _callback = cb;
     }
@@ -100,7 +103,7 @@ public:
     /**
      @brief get login callback function
      */
-    inline ProtocolShareCallback& getListener()
+    inline ProtocolShareCallback getCallback()
     {
         return _callback;
     }

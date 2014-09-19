@@ -25,7 +25,7 @@
 
 /**
  * Base singleton object for ccs.ActionManager
- * @namespace
+ * @class
  * @name ccs.actionManager
  */
 ccs.actionManager = /** @lends ccs.actionManager# */{
@@ -80,9 +80,8 @@ ccs.actionManager = /** @lends ccs.actionManager# */{
      */
     playActionByName: function (jsonName, actionName, fun) {
         var action = this.getActionByName(jsonName, actionName);
-        if (action) {
+        if (action)
             action.play(fun);
-        }
     },
 
     /**
@@ -90,7 +89,6 @@ ccs.actionManager = /** @lends ccs.actionManager# */{
      */
     releaseActions: function () {
         this._actionDic = {};
-
     },
 
 	/**

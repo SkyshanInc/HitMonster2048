@@ -115,4 +115,4 @@ echo ---
 echo "Generating bindings for cocos2dx..."
 set -x
 
-LD_LIBRARY_PATH=${CXX_GENERATOR_ROOT}/libclang $PYTHON_BIN ${CXX_GENERATOR_ROOT}/generator.py $PWD/game-analytics.ini -t spidermonkey -s cocos2d-x -o ../../pokoSanguo/frameworks/runtime-src/bs_bindings/gameAnalytics-bindings/
+LD_LIBRARY_PATH=${CXX_GENERATOR_ROOT}/libclang $PYTHON_BIN ${CXX_GENERATOR_ROOT}/generator.py $PWD/game-analytics.ini -t spidermonkey -s cocos2d-x -o ./bindings/

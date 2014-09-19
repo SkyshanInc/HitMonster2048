@@ -1,0 +1,9 @@
+<resources>
+
+    <dimen name="explain">10sp</dimen>
+    <dimen name="sendlimittime">10sp</dimen>
+    <dimen name="list_item_right_tip">8sp</dimen>
+    <dimen name="home_content_magin">6dp</dimen>
+    <dimen name="land_font_size">14sp</dimen>
+
+</resources>

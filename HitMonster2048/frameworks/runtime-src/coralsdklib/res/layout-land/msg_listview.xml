@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/meg_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@drawable/general_cut_line"
+        android:dividerHeight="1dp"
+        android:fadingEdge="none"
+        android:minHeight="300dp" >
+    </ListView>
+
+    <View
+        android:id="@+id/msg_cut_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/general_cut_line" />
+
+    <TextView
+        android:id="@+id/empty_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="@string/empty_sysmessage_tip"
+        android:textColor="@color/meg_emptylist"
+        android:visibility="gone" />
+
+</LinearLayout>

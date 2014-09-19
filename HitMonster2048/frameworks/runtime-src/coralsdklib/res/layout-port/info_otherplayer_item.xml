@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp" >
+
+    <com.friendou.bn.widget.imageview.RoundedCornersImage
+        android:id="@+id/iv_other_head"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/general_default_head"
+        android:gravity="center"
+        android:padding="3dp"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_other_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_other_head"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:maxEms="5"
+        android:singleLine="true"
+        android:text="2345"
+        android:textColor="@color/list_item_name_brown"
+        android:textSize="@dimen/smalltextsize" />
+
+    <TextView
+        android:id="@+id/tv_other_addtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_other_name"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="left"
+        android:gravity="center"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:text="321"
+        android:textColor="@color/player_addtime"
+        android:textSize="@dimen/smalltextsize" />
+
+</RelativeLayout>

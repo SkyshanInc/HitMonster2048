@@ -13,9 +13,14 @@
     "General.plist", 
     "general_guge_1.plist", 
     "Monster.plist", 
+    "Play.plist", 
     "public.plist", 
     "tile_iso_offset.png", 
     "tile_iso_offset.tmx", 
+    "tilemap0.tmx", 
+    "tilemap1.tmx", 
+    "tilemap2.tmx", 
+    "tiles.png", 
     "gameUI.json", 
     "None.json"
 ]

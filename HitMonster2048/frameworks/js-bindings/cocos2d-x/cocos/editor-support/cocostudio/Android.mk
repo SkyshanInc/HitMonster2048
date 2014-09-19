@@ -70,8 +70,8 @@ $(LOCAL_PATH)/.. \
 $(LOCAL_PATH)/../.. \
 $(LOCAL_PATH)/WidgetReader
 
-LOCAL_CFLAGS += -Wno-psabi -fexceptions
-LOCAL_EXPORT_CFLAGS += -Wno-psabi
+LOCAL_CFLAGS += -fexceptions
+
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

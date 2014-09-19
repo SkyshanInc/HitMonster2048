@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/rl_btn_nearby"
+        android:layout_width="40dp"
+        android:layout_height="40dp" >
+
+        <ImageButton
+            android:id="@+id/btn_nearby"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_page_name_press" />
+
+        <ImageView
+            android:id="@+id/iv_nearby_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/homepage_dilanpeople_nearby" />
+
+        <ImageView
+            android:id="@+id/tv_nearby_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_nearby_un"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:src="@drawable/general_text_people_nearby" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_btn_invite"
+        android:layout_width="40dp"
+        android:layout_height="40dp" >
+
+        <ImageButton
+            android:id="@+id/btn_invite"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_page_name_press" />
+
+        <ImageView
+            android:id="@+id/iv_invite_friend_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/homepage_add_friend_button" />
+
+        <ImageView
+            android:id="@+id/tv_invite_friend_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_invite_friend_un"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/general_text_add" />
+
+        <ImageView
+            android:id="@+id/im_invite_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/btn_invite"
+            android:src="@anim/main_invite_anim_list" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_btn_setting"
+        android:layout_width="40dp"
+        android:layout_height="40dp" >
+
+        <ImageButton
+            android:id="@+id/btn_setting"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_page_name_press" />
+
+        <ImageView
+            android:id="@+id/iv_setting_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/homepage_set_button" />
+
+        <ImageView
+            android:id="@+id/tv_setting_un"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_setting_un"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/general_text_set" />
+    </RelativeLayout>
+
+</LinearLayout>

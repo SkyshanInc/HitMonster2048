@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/general_bottom_bg" />
+
+    <!-- <ImageView -->
+    <!-- android:id="@+id/iv_content_bg_effect" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_marginBottom="23dp" -->
+    <!-- android:layout_marginLeft="4dp" -->
+    <!-- android:layout_marginTop="9dp" -->
+    <!-- android:background="@drawable/general_white_bg_effect" /> -->
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_bngame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_battlenet_game" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btn_title_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_bngame"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ranking_list_title_prompt_bg"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/battlent_game_tip"
+        android:textColor="@color/general_cleartime_text"
+        android:textSize="@dimen/explain" />
+
+    <ListView
+        android:id="@+id/lv_bngame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/btn_title_tips"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@drawable/general_cut_line"
+        android:dividerHeight="1dp"
+        android:scrollbars="none" >
+    </ListView>
+
+    <ImageView
+        android:id="@+id/ib_bngame_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="10dp"
+        android:src="@drawable/btn_return" />
+
+    <ImageView
+        android:id="@+id/tv_dilan_un"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ProgressBar
+        android:id="@+id/pb_bngame"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iv_content_bg_un"
+        android:layout_alignRight="@id/iv_content_bg_un"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/custom_progress_draw" />
+
+</RelativeLayout>

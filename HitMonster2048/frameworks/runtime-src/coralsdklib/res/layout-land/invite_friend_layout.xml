@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/general_bottom_bg" />
+
+    <TextView
+        android:id="@+id/tv_friend_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_invite"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ranking_list_title_prompt_bg"
+        android:gravity="center"
+        android:text="@string/invite_sina_explain"
+        android:textColor="@color/general_cleartime_text"
+        android:textSize="@dimen/explain"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_invite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:id="@+id/iv_tab_friendrank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_invite_friend" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_invite_friend"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/tv_friend_explain"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:divider="@drawable/general_cut_line"
+        android:dividerHeight="2dp"
+        android:scrollbars="none"
+        android:visibility="visible" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/empty_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/lv_invite_friend"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/lv_invite_friend"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="@string/empty_sysmessage_tip"
+        android:textColor="@color/nomeg_tip"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/btn_invite_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="12dp"
+        android:src="@drawable/btn_return" />
+
+    <ImageView
+        android:id="@+id/tv_invite_dilan_un"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ProgressBar
+        android:id="@+id/pb_invite"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/custom_progress_draw"
+        android:visibility="gone" />
+
+</RelativeLayout>

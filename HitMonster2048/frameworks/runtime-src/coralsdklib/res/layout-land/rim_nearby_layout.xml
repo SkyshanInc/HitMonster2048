@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/general_bottom_bg" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_nearby"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_people_nearby" />
+
+        <ImageButton
+            android:id="@+id/ib_search_criteria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_nearby_more_press" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/msg_tab_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_below="@+id/rl_tab_nearby"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lv_nearby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1.0"
+            android:fadingEdge="none"
+            android:divider="@drawable/general_cut_line"
+            android:dividerHeight="2dp"
+            android:minHeight="300dp" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/rl_nearby_footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/nearby_no_player_icon"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="@string/nearby_noplayer"
+            android:textColor="@color/nearby_noplayer_clain" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ibtn_nearby_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="12dp"
+        android:src="@drawable/btn_return" />
+
+    <ImageView
+        android:id="@+id/tv_nearby_dilan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <ProgressBar
+        android:id="@+id/pb_near"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/iv_content_bg_un"
+        android:layout_alignRight="@id/iv_content_bg_un"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/custom_progress_draw" />
+
+</RelativeLayout>

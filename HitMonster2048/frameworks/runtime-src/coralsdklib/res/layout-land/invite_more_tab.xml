@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_challenge_friend"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/iv_friend_circle_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:src="@drawable/friend_circle_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/btn_circle_reward"
+            android:layout_toRightOf="@+id/iv_friend_circle_icon"
+            android:gravity="left"
+            android:text="@string/invite_friend_circle_clain"
+            android:textColor="@color/list_item_name_brown"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/btn_circle_reward_bg"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_invite_press"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/iv_text_lingqu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_circle_reward_bg"
+            android:layout_alignTop="@+id/btn_circle_reward_bg"
+            android:src="@drawable/add_friends_page_text_get" />
+
+        <ImageView
+            android:id="@+id/iv_reward_icon1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_circle_reward_bg"
+            android:layout_alignLeft="@+id/btn_circle_reward_bg"
+            android:src="@drawable/top_physical_love_icon" />
+
+        <TextView
+            android:id="@+id/btn_circle_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_circle_reward_bg"
+            android:layout_alignRight="@+id/btn_circle_reward_bg"
+            android:layout_below="@+id/iv_text_lingqu1"
+            android:layout_toRightOf="@+id/iv_reward_icon1"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/general_cut_line" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/iv_sina_weibo_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:src="@drawable/sina_weibo_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/btn_sina_reward"
+            android:layout_toRightOf="@+id/iv_sina_weibo_icon"
+            android:gravity="left"
+            android:text="@string/invite_sina_clain"
+            android:textColor="@color/list_item_name_brown"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/btn_sina_reward_bg"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_invite_press" />
+
+        <ImageView
+            android:id="@+id/iv_text_lingqu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_sina_reward_bg"
+            android:layout_alignTop="@+id/btn_sina_reward_bg"
+            android:src="@drawable/add_friends_page_text_get" />
+
+        <ImageView
+            android:id="@+id/iv_reward_icon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_sina_reward_bg"
+            android:layout_alignLeft="@+id/btn_sina_reward_bg"
+            android:src="@drawable/top_physical_love_icon" />
+
+        <TextView
+            android:id="@+id/btn_sina_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_sina_reward_bg"
+            android:layout_alignRight="@+id/btn_sina_reward_bg"
+            android:layout_below="@+id/iv_text_lingqu2"
+            android:layout_toRightOf="@+id/iv_reward_icon2"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/general_cut_line" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/iv_tencent_weibo_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:src="@drawable/tencent_weibo_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/btn_tencent_reward"
+            android:layout_toRightOf="@+id/iv_tencent_weibo_icon"
+            android:gravity="left"
+            android:text="@string/invite_tencent_clain"
+            android:textColor="@color/list_item_name_brown"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/btn_tencent_reward_bg"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_invite_press" />
+
+        <ImageView
+            android:id="@+id/iv_text_lingqu3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_tencent_reward_bg"
+            android:layout_alignTop="@+id/btn_tencent_reward_bg"
+            android:src="@drawable/add_friends_page_text_get" />
+
+        <ImageView
+            android:id="@+id/iv_reward_icon3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_tencent_reward_bg"
+            android:layout_alignLeft="@+id/btn_tencent_reward_bg"
+            android:src="@drawable/top_physical_love_icon" />
+
+        <TextView
+            android:id="@+id/btn_tencent_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_tencent_reward_bg"
+            android:layout_alignRight="@+id/btn_tencent_reward_bg"
+            android:layout_below="@+id/iv_text_lingqu3"
+            android:layout_toRightOf="@+id/iv_reward_icon3"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+</LinearLayout>

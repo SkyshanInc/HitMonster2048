@@ -1,0 +1,25 @@
+<resources>
+
+ <dimen name="home_content_magin">6dp</dimen>
+     <dimen name="info_percent_num">14sp</dimen>
+     <dimen name="explain">10sp</dimen>
+    <dimen name="list_item_name_big">15sp</dimen>
+    <dimen name="list_item_name_small">13sp</dimen>
+    <dimen name="list_item_discribe_small">12sp</dimen>
+    <dimen name="list_item_right_tip">8sp</dimen>
+    <dimen name="sendlimittime">10sp</dimen>
+    <dimen name="btipview_margin">160dp</dimen>
+    <dimen name="btipview_left_margin">20dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="global_tab_top_margin">50dp</dimen>
+    <dimen name="global_tab_bottom_margin">60dp</dimen>
+   
+    <dimen name="setting_about_btn_top_margin">20dp</dimen>
+    <dimen name="shopping_content_bottom_margin">150dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+
+    <dimen name="land_font_size">14sp</dimen>
+</resources>

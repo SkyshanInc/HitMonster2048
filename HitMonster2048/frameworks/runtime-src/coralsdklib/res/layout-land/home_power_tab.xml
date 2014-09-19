@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <com.friendou.bn.widget.number.PowerWidget
+        android:id="@+id/rl_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/rl_diamond_contain"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/fl_diamond_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/top_physical_bg" >
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/rl_diamond_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fl_diamond_bg"
+            android:layout_alignTop="@+id/fl_diamond_bg"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_adddiamond"
+            android:layout_toRightOf="@+id/iv_diamond_icon" >
+
+            <com.friendou.bn.widget.number.NumberView
+                android:id="@+id/tv_diamond_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_diamond_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_physical_masonry_icon" />
+
+        <ImageButton
+            android:id="@+id/btn_adddiamond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/fl_diamond_bg"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/top_physical_add_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_glod_contain"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/fl_glod_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/top_physical_bg" >
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/ll_glod_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fl_glod_bg"
+            android:layout_alignTop="@+id/fl_glod_bg"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/btn_addglod"
+            android:layout_toRightOf="@+id/iv_glod_icon"
+            android:orientation="horizontal" >
+
+            <com.friendou.bn.widget.number.NumberView
+                android:id="@+id/tv_glod_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_glod_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fl_glod_bg"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="-2dp"
+            android:background="@drawable/top_physical_gold_icon" />
+
+        <ImageButton
+            android:id="@+id/btn_addglod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/fl_glod_bg"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/top_physical_add_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_rank_contain"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible" >
+
+        <ImageView
+            android:id="@+id/fl_rank_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/top_physical_bg" >
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/ll_rank_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fl_rank_bg"
+            android:layout_alignTop="@+id/fl_rank_bg"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/iv_rank_name"
+            android:layout_toRightOf="@+id/iv_rank_icon"
+            android:orientation="horizontal" >
+
+            <com.friendou.bn.widget.number.NumberView
+                android:id="@+id/tv_rank_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_rank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/fl_rank_bg"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/general_text_rank" />
+
+        <ImageView
+            android:id="@+id/iv_rank_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fl_rank_bg"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/top_physical_ranklist_icon" />
+    </RelativeLayout>
+
+</LinearLayout>

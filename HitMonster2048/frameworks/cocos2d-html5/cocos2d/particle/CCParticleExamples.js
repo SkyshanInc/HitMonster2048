@@ -30,11 +30,13 @@
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleFire.create();
+ * var emitter = new cc.ParticleFire();
  */
 cc.ParticleFire = cc.ParticleSystem.extend(/** @lends cc.ParticleFire# */{
     /**
-     * @constructor
+     * <p>The cc.ParticleFire's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleFire()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 300 : 150);
@@ -103,6 +105,7 @@ cc.ParticleFire = cc.ParticleSystem.extend(/** @lends cc.ParticleFire# */{
 
 /**
  * Create a fire particle system
+ * @deprecated since v3.0 please use new cc.ParticleFire() instead
  * @return {cc.ParticleFire}
  *
  * @example
@@ -118,12 +121,13 @@ cc.ParticleFire.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleFireworks.create();
+ * var emitter = new cc.ParticleFireworks();
  */
 cc.ParticleFireworks = cc.ParticleSystem.extend(/** @lends cc.ParticleFireworks# */{
-
     /**
-     * @constructor
+     * <p>The cc.ParticleFireworks's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleFireworks()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 1500 : 150);
@@ -189,6 +193,7 @@ cc.ParticleFireworks = cc.ParticleSystem.extend(/** @lends cc.ParticleFireworks#
 
 /**
  * Create a fireworks particle system
+ * @deprecated since v3.0 please use new cc.ParticleFireworks() instead.
  * @return {cc.ParticleFireworks}
  *
  * @example
@@ -204,12 +209,13 @@ cc.ParticleFireworks.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleSun.create();
+ * var emitter = new cc.ParticleSun();
  */
 cc.ParticleSun = cc.ParticleSystem.extend(/** @lends cc.ParticleSun# */{
-
     /**
-     * @constructor
+     * <p>The cc.ParticleSun's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleSun()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 350 : 150);
@@ -277,6 +283,7 @@ cc.ParticleSun = cc.ParticleSystem.extend(/** @lends cc.ParticleSun# */{
 
 /**
  * Create a sun particle system
+ * @deprecated since v3.0 please use new cc.ParticleSun() instead.
  * @return {cc.ParticleSun}
  *
  * @example
@@ -293,12 +300,13 @@ cc.ParticleSun.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleGalaxy.create();
+ * var emitter = new cc.ParticleGalaxy();
  */
 cc.ParticleGalaxy = cc.ParticleSystem.extend(/** @lends cc.ParticleGalaxy# */{
-
     /**
-     * @constructor
+     * <p>The cc.ParticleGalaxy's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleGalaxy()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 200 : 100);
@@ -368,6 +376,7 @@ cc.ParticleGalaxy = cc.ParticleSystem.extend(/** @lends cc.ParticleGalaxy# */{
 });
 /**
  * Create a galaxy particle system
+ * @deprecated since v3.0 please use new cc.OarticleGalaxy() instead.
  * @return {cc.ParticleGalaxy}
  *
  * @example
@@ -383,10 +392,14 @@ cc.ParticleGalaxy.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleFlower.create();
+ * var emitter = new cc.ParticleFlower();
  */
 cc.ParticleFlower = cc.ParticleSystem.extend(/** @lends cc.ParticleFlower# */{
-
+    /**
+     * <p>The cc.ParticleFlower's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleFlower()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
+     */
     ctor : function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 250 : 100);
     },
@@ -456,6 +469,7 @@ cc.ParticleFlower = cc.ParticleSystem.extend(/** @lends cc.ParticleFlower# */{
 
 /**
  * Create a flower particle system
+ * @deprecated since v3.0 please use new cc.ParticleFlower() instead.
  * @return {cc.ParticleFlower}
  *
  * @example
@@ -472,12 +486,13 @@ cc.ParticleFlower.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleMeteor.create();
+ * var emitter = new cc.ParticleMeteor();
  */
 cc.ParticleMeteor = cc.ParticleSystem.extend(/** @lends cc.ParticleMeteor# */{
-
     /**
-     * @constructor
+     * <p>The cc.ParticleMeteor's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleMeteor()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 150 : 100);
@@ -548,6 +563,7 @@ cc.ParticleMeteor = cc.ParticleSystem.extend(/** @lends cc.ParticleMeteor# */{
 
 /**
  * Create a meteor particle system
+ * @deprecated since v3.0 please use new cc.ParticleMeteor() instead.
  * @return {cc.ParticleMeteor}
  *
  * @example
@@ -563,12 +579,14 @@ cc.ParticleMeteor.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleSpiral.create();
+ * var emitter = new cc.ParticleSpiral();
  */
 cc.ParticleSpiral = cc.ParticleSystem.extend(/** @lends cc.ParticleSpiral# */{
 
     /**
-     * @constructor
+     * <p>The cc.ParticleSpiral's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleSpiral()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function() {
         cc.ParticleSystem.prototype.ctor.call(this,(cc._renderType === cc._RENDER_TYPE_WEBGL) ? 500 : 100);
@@ -639,6 +657,7 @@ cc.ParticleSpiral = cc.ParticleSystem.extend(/** @lends cc.ParticleSpiral# */{
 
 /**
  * Create a spiral particle system
+ * @deprecated since v3.0 please use new cc.ParticleSpiral() instead.
  * @return {cc.ParticleSpiral}
  *
  * @example
@@ -654,12 +673,13 @@ cc.ParticleSpiral.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleExplosion.create();
+ * var emitter = new cc.ParticleExplosion();
  */
 cc.ParticleExplosion = cc.ParticleSystem.extend(/** @lends cc.ParticleExplosion# */{
-
     /**
-     * @constructor
+     * <p>The cc.ParticleExplosion's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleExplosion()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 700 : 300);
@@ -729,6 +749,7 @@ cc.ParticleExplosion = cc.ParticleSystem.extend(/** @lends cc.ParticleExplosion#
 
 /**
  * Create an explosion particle system
+ * @deprecated since v3.0 please use new cc.ParticleExplosion() instead.
  * @return {cc.ParticleExplosion}
  *
  * @example
@@ -744,12 +765,14 @@ cc.ParticleExplosion.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleSmoke.create();
+ * var emitter = new cc.ParticleSmoke();
  */
 cc.ParticleSmoke = cc.ParticleSystem.extend(/** @lends cc.ParticleSmoke# */{
 
     /**
-     * @contructor
+     * <p>The cc.ParticleSmoke's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleSmoke()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 200 : 100);
@@ -816,6 +839,7 @@ cc.ParticleSmoke = cc.ParticleSystem.extend(/** @lends cc.ParticleSmoke# */{
 
 /**
  * Create a smoke particle system
+ * @deprecated since v3.0 please use new cc.ParticleSmoke() instead.
  * @return {cc.ParticleSmoke}
  *
  * @example
@@ -831,12 +855,14 @@ cc.ParticleSmoke.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleSnow.create();
+ * var emitter = new cc.ParticleSnow();
  */
 cc.ParticleSnow = cc.ParticleSystem.extend(/** @lends cc.ParticleSnow# */{
 
     /**
-     * @constructor
+     * <p>The cc.ParticleSnow's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleSnow()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 700 : 250);
@@ -907,6 +933,7 @@ cc.ParticleSnow = cc.ParticleSystem.extend(/** @lends cc.ParticleSnow# */{
 
 /**
  * Create a snow particle system
+ * @deprecated since v3.0 please use new cc.ParticleSnow() instead.
  * @return {cc.ParticleSnow}
  *
  * @example
@@ -923,12 +950,14 @@ cc.ParticleSnow.create = function () {
  * @extends cc.ParticleSystem
  *
  * @example
- * var emitter = cc.ParticleRain.create();
+ * var emitter = new cc.ParticleRain();
  */
 cc.ParticleRain = cc.ParticleSystem.extend(/** @lends cc.ParticleRain# */{
 
     /**
-     * @constructor
+     * <p>The cc.ParticleRain's constructor. <br/>
+     * This function will automatically be invoked when you create a node using new construction: "var node = new cc.ParticleRain()".<br/>
+     * Override it to extend its behavior, remember to call "this._super()" in the extended "ctor" function.</p>
      */
     ctor:function () {
         cc.ParticleSystem.prototype.ctor.call(this, (cc._renderType === cc._RENDER_TYPE_WEBGL) ? 1000 : 300);
@@ -999,6 +1028,7 @@ cc.ParticleRain = cc.ParticleSystem.extend(/** @lends cc.ParticleRain# */{
 
 /**
  * Create a rain particle system
+ * @deprecated since v3.0 please use cc.ParticleRain() instead.
  * @return {cc.ParticleRain}
  *
  * @example

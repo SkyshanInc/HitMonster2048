@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:layout_above="@+id/iv_dilan_un"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/transparent" >
+
+    <ImageView
+        android:id="@+id/iv_challenge_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/challenge_page_friend_vs_icon" />
+
+    <TextView
+        android:id="@+id/tv_challenge_clain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/btn_challenge_mode_bg"
+        android:layout_toRightOf="@+id/iv_challenge_icon"
+        android:gravity="left"
+        android:text="@string/challenge_friend_clain"
+        android:textColor="@color/challenge_clain"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/btn_challenge_mode_bg"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_challenge_mode_press" />
+
+    <ImageView
+        android:id="@+id/btn_challenge_friend_text"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/btn_challenge_mode_bg"
+        android:layout_alignTop="@+id/btn_challenge_mode_bg"
+        android:background="@drawable/challenge_button_text_play_with_friends"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/btn_challenge_random_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_challenge_mode_bg"
+        android:layout_alignTop="@+id/btn_challenge_mode_bg"
+        android:background="@drawable/challenge_button_text_random_allocation_player" />
+
+</RelativeLayout>

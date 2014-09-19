@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_backgroud"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <include
+        android:id="@+id/battlenet_base_title_contain"
+        layout="@layout/home_power_tab" />
+
+    <ImageView
+        android:id="@+id/iv_content_bg_un"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/battlenet_base_title_contain"
+        android:layout_centerInParent="true"
+        android:background="@drawable/general_bottom_bg" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/general_title_bg2" >
+
+        <ImageView
+            android:id="@+id/iv_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/title_text_friend_information" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/tv_dilan_un"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_content_bg_un"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignRight="@+id/iv_content_bg_un"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/general_dilan_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_dilan_un"
+        android:layout_alignLeft="@id/iv_content_bg_un"
+        android:layout_alignRight="@id/iv_content_bg_un"
+        android:layout_below="@id/rl_tab_info"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <include
+            android:id="@+id/info_left_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/info_main_tab" />
+
+        <include
+            android:id="@+id/info_other_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            layout="@layout/info_other_tab" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_info_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_content_bg_un"
+        android:layout_alignTop="@+id/iv_content_bg_un"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_return" />
+
+    <ProgressBar
+        android:id="@+id/pb_info"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/custom_progress_draw" />
+
+</RelativeLayout>

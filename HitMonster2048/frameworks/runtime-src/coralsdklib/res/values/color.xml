@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="shadow">#074b67</color>
+    <color name="shadow2">#BB611A</color>
+    <color name="share_border">#dfe5e1</color>
+    <color name="black">#000000</color>
+    <color name="bnresult_brown">#EAA714</color>
+    <!-- 好友排行榜字体色值 -->
+    <color name="frank_tittle">#147cc3</color>
+    <!-- 个人信息页  本周最高 -->
+    <!-- <color name="info_brown">#7c4519</color> -->
+    <!-- 个人信息页  你的成绩超过了 -->
+    <color name="info_green">#6aa404</color>
+    <!-- 个人信息页  和在和谁玩的时间超过一天颜色 -->
+    <color name="info_time_black">#5a4e45</color>
+    <!-- 几天后清除排行榜数据提示 -->
+    <color name="rank_cleardata_tips">#1aacef</color>
+    <!-- 关于页面用户信息字体颜色 -->
+    <!-- <color name="finish_blue">#616fb4</color> -->
+    <!-- 提示没有数据 -->
+    <color name="msg_tip_blue">#363662</color>
+    <!-- 列表   单行描述 -->
+    <!-- <color name="list_item_discriber_brown">#975b04</color> -->
+    <!-- 列表   名字 -->
+    <!-- <color name="list_item_name_brown">#502e07</color> -->
+    <!-- 列表   复仇失败 -->
+    <!-- <color name="list_item_revenge_fail">#b1a37d</color> -->
+    <!-- 列表   复仇成功 -->
+    <!-- <color name="list_item_revenge_success">#6aa404</color> -->
+    <!-- 消息列表   标题选中状态  战况 -->
+    <color name="msg_tab_press">#592f28</color>
+    <!-- 设置页 选项    好友送心 -->
+    <color name="setting_item_discriber">#104f8e</color>
+    <!-- 设置页   客服热线 -->
+    <color name="setting_phone_num">#44487b</color>
+    <!-- 邀请页   内容  没有好友很寂寞 -->
+    <color name="invite_content">#428ab8</color>
+    <!-- 邀请页   内容  邀请按键内容 -->
+    <color name="invite_btn_content">#a14a0d</color>
+    <!-- 反馈页   内容 -->
+    <color name="feedback_send_content">#777879</color>
+    <!-- 反馈页   友好的语言 -->
+    <color name="feedback_word">#5d584c</color>
+    <!-- 反馈成功提示页面 -->
+    <color name="tip_word">#878787</color>
+    <!-- 双按钮弹窗 -->
+    <color name="tip_confirm">#985c00</color>
+    <!-- WEB标题背景色 -->
+    <color name="web_bg">#1e1e1e</color>
+
+    <!-- 邮件标题 -->
+    <color name="meg_title_selected">#592f28</color>
+    <color name="nomeg_tip">#363662</color>
+    <color name="bntip_challenge">#944100</color>
+    <!-- <color name="finish_history_score">#428AB7</color> -->
+    <color name="item_invite_clain">#595A5B</color>
+    <color name="nearby_noplayer_clain">#8D826C</color>
+    <color name="bngame_name">#8D826C</color>
+    <color name="set_item_name">#4E3F27</color>
+    <color name="share_game_name">#D4FF61</color>
+    <color name="challenge_clain">#686868</color>
+    <color name="meg_emptylist">#5C5C5D</color>
+    <color name="fisnish_sinle_player_shadow">#11B9E0</color>
+    <color name="loading">#FFED92</color>
+    <color name="returnc">#333333</color>
+    <!-- 关于页面用户信息字体颜色 -->
+    <color name="finish_blue">#7a641a</color>
+    <color name="finish_history_score">#7a641a</color>
+
+    <!-- 竖版颜色值 -->
+    <!-- 个人信息页  本周最高 -->
+    <color name="info_brown">#FFFFFF</color>
+    <color name="info_user_info_back">#C2BBA9</color>
+    <color name="info_user_info_rank_back">#567795</color>
+    <color name="info_user_playwith">#608C39</color>
+    <color name="info_percent_back">#4E3F27</color>
+    <color name="nearby_item_back">#70D190</color>
+    <color name="nearby_bottom_back">#FFFFFF</color>
+    <color name="nearby_tips_button_back">#FFF583</color>
+    <color name="nearby_divider_back">#91B96E</color>
+    <color name="friend_msg_item_text">#4A3B22</color>
+    <color name="bngame_item_friend_num">#FFFFFF</color>
+    <color name="msg_btnet_vs_back">#B0B8A6</color>
+    <color name="finish_tab_text_back">#4C4018</color>
+    <color name="my_item_back">#FFF583</color>
+    <color name="infouser_play_with_time">#cdf4ab</color>
+    <color name="info_user_playwith_name">#483921</color>
+    <color name="setting_version">#7F7765</color>
+    <color name="global_rank_lastweek_text">#4E3F27</color>
+    <color name="shoptable_buy_diamond_rmb_color">#ebc12d </color>
+    <color name="invite_btip_color">#8B9381</color>
+    <color name="msg_tab_msgtitle">#4c6e8c</color>
+    <color name="setting_language">#7F7765</color>
+    <color name="friendrank_friend_title">#406484</color>
+    <color name="friendrank_friend_title_shadow">#053c54</color>
+    <color name="general_cleartime_group">#4a6f91</color>
+    <color name="general_cleartime_text">#FDF6E4</color>
+    <color name="list_item_revenge_success">#9DF843</color>
+    <color name="list_item_revenge_fail">#E0E0E0</color>
+    <color name="battlemsgtip_user_name">#000000</color>
+    <!-- 列表   单行描述 -->
+    <color name="list_item_discriber_brown">#adf4ff</color>
+    <color name="list_item_name_brown">#666666</color>
+    <color name="player_addtime">#76A004</color>
+    <color name="history_top">#5d584c</color>
+
+</resources>

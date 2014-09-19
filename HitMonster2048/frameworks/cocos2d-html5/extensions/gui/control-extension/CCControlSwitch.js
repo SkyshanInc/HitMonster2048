@@ -29,7 +29,7 @@
 /**
  * CCControlSwitch: Switch control ui component
  * @class
- * @extend cc.Control
+ * @extends cc.Control
  */
 cc.ControlSwitch = cc.Control.extend(/** @lends cc.ControlSwitch# */{
     /** Sprite which represents the view. */
@@ -156,7 +156,9 @@ cc.ControlSwitch = cc.Control.extend(/** @lends cc.ControlSwitch# */{
     }
 });
 
-/** Creates a switch with a mask sprite, on/off sprites for on/off states and a thumb sprite. */
+/** Creates a switch with a mask sprite, on/off sprites for on/off states and a thumb sprite.
+ *  @deprecated
+ */
 cc.ControlSwitch.create = function (maskSprite, onSprite, offSprite, thumbSprite, onLabel, offLabel) {
     return new cc.ControlSwitch(maskSprite, onSprite, offSprite, thumbSprite, onLabel, offLabel);
 };
@@ -164,7 +166,7 @@ cc.ControlSwitch.create = function (maskSprite, onSprite, offSprite, thumbSprite
 /**
  * ControlSwitchSprite: Sprite switch control ui component
  * @class
- * @extend cc.Sprite
+ * @extends cc.Sprite
  *
  * @property {Number}           sliderX         - Slider's x position
  * @property {cc.Point}         onPos           - The position of slider when switch is on

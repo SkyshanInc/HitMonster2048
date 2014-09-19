@@ -24,7 +24,8 @@
  ****************************************************************************/
 
 /**
- * Base class for ccui.Layout
+ * ccui.Layout is the base class of  ccui.PageView and ccui.ScrollView, it does layout by layout manager
+ *  and clips area by its _clippingStencil when clippingEnabled is true.
  * @class
  * @extends ccui.Widget
  *
@@ -87,8 +88,9 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     _isFocusPassing:false,                                                      //when finding the next focused widget, use this variable to pass focus between layout & widget
 
     /**
-     * allocates and initializes a UILayout.
+     * Allocates and initializes an UILayout.
      * Constructor of ccui.Layout
+     * @function
      * @example
      * // example
      * var uiLayout = new ccui.Layout();
@@ -111,6 +113,11 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         this._clippingRect = cc.rect(0, 0, 0, 0);
         this._backGroundImageColor = cc.color(255, 255, 255, 255);
     },
+
+    /**
+     * Calls its parent's onEnter, and calls its clippingStencil's onEnter if clippingStencil isn't null.
+     * @override
+     */
     onEnter: function(){
         ccui.Widget.prototype.onEnter.call(this);
         if (this._clippingStencil)
@@ -118,6 +125,11 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         this._doLayoutDirty = true;
         this._clippingRectDirty = true;
     },
+
+    /**
+     *  Calls its parent's onExit, and calls its clippingStencil's onExit if clippingStencil isn't null.
+     *  @override
+     */
     onExit: function(){
         ccui.Widget.prototype.onExit.call(this);
         if (this._clippingStencil)
@@ -141,6 +153,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
+     * Specifies whether the layout pass its focus to its child
      * @param pass To specify whether the layout pass its focus to its child
      */
     setPassFocusToChild: function(pass){
@@ -148,6 +161,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
+     * Returns whether the layout will pass the focus to its children or not. The default value is true
      * @returns {boolean} To query whether the layout will pass the focus to its children or not. The default value is true
      */
     isPassFocusToChild: function(){
@@ -157,8 +171,8 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     /**
      * When a widget is in a layout, you could call this method to get the next focused widget within a specified direction.
      * If the widget is not in a layout, it will return itself
-     * @param direction the direction to look for the next focused widget in a layout
-     * @param current the current focused widget
+     * @param {Number} direction the direction to look for the next focused widget in a layout
+     * @param {ccui.Widget} current the current focused widget
      * @returns {ccui.Widget} return the index of widget in the layout
      */
     findNextFocusedWidget: function(direction, current){
@@ -232,8 +246,19 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             return current;
     },
 
+    /**
+     * To specify a user-defined functor to decide which child widget of the layout should get focused
+     * @function
+     * @param {Number} direction
+     * @param {ccui.Widget} current
+     */
     onPassFocusToChild: null,
 
+    /**
+     * override "init" method of widget. please do not call this function by yourself, you should pass the parameters to constructor to initialize it.
+     * @returns {boolean}
+     * @override
+     */
     init: function () {
         if (ccui.Widget.prototype.init.call(this)) {
             this.ignoreContentAdaptWithSize(false);
@@ -265,6 +290,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
      * @param {ccui.Widget} widget
      * @param {Number} [zOrder]
      * @param {Number|string} [tag] tag or name
+     * @override
      */
     addChild: function (widget, zOrder, tag) {
         if ((widget instanceof ccui.Widget)) {
@@ -275,9 +301,10 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Remove child widget from ccui.Layout
+     * Removes child widget from ccui.Layout, and sets the layout dirty flag to true.
      * @param {ccui.Widget} widget
      * @param {Boolean} [cleanup=true]
+     * @override
      */
     removeChild: function (widget, cleanup) {
         ccui.Widget.prototype.removeChild.call(this, widget, cleanup);
@@ -285,7 +312,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Removes all children from the container with a cleanup.
+     * Removes all children from the container with a cleanup, and sets the layout dirty flag to true.
      * @param {Boolean} cleanup
      */
     removeAllChildren: function (cleanup) {
@@ -294,11 +321,12 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Removes all children from the container, and do a cleanup to all running actions depending on the cleanup parameter.
+     * Removes all children from the container, do a cleanup to all running actions depending on the cleanup parameter,
+     * and sets the layout dirty flag to true.
      * @param {Boolean} cleanup true if all running actions on all children nodes should be cleanup, false otherwise.
      */
     removeAllChildrenWithCleanup: function(cleanup){
-        ccui.Widget.prototype.removeAllChildrenWithCleanup(cleanup);
+        ccui.Widget.prototype.removeAllChildrenWithCleanup.call(this, cleanup);
         this._doLayoutDirty = true;
     },
 
@@ -310,6 +338,14 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         return this._clippingEnabled;
     },
 
+    /**
+     * <p>
+     *     Calls adaptRenderers (its subclass will override it.) and do layout.
+     *     If clippingEnabled is true, it will clip/scissor area.
+     * </p>
+     * @override
+     * @param {CanvasRenderingContext2D|WebGLRenderingContext} ctx
+     */
     visit: function (ctx) {
         if (!this._visible)
             return;
@@ -327,14 +363,8 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
                 default:
                     break;
             }
-        } else {
+        } else
             ccui.Widget.prototype.visit.call(this, ctx);
-        }
-    },
-
-    sortAllChildren: function () {
-        ccui.Widget.prototype.sortAllChildren.call(this);
-        this._doLayout();
     },
 
     _stencilClippingVisit: null,
@@ -342,20 +372,8 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     _stencilClippingVisitForWebGL: function (ctx) {
         var gl = ctx || cc._renderContext;
 
-        // if stencil buffer disabled
-        /*if (cc.stencilBits < 1) {
-         // draw everything, as if there where no stencil
-         cc.Node.prototype.visit.call(this, ctx);
-         return;
-         }*/
-
         if (!this._clippingStencil || !this._clippingStencil.isVisible())
             return;
-
-        // store the current stencil layer (position in the stencil buffer),
-        // this will allow nesting up to n CCClippingNode,
-        // where n is the number of bits of the stencil buffer.
-        ccui.Layout._layer = -1;
 
         // all the _stencilBits are in use?
         if (ccui.Layout._layer + 1 == cc.stencilBits) {
@@ -370,14 +388,10 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             return;
         }
 
-        // increment the current layer
         ccui.Layout._layer++;
 
-        // mask of the current layer (ie: for layer 3: 00000100)
         var mask_layer = 0x1 << ccui.Layout._layer;
-        // mask of all layers less than the current (ie: for layer 3: 00000011)
         var mask_layer_l = mask_layer - 1;
-        // mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
         var mask_layer_le = mask_layer | mask_layer_l;
 
         // manually save the stencil state
@@ -390,57 +404,38 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         var currentStencilPassDepthFail = gl.getParameter(gl.STENCIL_PASS_DEPTH_FAIL);
         var currentStencilPassDepthPass = gl.getParameter(gl.STENCIL_PASS_DEPTH_PASS);
 
-        // enable stencil use
         gl.enable(gl.STENCIL_TEST);
-        // check for OpenGL error while enabling stencil test
-        //cc.checkGLErrorDebug();
 
-        // all bits on the stencil buffer are readonly, except the current layer bit,
-        // this means that operation like glClear or glStencilOp will be masked with this value
         gl.stencilMask(mask_layer);
 
-        // manually save the depth test state
-        //GLboolean currentDepthTestEnabled = GL_TRUE;
-        //currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
         var currentDepthWriteMask = gl.getParameter(gl.DEPTH_WRITEMASK);
 
-        // disable depth test while drawing the stencil
-        //glDisable(GL_DEPTH_TEST);
-        // disable update to the depth buffer while drawing the stencil,
-        // as the stencil is not meant to be rendered in the real scene,
-        // it should never prevent something else to be drawn,
-        // only disabling depth buffer update should do
         gl.depthMask(false);
 
-        // manually clear the stencil buffer by drawing a fullscreen rectangle on it
-        // setup the stencil test func like this:
-        // for each pixel in the fullscreen rectangle
-        //     never draw it into the frame buffer
-        //     if not in inverted mode: set the current layer value to 0 in the stencil buffer
-        //     if in inverted mode: set the current layer value to 1 in the stencil buffer
         gl.stencilFunc(gl.NEVER, mask_layer, mask_layer);
         gl.stencilOp(gl.ZERO, gl.KEEP, gl.KEEP);
 
         // draw a fullscreen solid rectangle to clear the stencil buffer
-        //ccDrawSolidRect(CCPointZero, ccpFromSize([[CCDirector sharedDirector] winSize]), ccc4f(1, 1, 1, 1));
-        cc._drawingUtil.drawSolidRect(cc.p(0, 0), cc.pFromSize(cc.director.getWinSize()), cc.color(255, 255, 255, 255));
+        cc.kmGLMatrixMode(cc.KM_GL_PROJECTION);
+        cc.kmGLPushMatrix();
+        cc.kmGLLoadIdentity();
+        cc.kmGLMatrixMode(cc.KM_GL_MODELVIEW);
+        cc.kmGLPushMatrix();
+        cc.kmGLLoadIdentity();
+        cc._drawingUtil.drawSolidRect(cc.p(-1,-1), cc.p(1,1), cc.color(255, 255, 255, 255));
+        cc.kmGLMatrixMode(cc.KM_GL_PROJECTION);
+        cc.kmGLPopMatrix();
+        cc.kmGLMatrixMode(cc.KM_GL_MODELVIEW);
+        cc.kmGLPopMatrix();
 
-        // setup the stencil test func like this:
-        // for each pixel in the stencil node
-        //     never draw it into the frame buffer
-        //     if not in inverted mode: set the current layer value to 1 in the stencil buffer
-        //     if in inverted mode: set the current layer value to 0 in the stencil buffer
         gl.stencilFunc(gl.NEVER, mask_layer, mask_layer);
         gl.stencilOp(gl.REPLACE, gl.KEEP, gl.KEEP);
 
         cc.kmGLPushMatrix();
         this.transform();
-
         this._clippingStencil.visit();
 
-        // restore the depth test state
         gl.depthMask(currentDepthWriteMask);
-
         gl.stencilFunc(gl.EQUAL, mask_layer_le, mask_layer_le);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
 
@@ -478,8 +473,6 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         gl.stencilMask(currentStencilWriteMask);
         if (!currentStencilEnabled)
             gl.disable(gl.STENCIL_TEST);
-
-        // we are done using this layer, decrement
         ccui.Layout._layer--;
 
         cc.kmGLPopMatrix();
@@ -494,7 +487,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         }
         var context = ctx || cc._renderContext;
         // Composition mode, costy but support texture stencil
-        if (this._cangodhelpme() || this._clippingStencil instanceof cc.Sprite) {
+        if (this._clippingStencil instanceof cc.Sprite) {
             // Cache the current canvas, for later use (This is a little bit heavy, replace this solution with other walkthrough)
             var canvas = context.canvas;
             var locCache = ccui.Layout._getSharedCache();
@@ -505,7 +498,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
 
             context.save();
             // Draw everything first using node visit function
-            cc.Node.prototype.visit.call(this, context);
+            cc.ProtectedNode.prototype.visit.call(this, context);
 
             context.globalCompositeOperation = "destination-in";
 
@@ -530,8 +523,6 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
 
             // Clip mode doesn't support recusive stencil, so once we used a clip stencil,
             // so if it has ClippingNode as a child, the child must uses composition stencil.
-            this._cangodhelpme(true);
-
             this.sortAllChildren();
             this.sortAllProtectedChildren();
 
@@ -559,16 +550,8 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             for (; j < jLen; j++)
                 locProtectChildren[j].visit(context);
 
-            this._cangodhelpme(false);
             context.restore();
         }
-    },
-
-    _godhelpme: false,
-    _cangodhelpme: function (godhelpme) {
-        if (godhelpme === true || godhelpme === false)
-            cc.ClippingNode.prototype._godhelpme = godhelpme;
-        return cc.ClippingNode.prototype._godhelpme;
     },
 
     _scissorClippingVisit: null,
@@ -604,7 +587,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
                         this._clippingStencil.onEnter();
                     this._setStencilClippingSize(this._contentSize);
                 } else {
-                    if (this._running)
+                    if (this._running && this._clippingStencil)
                         this._clippingStencil.onExit();
                     this._clippingStencil = null;
                 }
@@ -615,13 +598,12 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Sets clipping type
+     * Sets clipping type to ccui.Layout
      * @param {ccui.Layout.CLIPPING_STENCIL|ccui.Layout.CLIPPING_SCISSOR} type
      */
     setClippingType: function (type) {
-        if (type == this._clippingType) {
+        if (type == this._clippingType)
             return;
-        }
         var clippingEnabled = this.isClippingEnabled();
         this.setClippingEnabled(false);
         this._clippingType = type;
@@ -629,7 +611,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Gets clipping type
+     * Gets clipping type of ccui.Layout
      * @returns {ccui.Layout.CLIPPING_STENCIL|ccui.Layout.CLIPPING_SCISSOR}
      */
     getClippingType: function () {
@@ -647,10 +629,6 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             this._clippingStencil.clear();
             this._clippingStencil.drawPoly(rect, 4, green, 0, green);
         }
-    },
-
-    rendererVisitCallBack: function () {
-        this._doLayout();
     },
 
     _getClippingRect: function () {
@@ -720,7 +698,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         this._clippingRectDirty = true;
         if (this._backGroundImage) {
             this._backGroundImage.setPosition(locContentSize.width * 0.5, locContentSize.height * 0.5);
-            if (this._backGroundScale9Enabled && this._backGroundImage instanceof cc.Scale9Sprite)
+            if (this._backGroundScale9Enabled && this._backGroundImage instanceof ccui.Scale9Sprite)
                 this._backGroundImage.setPreferredSize(locContentSize);
         }
         if (this._colorRender)
@@ -745,7 +723,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get background image is use scale9 renderer.
+     * Get whether background image is use scale9 renderer.
      * @returns {Boolean}
      */
     isBackGroundImageScale9Enabled: function () {
@@ -765,8 +743,9 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             this._addBackGroundImage();
         this._backGroundImageFileName = fileName;
         this._bgImageTexType = texType;
+        var locBackgroundImage = this._backGroundImage;
         if (this._backGroundScale9Enabled) {
-            var bgiScale9 = this._backGroundImage;
+            var bgiScale9 = locBackgroundImage;
             switch (this._bgImageTexType) {
                 case ccui.Widget.LOCAL_TEXTURE:
                     bgiScale9.initWithFile(fileName);
@@ -779,39 +758,60 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             }
             bgiScale9.setPreferredSize(this._contentSize);
         } else {
-            var sprite = this._backGroundImage;
+            var sprite = locBackgroundImage;
             switch (this._bgImageTexType){
                 case ccui.Widget.LOCAL_TEXTURE:
-                    sprite.setTexture(fileName);
+                    //SetTexture cannot load resource
+                    sprite.initWithFile(fileName);
                     break;
                 case ccui.Widget.PLIST_TEXTURE:
-                    sprite.setSpriteFrame(fileName);
+                    //SetTexture cannot load resource
+                    sprite.initWithSpriteFrameName(fileName);
                     break;
                 default:
                     break;
             }
         }
-        this._backGroundImageTextureSize = this._backGroundImage.getContentSize();
-        this._backGroundImage.setPosition(this._contentSize.width * 0.5, this._contentSize.height * 0.5);
+        this._backGroundImageTextureSize = locBackgroundImage.getContentSize();
+        locBackgroundImage.setPosition(this._contentSize.width * 0.5, this._contentSize.height * 0.5);
         this._updateBackGroundImageColor();
+
+        /*//async load callback
+        var self = this;
+        if(!locBackgroundImage.texture || !locBackgroundImage.texture.isLoaded()){
+            locBackgroundImage.addLoadedEventListener(function(){
+                self._backGroundImageTextureSize = locBackgroundImage.getContentSize();
+                locBackgroundImage.setPosition(self._contentSize.width * 0.5, self._contentSize.height * 0.5);
+                self._updateBackGroundImageColor();
+
+                self._imageRendererAdaptDirty = true;
+                self._findLayout();
+            });
+        }*/
     },
 
     /**
      * Sets a background image CapInsets for layout, if the background image is a scale9 render.
-     * @param {cc.Rect} capInsets  capinsets of background image.
+     * @param {cc.Rect} capInsets capinsets of background image.
      */
     setBackGroundImageCapInsets: function (capInsets) {
-        this._backGroundImageCapInsets = capInsets;
+        if(!capInsets)
+            return;
+        var locInsets = this._backGroundImageCapInsets;
+        locInsets.x = capInsets.x;
+        locInsets.y = capInsets.y;
+        locInsets.width = capInsets.width;
+        locInsets.height = capInsets.height;
         if (this._backGroundScale9Enabled)
             this._backGroundImage.setCapInsets(capInsets);
     },
 
     /**
-     * Gets background image cap insets.
+     * Gets background image capinsets of ccui.Layout.
      * @returns {cc.Rect}
      */
     getBackGroundImageCapInsets: function () {
-        return this._backGroundImageCapInsets;
+        return cc.rect(this._backGroundImageCapInsets);
     },
 
     _supplyTheLayoutParameterLackToChild: function (locChild) {
@@ -837,12 +837,9 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
         }
     },
 
-    /**
-     * init background image renderer.
-     */
     _addBackGroundImage: function () {
         if (this._backGroundScale9Enabled) {
-            this._backGroundImage = cc.Scale9Sprite.create();
+            this._backGroundImage = ccui.Scale9Sprite.create();
             this._backGroundImage.setPreferredSize(this._contentSize);
         } else
             this._backGroundImage = cc.Sprite.create();
@@ -851,7 +848,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Remove the background image of layout.
+     * Remove the background image of ccui.Layout.
      */
     removeBackGroundImage: function () {
         if (!this._backGroundImage)
@@ -864,7 +861,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Sets Color Type for layout.
+     * Sets Color Type for ccui.Layout.
      * @param {ccui.Layout.BG_COLOR_NONE|ccui.Layout.BG_COLOR_SOLID|ccui.Layout.BG_COLOR_GRADIENT} type
      */
     setBackGroundColorType: function (type) {
@@ -901,14 +898,14 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
             case ccui.Layout.BG_COLOR_NONE:
                 break;
             case ccui.Layout.BG_COLOR_SOLID:
-                this._colorRender = cc.LayerColor.create();
+                this._colorRender = new cc.LayerColor();
                 this._colorRender.setContentSize(this._contentSize);
                 this._colorRender.setOpacity(this._opacity);
                 this._colorRender.setColor(this._color);
                 this.addProtectedChild(this._colorRender, ccui.Layout.BACKGROUND_RENDERER_ZORDER, -1);
                 break;
             case ccui.Layout.BG_COLOR_GRADIENT:
-                this._gradientRender = cc.LayerGradient.create(cc.color(255, 0, 0, 255), cc.color(0, 255, 0, 255));
+                this._gradientRender = new cc.LayerGradient(cc.color(255, 0, 0, 255), cc.color(0, 255, 0, 255));
                 this._gradientRender.setContentSize(this._contentSize);
                 this._gradientRender.setOpacity(this._opacity);
                 this._gradientRender.setStartColor(this._startColor);
@@ -922,7 +919,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get background color type.
+     * Get background color type of ccui.Layout.
      * @returns {ccui.Layout.BG_COLOR_NONE|ccui.Layout.BG_COLOR_SOLID|ccui.Layout.BG_COLOR_GRADIENT}
      */
     getBackGroundColorType: function () {
@@ -957,7 +954,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get back ground color
+     * Gets background color of ccui.Layout, if color type is Layout.COLOR_SOLID.
      * @returns {cc.Color}
      */
     getBackGroundColor: function () {
@@ -966,7 +963,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get back ground start color
+     * Gets background start color of ccui.Layout
      * @returns {cc.Color}
      */
     getBackGroundStartColor: function () {
@@ -975,7 +972,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get back ground end color
+     * Gets background end color of ccui.Layout
      * @returns {cc.Color}
      */
     getBackGroundEndColor: function () {
@@ -984,7 +981,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Sets background opacity layout.
+     * Sets background opacity to ccui.Layout.
      * @param {number} opacity
      */
     setBackGroundColorOpacity: function (opacity) {
@@ -1004,7 +1001,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get background opacity value.
+     * Get background opacity value of ccui.Layout.
      * @returns {Number}
      */
     getBackGroundColorOpacity: function () {
@@ -1024,7 +1021,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     *  Get background color value.
+     *  Gets background color vector of ccui.Layout, if color type is Layout.COLOR_GRADIENT
      * @returns {cc.Point}
      */
     getBackGroundColorVector: function () {
@@ -1044,7 +1041,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Gets backGround image Opacity
+     * Sets backGround image Opacity
      * @param {Number} opacity
      */
     setBackGroundImageOpacity: function (opacity) {
@@ -1053,7 +1050,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get backGround image color
+     * Gets backGround image color
      * @returns {cc.Color}
      */
     getBackGroundImageColor: function () {
@@ -1062,7 +1059,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Get backGround image opacity
+     * Gets backGround image opacity
      * @returns {Number}
      */
     getBackGroundImageOpacity: function () {
@@ -1083,7 +1080,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Sets LayoutType.
+     * Sets LayoutType to ccui.Layout, LayoutManager will do layout by layout type..
      * @param {ccui.Layout.ABSOLUTE|ccui.Layout.LINEAR_VERTICAL|ccui.Layout.LINEAR_HORIZONTAL|ccui.Layout.RELATIVE} type
      */
     setLayoutType: function (type) {
@@ -1099,7 +1096,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * Gets LayoutType.
+     * Gets LayoutType of ccui.Layout.
      * @returns {null}
      */
     getLayoutType: function () {
@@ -1107,7 +1104,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * request do layout
+     * request do layout, it will do layout at visit calls
      */
     requestDoLayout: function () {
         this._doLayoutDirty = true;
@@ -1116,6 +1113,8 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     _doLayout: function () {
         if (!this._doLayoutDirty)
             return;
+
+        this.sortAllChildren();
 
         var executant = ccui.getLayoutManager(this._layoutType);
         if (executant)
@@ -1169,7 +1168,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
     },
 
     /**
-     * get the content size of the layout, it will accumulate all its children's content size
+     * Gets the content size of the layout, it will accumulate all its children's content size
      * @returns {cc.Size}
      * @private
      */
@@ -1730,7 +1729,7 @@ ccui.Layout = ccui.Widget.extend(/** @lends ccui.Layout# */{
 });
 ccui.Layout._init_once = null;
 ccui.Layout._visit_once = null;
-ccui.Layout._layer = null;
+ccui.Layout._layer = -1;
 ccui.Layout._sharedCache = null;
 
 if (cc._renderType == cc._RENDER_TYPE_WEBGL) {
@@ -1762,7 +1761,7 @@ _p = null;
 
 /**
  * allocates and initializes a UILayout.
- * @constructs
+ * @deprecated since v3.0, please use new ccui.Layout() instead.
  * @return {ccui.Layout}
  * @example
  * // example
@@ -1775,19 +1774,74 @@ ccui.Layout.create = function () {
 // Constants
 
 //layoutBackGround color type
+/**
+ * The None of ccui.Layout's background color type
+ * @constant
+ * @type {number}
+ */
 ccui.Layout.BG_COLOR_NONE = 0;
+/**
+ * The solid of ccui.Layout's background color type, it will use a LayerColor to draw the background.
+ * @constant
+ * @type {number}
+ */
 ccui.Layout.BG_COLOR_SOLID = 1;
+/**
+ * The gradient of ccui.Layout's background color type, it will use a LayerGradient to draw the background.
+ * @constant
+ * @type {number}
+ */
 ccui.Layout.BG_COLOR_GRADIENT = 2;
 
 //Layout type
+/**
+ * The absolute of ccui.Layout's layout type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.ABSOLUTE = 0;
+/**
+ * The vertical of ccui.Layout's layout type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.LINEAR_VERTICAL = 1;
+/**
+ * The horizontal of ccui.Layout's layout type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.LINEAR_HORIZONTAL = 2;
+/**
+ * The relative of ccui.Layout's layout type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.RELATIVE = 3;
 
 //Layout clipping type
+/**
+ * The stencil of ccui.Layout's clipping type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.CLIPPING_STENCIL = 0;
+/**
+ * The scissor of ccui.Layout's clipping type.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.CLIPPING_SCISSOR = 1;
 
+/**
+ * The zOrder value of ccui.Layout's image background.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.BACKGROUND_IMAGE_ZORDER = -2;
+/**
+ * The zOrder value of ccui.Layout's color background.
+ * @type {number}
+ * @constant
+ */
 ccui.Layout.BACKGROUND_RENDERER_ZORDER = -2;
